@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppLexicon", "WebAppLexicon\WebAppLexicon.csproj", "{DE9FDA95-1032-42B3-B656-1A338625319C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE9FDA95-1032-42B3-B656-1A338625319C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9FDA95-1032-42B3-B656-1A338625319C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9FDA95-1032-42B3-B656-1A338625319C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9FDA95-1032-42B3-B656-1A338625319C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD7B8C1E-4673-48CA-86AC-9AD57A641662}
+	EndGlobalSection
+EndGlobal
