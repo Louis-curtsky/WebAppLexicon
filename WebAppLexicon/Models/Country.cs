@@ -15,7 +15,6 @@ namespace WebAppLexicon.Models
         public int CntyId { get; set; }
         public string CntyName { get; set; }
 
-
         public List<State> States { get; set; }
     }
 }

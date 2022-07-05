@@ -14,6 +14,7 @@ namespace WebAppLexicon.Models.Members.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
 
             #region Country-State-City Join Class Config
@@ -43,8 +44,8 @@ namespace WebAppLexicon.Models.Members.Data
             modelBuilder.Entity<Country>().HasData(
                 new Country() { CntyId = 1, CntyName = "Sweden" },
                 new Country() { CntyId = 2, CntyName = "France" },
-                new Country() { CntyId = 2, CntyName = "Italy" },
-                new Country() { CntyId = 3, CntyName = "Germany" }
+                new Country() { CntyId = 3, CntyName = "Italy" },
+                new Country() { CntyId = 4, CntyName = "Germany" }
                 );
 
             modelBuilder.Entity<State>().HasData(
