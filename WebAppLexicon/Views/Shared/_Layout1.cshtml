@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebAppLexicon</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto:300&display=swap" rel="stylesheet">
     <!-- This is my own style sheet -->
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/myStyle.css" />
     <link href="~/css/all.css" rel="stylesheet">
 </head>
 <body>
@@ -27,7 +27,7 @@
                             <a href="#" class="navbutton1"><i class="fa-solid fa-user-pen"></i></a>
                         </h3>
                     </nav>
-                        <p> </p>
+                    <p> </p>
                 </div>
                 <div>
                     <nav>
@@ -39,40 +39,9 @@
             </div>
         </header>
 
-
-        <main>
+        <div>
             @RenderBody()
-        </main>
-        <div class="cards">
-            <div class="card1">
-                <a href="#">
-                    <h1>
-                    <i class="fa-solid fa-magnifying-glass-location"></i>
-                    </h1>
-                    <h3>Browse Services</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo cumque odit. Nostrum, et ducimus?</p>
-                </a>
-            </div>
-            <div class="card2">
-                <a href="http://www.byol.me">
-                    <h1>
-                    <i class="fas fa-cog"></i>
-                    </h1>
-                    <h3>Provide Services</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo cumque odit. Nostrum, et ducimus?</p>
-                </a>
-            </div>
-            <div class="card3">
-                <a href="#">
-                    <h1>
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    </h1>
-                    <h2>Stories from users</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo cumque odit. Nostrum, et ducimus?</p>
-                </a>
-            </div>
         </div>
-
     </div>
     <footer class="border-top footer text-muted">
         <hr>

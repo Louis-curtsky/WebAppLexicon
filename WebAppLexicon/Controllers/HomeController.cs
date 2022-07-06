@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models;
+using WebAppLexicon.Models.Members.ViewModel;
 
 namespace WebAppLexicon.Controllers
 {
@@ -23,6 +24,12 @@ namespace WebAppLexicon.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            CreateMemberViewModel createMember = new CreateMemberViewModel();
+            return View(createMember);
+        }
         public IActionResult Privacy()
         {
             return View();

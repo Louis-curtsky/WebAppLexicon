@@ -1,0 +1,108 @@
+﻿@model WebAppLexicon.Models.Members.ViewModel.CreateMemberViewModel
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div class="row">
+    <div class="column1" style="background-color:rgb(50, 37, 102);">
+        <h3>Register</h3>
+        <h1>
+            <i class="fa-solid fa-user-pen"></i>
+        </h1>
+    </div>
+    <div class="column2" style="background-color:rgb(101, 76, 204);">
+        <form asp-action="Create">
+            <div class="column3" style="background-color: rgb(101, 76, 204);">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <label asp-for="memberType" class="control-label">Membership Type</label>
+                <input asp-for="memberType" class="form-control" />
+                <span asp-validation-for="memberType" class="text-danger"></span>
+
+                <label asp-for="FirstName" class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+
+                <label asp-for="GovIdType" class="control-label"></label>
+                <input asp-for="GovIdType" class="form-control" />
+                <span asp-validation-for="GovIdType" class="text-danger"></span>
+
+                <label asp-for="GovId" class="control-label"></label>
+                <input asp-for="GovId" class="form-control" />
+                <span asp-validation-for="GovId" class="text-danger"></span>
+
+
+                <label asp-for="LoginName" class="control-label">Login Name</label>
+                <input asp-for="LoginName" class="form-control" />
+                <span asp-validation-for="LoginName" class="text-danger"></span>
+
+
+                <label asp-for="Age" class="control-label">Age</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+
+                <div class="column3" style="background-color:#bbb;">
+
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+
+
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+
+                    <label asp-for="Nationality" class="control-label"></label>
+                    <input asp-for="Nationality" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger"></span>
+
+                    <label asp-for="CountryId" class="control-label">Country</label>
+                    <input asp-for="CountryId" class="form-control" />
+                    <span asp-validation-for="CountryId" class="text-danger"></span>
+
+                    <label asp-for="StateId" class="control-label">State</label>
+                    <input asp-for="StateId" class="form-control" />
+                    <span asp-validation-for="StateId" class="text-danger"></span>
+
+                    <label asp-for="CtyId" class="control-label">City</label>
+                    <input asp-for="CtyId" class="form-control" />
+                    <span asp-validation-for="CtyId" class="text-danger"></span>
+
+                    <label asp-for="langRead1" class="control-label">Read Level</label>
+                    <input asp-for="langRead1" class="form-control" />
+                    <span asp-validation-for="langRead1" class="text-danger"></span>
+
+                    <label asp-for="langWrite1" class="control-label">Write Level</label>
+                    <input asp-for="langWrite1" class="form-control" />
+                    <span asp-validation-for="langWrite1" class="text-danger"></span>
+
+                    <div class="regform">
+                        <nav>
+                            <a href="#" class="navbutton">Back</a>
+                            <a href="#" class="navbutton">Next</a>
+                        </nav>
+                    </div>
+                </div>
+        </form>
+    </div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+  </div>
+
+
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

@@ -1,0 +1,73 @@
+﻿input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #332c70;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    input[type=submit]:hover {
+        background-color: #332c70;
+    }
+
+/*   div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  } */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Create x columns that floats next to each other */
+
+
+.column1 {
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: 10px;
+    height: 700px; /* Should be removed. Only for demonstration */
+}
+
+.column2 {
+    float: left;
+    width: 75%;
+    padding: 10px;
+    height: 700px;
+
+    /* Should be removed. Only for demonstration */
+}
+.column3 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+
+    /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.regform {
+    float: right;
+    margin-top: 25px;
+}
