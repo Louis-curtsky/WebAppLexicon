@@ -2,6 +2,7 @@ using FluentAssertions.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppLexicon.Models.Identity;
 using WebAppLexicon.Models.Members.Data;
 using WebAppLexicon.Models.Members.Repo;
 using WebAppLexicon.Models.Members.Services;
@@ -34,9 +36,34 @@ namespace WebAppLexicon
             services.AddDbContext<MemberDbContext>
              (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-        // -------------------- IOC ------------------------
-            services.AddScoped<ICountryRepo, DbCountryRepo>();
+            //------------------------- Identity -------------------------------------------------------
+            /*            services.AddIdentity<AppUser, IdentityRole>()
+                            .AddRoles<IdentityRole>()
+                            .AddEntityFrameworkStores<MemberDbContext>()
+                            .AddDefaultTokenProviders();*/
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+             .AddRoles<IdentityRole>()
+             .AddEntityFrameworkStores<MemberDbContext>()
+             .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Account/AccessDenied";
+            });
+
+            // -------------------- IOC ------------------------
+            services.AddScoped<IPeopleRepo, PeopleRepo>();//Container setting for my IoC
+            services.AddScoped<IPeopleService, PeopleService>();//Container setting for my IoC
+
+            services.AddScoped<ICountryRepo, CountryRepo>();
             services.AddScoped<ICountryServices, CountryServices>();
+
+            services.AddScoped<IStateRepo, StateRepo>();
+            services.AddScoped<IStateServices, StateServices>();
+
+            services.AddScoped<ICityRepo, CityRepo>();
+            services.AddScoped<ICityServices, CityServices>();
 
             services.AddMvc().AddRazorRuntimeCompilation();
         }
@@ -60,8 +87,8 @@ namespace WebAppLexicon
             app.UseStaticFiles();
 
             app.UseRouting();
-            //app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

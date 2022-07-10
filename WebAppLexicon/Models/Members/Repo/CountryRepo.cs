@@ -7,48 +7,50 @@ using WebAppLexicon.Models.Members.Data;
 
 namespace WebAppLexicon.Models.Members.Repo
 {
-    public class DbCountryRepo : ICountryRepo
+    public class CountryRepo : ICountryRepo
     {
-        readonly MemberDbContext _personDBContext;
+        private readonly MemberDbContext _memberDbContext;
 
-        public DbCountryRepo(MemberDbContext personDBContext)
+        public CountryRepo(MemberDbContext memberDbContext)
         {
-            _personDBContext = personDBContext;
+            _memberDbContext = memberDbContext;
         }
+
+        
         public Country Create(Country country)
         {
-            _personDBContext.Countries.Add(country);
-            _personDBContext.SaveChanges();
+            _memberDbContext.Countries.Add(country);
+            _memberDbContext.SaveChanges();
             return country;
         }
 
         public bool Delete(Country country)
         {
-            _personDBContext.Countries.Remove(country);
-            int returnValue = _personDBContext.SaveChanges();
+            _memberDbContext.Countries.Remove(country);
+            int returnValue = _memberDbContext.SaveChanges();
             return returnValue == 1 ? true : false;
         }
 
         public Country FindById(int id)
         {
-            Country countryFound = _personDBContext.Countries.Find(id);
+            Country countryFound = _memberDbContext.Countries.Find(id);
             return countryFound;
         }
 
         public Country GetCountry(int id)
         {
-            return _personDBContext.Countries.Find(id);
+            return _memberDbContext.Countries.Find(id);
         }
         public List<Country> GetAll()
         {
-            return (_personDBContext.Countries.Include(country => country.States).ToList());
+            return (_memberDbContext.Countries.Include(country => country.States).ToList());
         }
 
 
         public Country Update(Country country)
         {
-            _personDBContext.Countries.Update(country);
-            if (_personDBContext.SaveChanges() > 0)
+            _memberDbContext.Countries.Update(country);
+            if (_memberDbContext.SaveChanges() > 0)
             {
                 return country;
             }

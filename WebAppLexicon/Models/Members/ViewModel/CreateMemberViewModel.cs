@@ -49,7 +49,7 @@ namespace WebAppLexicon.Models.Members.ViewModel
         public string Email { get; set; }
         public int CtyId { get; set; }
         public int StateId { get; set; }
-        public int CountryId { get; set; }
+        public int CntyId { get; set; }
         public List<MemberLanguage> language1 { get; set; }
         public int langRead1 { get; set; } // 0: None 1:Beginer 2: Intermediate 3: Advance
         public int langWrite1 { get; set; }

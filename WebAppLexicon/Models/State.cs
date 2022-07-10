@@ -15,8 +15,8 @@ namespace WebAppLexicon.Models
         public int StateId { get; set; }
         public string StateName { get; set; }
 
-        [ForeignKey("CountryId")]
-        public int CountryId { get; set; }
+        [ForeignKey("CntyId")]
+        public int? CntyId { get; set; }
         public Country Countries { get; set; }
 
         public List<City> Cities { get; set; }

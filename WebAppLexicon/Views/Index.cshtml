@@ -1,0 +1,69 @@
+﻿@model List<WebAppLexicon.Models.Members.Members>
+@{
+    ViewData["Title"] = "Members - Maintenance";
+}
+
+<!-- Example single danger button -->
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        People Menu
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" asp-controller="Person" asp-action="Create">Create</a>
+        <a class="dropdown-item" asp-controller="Person" asp-action="Searching">Search</a>
+        <a class="dropdown-item" asp-controller="Person" asp-action="FindPerson">Find a Member</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Others</a>
+    </div>
+</div>
+<hr />
+<h1>Members Maintenance</h1>
+<form asp-action="Edit" method="post">
+    <table class="contact">
+        <tr>
+            <th width="10px">ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Telephone</th>
+            <th>Nationality</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Actions</th>
+            <th>Language</th>
+        </tr>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Model[i].MemberId
+                </td>
+                <td>@Model[i].FirstName</td>
+                <td>@Model[i].LastName</td>
+                <td>@Model[i].Phone</td>
+                <td>@Model[i].Nationality</td>
+                <td>@Model[i].CntyId</td>
+                <td>@Model[i].StateId</td>
+                <td id="cityName">
+                    @Model[i].CtyId
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Person" asp-route-id="@Model[i].MemberId">Delete</a>
+                    <a class="btn btn-info" asp-action="Edit" asp-controller="Person" asp-route-id="@Model[i].MemberId">Edit</a>
+                </td>
+                <td>
+                    Language Read
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>
+<div class="View" mode="Model">
+
+</div>
+@if (ViewBag.msg != null)
+{
+    <h3>@ViewBag.msg</h3>
+}
