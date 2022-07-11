@@ -42,7 +42,7 @@ namespace WebAppLexicon
                             .AddEntityFrameworkStores<MemberDbContext>()
                             .AddDefaultTokenProviders();*/
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<MemberDbContext>()
              .AddDefaultTokenProviders();

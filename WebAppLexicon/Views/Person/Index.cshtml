@@ -1,6 +1,7 @@
 ﻿@model List<WebAppLexicon.Models.Members.Members>
 @{
     ViewData["Title"] = "Members Maintenance";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h2>Members Maintenance</h2>
@@ -10,13 +11,14 @@
             <th width="10px">ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Telephone</th>
+            <th>Phone</th>
             <th>Country</th>
             <th>State</th>
             <th>City</th>
+            <th>Read</th>
+            <th>Write</th>
+            <th>Status</th>
             <th>Actions</th>
-            <th>Language Read</th>
-            <th>Language Write</th>
         </tr>
         <tbody>
             @for (int i = 0; i < Model.Count; i++)
@@ -34,14 +36,17 @@
                     @Model[i].CtyId
                 </td>
                 <td>
-                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Person" asp-route-id="@Model[i].MemberId">Delete</a>
-                    <a class="btn btn-info" asp-action="Edit" asp-controller="Person" asp-route-id="@Model[i].MemberId">Edit</a>
-                </td>
-                <td>
                     @Model[i].LangRead1;
                 </td>
                 <td>
                     @Model[i].LangWrite1;
+                </td>
+                <td>
+                    @Model[i].MemberApproval;
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Person" asp-route-id="@Model[i].MemberId">Delete</a>
+                    <a class="btn btn-info" asp-action="Edit" asp-controller="Person" asp-route-id="@Model[i].MemberId">Edit</a>
                 </td>
             </tr>
             }

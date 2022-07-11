@@ -16,69 +16,62 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Person" asp-action="Index">Members Maintenance</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="main_nav">
-                    <ul class="navbar-nav">
-
-
-               @if (User.IsInRole("Admin"))
+            @if (User.Identity.IsAuthenticated)
+            {
+                if ((User.IsInRole("Admin")) || (User.IsInRole("SuperAdmin")))
                 {
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Person" asp-action="Index">Members</a>
-                    </li>
-
-                    <li class="nav-item"><a class="nav-link" href="#"> Skills </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"> Languages </a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Geographical</a>
-                           <ul class="dropdown-menu">
-                               <li>
-                                  <a class="dropdown-item" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
-                               </li>
-                               <li>
-                                  <a class="dropdown-item" asp-area="" asp-controller="Cities" asp-action="Index">Cities</a>
-                               </li>
-                               <li>
-                                  <a class="dropdown-item" asp-area="" asp-controller="Language" asp-action="Index">Language</a>
-                               </li>
-                           </ul>
-                    </li>
-                }
-
-                <li class="nav-item">
-                    <a class="nav-link text-body" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                </li>
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            if (User.IsInRole("SuperAdmin"))
-                            {
-
+                    <div class="container-fluid">
+                        <a class="navbar-brand" asp-area="" asp-controller="Person" asp-action="Index">Members Maintenance</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="main_nav">
+                            <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link text-body" asp-area="" asp-controller="Admin" asp-action="Index">Admin Zone</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Person" asp-action="Index">Members</a>
                                 </li>
-                            }
-                            <li class="nav-item">
-                                <p class="nav-link">@User.Identity.Name</p>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-body" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-body" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                        }
-                    </ul>
-                </div> <!-- navbar-collapse.// -->
-            </div> <!-- container-fluid.// -->
+                                <li class="nav-item"><a class="nav-link" href="#"> Skills </a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"> Languages </a></li>
+                                <li class="nav-item dropdown" data-bs-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Others</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Cities" asp-action="Index">Cities</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Language" asp-action="Index">Language</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Register">Authorize Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" asp-area="" asp-controller="Admin" asp-action="Index">Admin Zone</a>
+                                    </li>
+                                }
+                                else
+                                {
+
+                                    <li class="nav-item">
+                                        <p class="nav-link text-success">@User.Identity.Name</p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-warning" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div> <!-- navbar-collapse.// -->
+                    </div> <!-- container-fluid.// -->
+                } <!-- EndIf Check Roles-->
+            } <!-- EndIf Check Authentication-->
         </nav>
     </header>
     <div class="container">
@@ -86,14 +79,16 @@
             @RenderBody()
         </div>
     </div>
-        <footer class="border-top footer text-muted">
-            <hr>
-            <div class="container">
-                &copy; 2022 - Service Offering Platform(Louis Lim) - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
-        <script src="~/js/all.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @RenderSection("Scripts", required: false)
+    <footer class="border-top footer text-muted">
+        <hr>
+        <div class="container">
+            &copy; 2022 - Service Offering Platform(Louis Lim) - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/js/all.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

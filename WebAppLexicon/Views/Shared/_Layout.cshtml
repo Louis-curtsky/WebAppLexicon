@@ -20,14 +20,16 @@
                 <div>
                     <nav>
                         <h3>
-                            <a href="#" class="navbutton1">
+                            <a  asp-area="" asp-controller="Account" asp-action="Logout">
                                 <i class="fa-solid fa-person-through-window"></i>
                             </a>
                             <a href="#" class="navbutton1"><i class="fa-solid fa-cash-register"></i></a>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user-pen"></i></a>
+                            <a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user-pen"></i></a>
                         </h3>
                     </nav>
-                        <p> </p>
+                    <h4>
+                        <p class="nav-link text-success">   @User.Identity.Name</p>
+                    </h4>
                 </div>
                 <div>
                     <nav>
