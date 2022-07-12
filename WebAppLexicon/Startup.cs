@@ -65,6 +65,12 @@ namespace WebAppLexicon
             services.AddScoped<ICityRepo, CityRepo>();
             services.AddScoped<ICityServices, CityServices>();
 
+            services.AddScoped<IJobsRepo, JobsRepo>();
+            services.AddScoped<IJobSevices, JobServices>();
+
+            services.AddScoped<ISkillsRepo, SkillRepo>();
+            services.AddScoped<ISkillServices, SkillServices>();
+
             services.AddMvc().AddRazorRuntimeCompilation();
         }
 

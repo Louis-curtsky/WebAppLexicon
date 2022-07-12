@@ -13,7 +13,7 @@ namespace WebAppLexicon.Models.Members
         { }
         [Key]
         public int MemberId { get; set; }
-        public string memberType { get; set; } //G: General 
+        public string MemberType { get; set; } //G: General 
 
         public string FirstName { get; set; }
 
@@ -38,6 +38,7 @@ namespace WebAppLexicon.Models.Members
         public Country Country { get; set; }
         public State State { get; set; }
         public City City { get; set; }
+        public List<Skills> SkillSet { get; set; }
         //Add Language2, 3 at later stage
 
         // Add image table link at later stage

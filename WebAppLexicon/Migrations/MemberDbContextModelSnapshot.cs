@@ -48,22 +48,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6ebd84e1-2904-44e4-9e71-833b1cf3ab44",
-                            ConcurrencyStamp = "6ebd84e1-2904-44e4-9e71-833b1cf3ab44",
+                            Id = "3b337b05-e562-4d65-9be3-b7b3de7edbba",
+                            ConcurrencyStamp = "3b337b05-e562-4d65-9be3-b7b3de7edbba",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "0c948f48-ae87-4f32-a2d4-d6d636351348",
-                            ConcurrencyStamp = "0c948f48-ae87-4f32-a2d4-d6d636351348",
+                            Id = "ebf3a17c-41df-42cd-b20c-09f0c777b636",
+                            ConcurrencyStamp = "ebf3a17c-41df-42cd-b20c-09f0c777b636",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "e9aca773-8fc5-4c78-b8f1-5b96a0243839",
-                            ConcurrencyStamp = "e9aca773-8fc5-4c78-b8f1-5b96a0243839",
+                            Id = "0cad090e-440c-4bfb-ad10-2c1ff851f409",
+                            ConcurrencyStamp = "0cad090e-440c-4bfb-ad10-2c1ff851f409",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -227,18 +227,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d9c54bc7-3222-4b52-bded-acab826bd957",
-                            RoleId = "6ebd84e1-2904-44e4-9e71-833b1cf3ab44"
+                            UserId = "ad46e7b7-74b0-4713-a0bc-7252254d561b",
+                            RoleId = "3b337b05-e562-4d65-9be3-b7b3de7edbba"
                         },
                         new
                         {
-                            UserId = "557760d8-e19b-4dcd-97ae-8187ffccdf7a",
-                            RoleId = "0c948f48-ae87-4f32-a2d4-d6d636351348"
+                            UserId = "8fa36253-eafa-4d13-a7f9-462c6d70096c",
+                            RoleId = "ebf3a17c-41df-42cd-b20c-09f0c777b636"
                         },
                         new
                         {
-                            UserId = "cb4b0c64-3ab5-4711-88f4-fd6ae9920070",
-                            RoleId = "e9aca773-8fc5-4c78-b8f1-5b96a0243839"
+                            UserId = "77f8b0a4-7243-46b0-9b56-8d08ec09eca2",
+                            RoleId = "0cad090e-440c-4bfb-ad10-2c1ff851f409"
                         });
                 });
 
@@ -386,6 +386,41 @@ namespace WebAppLexicon.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebAppLexicon.Models.Jobs", b =>
+                {
+                    b.Property<int>("JobId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("JobComments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobDesc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SkillsMemberId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SkillsSkillId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("JobId");
+
+                    b.HasIndex("SkillsMemberId", "SkillsSkillId");
+
+                    b.ToTable("Jobs");
+                });
+
             modelBuilder.Entity("WebAppLexicon.Models.Members.Language", b =>
                 {
                     b.Property<int>("Id")
@@ -484,6 +519,9 @@ namespace WebAppLexicon.Migrations
                     b.Property<DateTime>("MemberDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("MemberType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nationality")
                         .HasColumnType("nvarchar(max)");
 
@@ -492,9 +530,6 @@ namespace WebAppLexicon.Migrations
 
                     b.Property<int>("StateId")
                         .HasColumnType("int");
-
-                    b.Property<string>("memberType")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MemberId");
 
@@ -849,6 +884,194 @@ namespace WebAppLexicon.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebAppLexicon.Models.Members.SkillCats", b =>
+                {
+                    b.Property<int>("SkillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Categories")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SkillId");
+
+                    b.ToTable("SkillCats");
+
+                    b.HasData(
+                        new
+                        {
+                            SkillId = 1,
+                            Categories = "Cleaning"
+                        },
+                        new
+                        {
+                            SkillId = 2,
+                            Categories = "Moving"
+                        },
+                        new
+                        {
+                            SkillId = 3,
+                            Categories = "Carpentry"
+                        },
+                        new
+                        {
+                            SkillId = 4,
+                            Categories = "Car washing"
+                        },
+                        new
+                        {
+                            SkillId = 5,
+                            Categories = "Pets Care"
+                        },
+                        new
+                        {
+                            SkillId = 6,
+                            Categories = "Baby Sitting"
+                        },
+                        new
+                        {
+                            SkillId = 7,
+                            Categories = "Story telling"
+                        },
+                        new
+                        {
+                            SkillId = 8,
+                            Categories = "Lundary"
+                        },
+                        new
+                        {
+                            SkillId = 9,
+                            Categories = "Simple Cooking"
+                        },
+                        new
+                        {
+                            SkillId = 10,
+                            Categories = "Baking"
+                        },
+                        new
+                        {
+                            SkillId = 11,
+                            Categories = "House Party Decoration"
+                        },
+                        new
+                        {
+                            SkillId = 12,
+                            Categories = "Magic Show for Kids"
+                        },
+                        new
+                        {
+                            SkillId = 13,
+                            Categories = "Panio"
+                        },
+                        new
+                        {
+                            SkillId = 14,
+                            Categories = "Teach Panio"
+                        },
+                        new
+                        {
+                            SkillId = 999,
+                            Categories = "Others"
+                        });
+                });
+
+            modelBuilder.Entity("WebAppLexicon.Models.Skills", b =>
+                {
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillDesc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SkillLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillYears")
+                        .HasColumnType("int");
+
+                    b.HasKey("MemberId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("Skills");
+
+                    b.HasData(
+                        new
+                        {
+                            MemberId = 9,
+                            SkillId = 1,
+                            SkillLevel = 2,
+                            SkillYears = 2
+                        },
+                        new
+                        {
+                            MemberId = 3,
+                            SkillId = 2,
+                            SkillLevel = 3,
+                            SkillYears = 1
+                        },
+                        new
+                        {
+                            MemberId = 13,
+                            SkillId = 3,
+                            SkillLevel = 1,
+                            SkillYears = 7
+                        },
+                        new
+                        {
+                            MemberId = 13,
+                            SkillId = 4,
+                            SkillLevel = 3,
+                            SkillYears = 10
+                        },
+                        new
+                        {
+                            MemberId = 5,
+                            SkillId = 5,
+                            SkillLevel = 1,
+                            SkillYears = 8
+                        },
+                        new
+                        {
+                            MemberId = 11,
+                            SkillId = 6,
+                            SkillLevel = 3,
+                            SkillYears = 9
+                        },
+                        new
+                        {
+                            MemberId = 7,
+                            SkillId = 7,
+                            SkillLevel = 3,
+                            SkillYears = 4
+                        },
+                        new
+                        {
+                            MemberId = 1,
+                            SkillId = 8,
+                            SkillLevel = 1,
+                            SkillYears = 4
+                        },
+                        new
+                        {
+                            MemberId = 6,
+                            SkillId = 9,
+                            SkillLevel = 2,
+                            SkillYears = 2
+                        },
+                        new
+                        {
+                            MemberId = 7,
+                            SkillId = 10,
+                            SkillLevel = 2,
+                            SkillYears = 2
+                        });
+                });
+
             modelBuilder.Entity("WebAppLexicon.Models.State", b =>
                 {
                     b.Property<int>("StateId")
@@ -958,60 +1181,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d9c54bc7-3222-4b52-bded-acab826bd957",
+                            Id = "ad46e7b7-74b0-4713-a0bc-7252254d561b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ea182049-e631-4368-827a-321ef60438b6",
+                            ConcurrencyStamp = "c32712b6-dce2-48cd-95b6-9fb2b99bf3da",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKohWAmaOphMqLY4+Vbq6hmW/Y41+CqyQhggpawqe0+Lc/sxm109x/BYq3JIkOAbbA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKRt3vi8oprxwKlQaxsuM1McJ/yeZsHoPNVM55RGVupwMAUAYe/oyueZj+6P0YAJZQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "87138a12-4135-40c8-90c4-12b2fb6719ae",
+                            SecurityStamp = "b482e340-54e8-4aeb-82db-57f576ee14ef",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "6ebd84e1-2904-44e4-9e71-833b1cf3ab44"
+                            UserRolesId = "3b337b05-e562-4d65-9be3-b7b3de7edbba"
                         },
                         new
                         {
-                            Id = "557760d8-e19b-4dcd-97ae-8187ffccdf7a",
+                            Id = "8fa36253-eafa-4d13-a7f9-462c6d70096c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b7b5e1a2-c277-48b5-b464-321017fee71e",
+                            ConcurrencyStamp = "3a399e58-207f-4d83-9377-5ff440d0b88c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJsCSD75nE8UV6UtMIiR1/KsBaq9wlQRXpGyn7oUjXvRhwRwLwEfLCqhM2U8krjRBA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPKmhp8sKX8G1LPmRkaCVSIbnfLtBi31PKOzMncrFl66yEEUGeIE/OXBh554FYNpyA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "370c3ff3-37f9-4a1d-acfa-e292d82c28b0",
+                            SecurityStamp = "e614c9f1-00ff-4053-ada1-548bccd478f5",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "0c948f48-ae87-4f32-a2d4-d6d636351348"
+                            UserRolesId = "ebf3a17c-41df-42cd-b20c-09f0c777b636"
                         },
                         new
                         {
-                            Id = "cb4b0c64-3ab5-4711-88f4-fd6ae9920070",
+                            Id = "77f8b0a4-7243-46b0-9b56-8d08ec09eca2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0ca0d8b-7df4-4c92-a72d-612e11f0a866",
+                            ConcurrencyStamp = "6dcbb974-a9ec-4e18-b987-f0fba1db2b2d",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJgy26HaHKTJ3FdE99ei5ANmshYrO30v7SMY24BQBIIX7WbAhcjts8bHycnTple0Rg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECeh14lFmxu+OEe1p2uhngZoOgRAUVPYD7nRsMkJjiAG8nnaL+m9OX/f/fCvkyOPIw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "376011fe-2d07-43b5-9d64-7ad556149aca",
+                            SecurityStamp = "8568d182-af86-4df1-8823-4ea053938bf0",
                             TwoFactorEnabled = false,
                             UserName = "User1",
                             FirstName = "Vicient",
                             LastName = "Kent",
                             MemberId = 0,
-                            UserRolesId = "e9aca773-8fc5-4c78-b8f1-5b96a0243839"
+                            UserRolesId = "0cad090e-440c-4bfb-ad10-2c1ff851f409"
                         });
                 });
 
@@ -1073,6 +1296,13 @@ namespace WebAppLexicon.Migrations
                         .HasForeignKey("StateId");
                 });
 
+            modelBuilder.Entity("WebAppLexicon.Models.Jobs", b =>
+                {
+                    b.HasOne("WebAppLexicon.Models.Skills", "Skills")
+                        .WithMany()
+                        .HasForeignKey("SkillsMemberId", "SkillsSkillId");
+                });
+
             modelBuilder.Entity("WebAppLexicon.Models.Members.MemberLanguage", b =>
                 {
                     b.HasOne("WebAppLexicon.Models.Members.Language", "Language")
@@ -1099,6 +1329,21 @@ namespace WebAppLexicon.Migrations
                     b.HasOne("WebAppLexicon.Models.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebAppLexicon.Models.Skills", b =>
+                {
+                    b.HasOne("WebAppLexicon.Models.Members.Members", "Xmembers")
+                        .WithMany("SkillSet")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAppLexicon.Models.Members.SkillCats", "SkillCat")
+                        .WithMany("Skills")
+                        .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

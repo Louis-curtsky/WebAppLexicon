@@ -10,7 +10,7 @@ namespace WebAppLexicon.Models.Members.ViewModel
     {
         [Required]
         [StringLength(1)]
-        public string memberType { get; set; }
+        public string MemberType { get; set; }
         [Required]
         [StringLength(255)]
         public string FirstName { get; set; }

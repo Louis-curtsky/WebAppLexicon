@@ -31,7 +31,23 @@
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-controller="Person" asp-action="Index">Members</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#"> Skills </a></li>
+                                <li class="nav-item dropdown" data-bs-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Skills</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Create">Add</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Edit">Update</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Details">Detail</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="nav-item"><a class="nav-link" href="#"> Languages </a></li>
                                 <li class="nav-item dropdown" data-bs-toggle="dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Others</a>

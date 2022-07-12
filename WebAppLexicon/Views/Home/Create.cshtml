@@ -18,9 +18,12 @@
             <div class="column3" style="background-color: rgb(101, 76, 204);">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <label asp-for="memberType" class="control-label">Membership Type</label>
-                <input asp-for="memberType" class="form-control" />
-                <span asp-validation-for="memberType" class="text-danger"></span>
+                <label asp-for="MemberType" class="control-label">Membership Type</label>
+                <select id="memberType" name="memberType" class="form-control">
+                    <option value="SEEK">Buy Service</option>
+                    <option selected="selected" value="SERV">Provide Service</option>
+                </select>
+                <span asp-validation-for="MemberType" class="text-danger"></span>
 
                 <label asp-for="FirstName" class="control-label">First Name</label>
                 <input asp-for="FirstName" class="form-control" />
@@ -47,7 +50,7 @@
                 <label asp-for="Age" class="control-label">Age</label>
                 <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
-                </div>
+            </div>
 
                 <div class="column3" style="background-color:#bbb;">
 
@@ -88,7 +91,7 @@
                     <div class="regform">
                         <nav>
                             <a href="#" class="navbutton">Back</a>
-                            <a href="#" class="navbutton">Next</a>
+                            <a asp-area="" asp-controller="Jobs" asp-action="Create" class="navbutton">Next</a>
                         </nav>
                     </div>
                 </div>

@@ -1,0 +1,46 @@
+﻿@model WebAppLexicon.Models.Members.ViewModel.CreateJobsViewModel
+
+@{
+    ViewData["Title"] = "Create Jobs";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="row">
+
+    <div class="column2" style="background-color:rgb(101, 76, 204);">
+        <form asp-action="Create">
+            <div class="column3" style="background-color: rgb(101, 76, 204);">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <label asp-for="JobDesc" class="control-label">Job Description</label>
+                <input asp-for="JobDesc" class="form-control" />
+                <span asp-validation-for="JobDesc" class="text-danger"></span>
+
+                <label asp-for="SkillId" class="control-label">Skills</label>
+                <input asp-for="SkillId" class="form-control" />
+                <span asp-validation-for="SkillId" class="text-danger"></span>
+
+                <label asp-for="StartDate" class="control-label">Start Date</label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+
+            </div>
+
+            <div class="column3" style="background-color:#bbb;">
+
+
+                <div class="regform">
+                    <nav>
+                        <a href="#" class="navbutton">Back</a>
+                        <a href="#" class="navbutton">Next</a>
+                    </nav>
+                </div>
+            </div>
+        </form>
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary" />
+</div>

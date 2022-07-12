@@ -20,6 +20,63 @@ namespace WebAppLexicon.Models.Members.Data
 
             base.OnModelCreating(modelBuilder);
 
+            #region Skills-Jobs Join Class Config
+
+            modelBuilder.Entity<Skills>()
+                .HasKey(dt => 
+                new { 
+                    dt.MemberId,
+                    dt.SkillId 
+                });
+
+            modelBuilder.Entity<Skills>()
+                .HasOne(dt => dt.SkillCat)
+                .WithMany(d => d.Skills)
+                .HasForeignKey(dt => dt.SkillId);
+
+            modelBuilder.Entity<Skills>()
+                .HasOne(ms => ms.Xmembers)
+                .WithMany(s => s.SkillSet)
+                .HasForeignKey(ms => ms.MemberId);
+                
+
+            modelBuilder.Entity<Jobs>()
+                .HasKey(dt => dt.JobId);
+
+            modelBuilder.Entity<SkillCats>().HasData(
+                new SkillCats() { SkillId = 1, Categories = "Cleaning" },
+                new SkillCats() { SkillId = 2, Categories = "Moving" },
+                new SkillCats() { SkillId = 3, Categories = "Carpentry" },
+                new SkillCats() { SkillId = 4, Categories = "Car washing" },
+                new SkillCats() { SkillId = 5, Categories = "Pets Care" },
+                new SkillCats() { SkillId = 6, Categories = "Baby Sitting" },
+                new SkillCats() { SkillId = 7, Categories = "Story telling" },
+                new SkillCats() { SkillId = 8, Categories = "Lundary" },
+                new SkillCats() { SkillId = 9, Categories = "Simple Cooking" },
+                new SkillCats() { SkillId = 10, Categories = "Baking" },
+                new SkillCats() { SkillId = 11, Categories = "House Party Decoration" },
+                new SkillCats() { SkillId = 12, Categories = "Magic Show for Kids" },
+                new SkillCats() { SkillId = 13, Categories = "Panio" },
+                new SkillCats() { SkillId = 14, Categories = "Teach Panio" },
+                new SkillCats() { SkillId = 999, Categories = "Others" }
+
+                );
+
+            modelBuilder.Entity<Skills>().HasData(
+                new Skills() { SkillId=1,MemberId=9,SkillLevel=2,SkillYears=2},
+                new Skills() { SkillId=2,MemberId=3,SkillLevel=3,SkillYears=1},
+                new Skills() { SkillId=3,MemberId=13,SkillLevel=1,SkillYears=7},
+                new Skills() { SkillId=4,MemberId=13,SkillLevel=3,SkillYears=10},
+                new Skills() { SkillId=5,MemberId=5,SkillLevel=1,SkillYears=8},
+                new Skills() { SkillId=6,MemberId=11,SkillLevel=3,SkillYears=9},
+                new Skills() { SkillId=7,MemberId=7,SkillLevel=3,SkillYears=4},
+                new Skills() { SkillId=8,MemberId=1,SkillLevel=1,SkillYears=4},
+                new Skills() { SkillId=9,MemberId=6,SkillLevel=2,SkillYears=2},
+                new Skills() { SkillId=10,MemberId=7,SkillLevel=2,SkillYears=2}
+                );
+
+            #endregion Country-State-City Join Class Config
+
             #region Country-State-City Join Class Config
 
             modelBuilder.Entity<Country>()
@@ -212,7 +269,8 @@ namespace WebAppLexicon.Models.Members.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<State> State { get; set; }
-/*        public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<AppRoles> AppRoles { get; set; }*/
+        public DbSet<Skills> Skills { get; set; }
+        public DbSet<Jobs> Jobs { get; set; }
+
     }
 }
