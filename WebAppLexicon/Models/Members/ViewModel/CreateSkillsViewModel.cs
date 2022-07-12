@@ -8,7 +8,8 @@ namespace WebAppLexicon.Models.Members.ViewModel
 {
     public class CreateSkillsViewModel
     {
-
+        public int SkillId { get; set; }
+        public int MemberId { get; set; }
         [StringLength(255)]
         [Display(Name = "Skill Description")]
         public string SkillDesc { get; set; }

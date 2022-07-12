@@ -71,6 +71,9 @@ namespace WebAppLexicon
             services.AddScoped<ISkillsRepo, SkillRepo>();
             services.AddScoped<ISkillServices, SkillServices>();
 
+            services.AddScoped<ISkillCatsRepo, SkillCatsRepo>();
+            services.AddScoped<ISkillCatsServices, SkillCatsServices>();
+
             services.AddMvc().AddRazorRuntimeCompilation();
         }
 

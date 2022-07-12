@@ -1,0 +1,56 @@
+﻿@model WebAppLexicon.Models.Members.ViewModel.CreateSkillsViewModel
+
+@{
+    ViewData["Title"] = "Create Jobs";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="row">
+
+    <div class="column2" style="background-color:rgb(101, 76, 204);">
+        <form asp-action="Create">
+            <div class="column3" style="background-color: rgb(101, 76, 204);">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <label asp-for="MemberId" class="control-label">Member</label>
+                <input asp-for="MemberId" name="memberId" class="form-control" />
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+
+                <label asp-for="SkillId" class="control-label">Skills</label>
+                <input asp-for="SkillId" name="skillId" class="form-control" />
+                <span asp-validation-for="SkillId" class="text-danger"></span>
+
+                <label asp-for="SkillDesc" class="control-label">Start Date</label>
+                <input asp-for="SkillDesc" class="form-control" />
+                <span asp-validation-for="SkillDesc" class="text-danger"></span>
+
+                <label asp-for="SkillLevel" class="control-label">Skill Level</label>
+                <input asp-for="SkillLevel" class="form-control" />
+                <span asp-validation-for="SkillLevel" class="text-danger"></span>
+
+                <label asp-for="SkillYears" class="control-label">Skill Level</label>
+                <input asp-for="SkillYears" class="form-control" />
+                <span asp-validation-for="SkillYears" class="text-danger"></span>
+                <div class="regform">
+                    <nav>
+                        <a href="#" class="navbutton">Back</a>
+                        <a href="#" class="navbutton">Next</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="column3" style="background-color:#bbb;">
+            <ul>
+                @foreach (var skill in ViewBag.skillList)
+                 {
+                    <li>@skill.SkillId</li>
+                    <li>@skill.SkillDesc</li>
+                    <li>@skill.SkillLevel</li>
+                    <li>@skill.SkillYears</li>
+                 }
+            </ul>
+            </div>
+        </form>
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary" />
+</div>

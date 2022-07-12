@@ -10,6 +10,7 @@ namespace WebAppLexicon.Models.Members.Repo
     {
         Skills Create(CreateSkillsViewModel skills, int id);
         List<Skills> GetAll();
+        List<Skills> GetMySkill(int memberId, int skillId);
         Skills FindById(int id);
 
         Skills Update(Skills skills);

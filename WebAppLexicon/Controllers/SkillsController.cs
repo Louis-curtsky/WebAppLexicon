@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppLexicon.Models;
+using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Services;
 
 namespace WebAppLexicon.Controllers
@@ -11,15 +13,20 @@ namespace WebAppLexicon.Controllers
     public class SkillsController : Controller
     {
         private readonly ISkillServices _skillService;
+        private readonly ISkillCatsServices _skillCatsServices;
 
-        public SkillsController(ISkillServices skillService)
+        public SkillsController(ISkillServices skillService, ISkillCatsServices skillCatsServices)
         {
             _skillService = skillService;
+            _skillCatsServices = skillCatsServices;
         }
+        
         // GET: SkillsController
         public ActionResult Index()
         {
-            return View();
+            List<Skills> skillList = _skillService.GetAll();
+
+            return View(skillList);
         }
 
         // GET: SkillsController/Details/5
@@ -29,8 +36,13 @@ namespace WebAppLexicon.Controllers
         }
 
         // GET: SkillsController/Create
-        public ActionResult Create()
+        public ActionResult Create(int memberId, int skillId)
         {
+            List<Skills> skillList = _skillService.GetMySkill(memberId, skillId);
+            if (skillList == null)
+                ViewBag.skillList = "";
+            else
+                ViewBag.skillList = skillList;
             return View();
         }
 

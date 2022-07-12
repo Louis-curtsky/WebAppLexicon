@@ -9,6 +9,7 @@ namespace WebAppLexicon.Models.Members.Services
     public interface ISkillServices
     {
         Skills Create(CreateSkillsViewModel skill);
+        List<Skills> GetMySkill(int memberId, int skillId);
         List<Skills> GetAll();
         Skills FindById(int id);
 

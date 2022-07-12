@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Repo;
 using WebAppLexicon.Models.Members.ViewModel;
 
 namespace WebAppLexicon.Models.Members.Services
 {
-    public class SkillServices : ISkillServices
+    public class SkillCatsServices : ISkillCatsServices
     {
-        private readonly ISkillsRepo _skillsRepo;
+        private readonly ISkillCatsRepo _skillCatsRepo;
 
-        public SkillServices(ISkillsRepo skillsRepo)
+        public SkillCatsServices(ISkillCatsRepo skillCatsRepo)
         {
-            _skillsRepo = skillsRepo;
+            _skillCatsRepo = skillCatsRepo;
         }
-        public Skills Create(CreateSkillsViewModel skill)
+        public SkillCats Create(CreateSkillCatsViewModel skillCats)
         {
-            List<Skills> getAllSkills = new List<Skills>();
+            List<SkillCats> getAllSkills = new List<SkillCats>();
             getAllSkills = GetAll();
             int assignId = 0;
-            if (getAllSkills.Count==0)
+            if (getAllSkills.Count == 0)
             {
                 assignId = 1;
             }
@@ -29,26 +28,22 @@ namespace WebAppLexicon.Models.Members.Services
             {
                 assignId = getAllSkills[getAllSkills.Count - 1].SkillId;
             }
-            return _skillsRepo.Create(skill, assignId);
+            return _skillCatsRepo.Create(skillCats, assignId);
         }
 
-        public List<Skills> GetMySkill(int memberId, int skillId)
-        {
-            return _skillsRepo.GetMySkill(memberId, skillId);
-        }
-        public Skills Edit(int id, Skills editskill)
+        public SkillCats Edit(int id, SkillCats skillCats)
         {
             throw new NotImplementedException();
         }
 
-        public Skills FindById(int id)
+        public SkillCats FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Skills> GetAll()
+        public List<SkillCats> GetAll()
         {
-            return _skillsRepo.GetAll();
+            return _skillCatsRepo.GetAll();
         }
 
         public bool Remove(int id)

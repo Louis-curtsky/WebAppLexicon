@@ -270,6 +270,7 @@ namespace WebAppLexicon.Models.Members.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<State> State { get; set; }
         public DbSet<Skills> Skills { get; set; }
+        public DbSet<SkillCats> SkillCats { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
 
     }

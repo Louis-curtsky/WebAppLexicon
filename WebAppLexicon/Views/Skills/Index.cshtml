@@ -1,0 +1,44 @@
+﻿@model List<WebAppLexicon.Models.Skills>
+@{
+    ViewData["Title"] = "Skills Maintenance";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Member Skills</h2>
+<form asp-action="Edit" method="post">
+    <table class="contact">
+        <tr>
+            <th width="10px">Member ID</th>
+            <th>Skill ID</th>
+            <th>Descriptions</th>
+            <th>Level</th>
+            <th>Years</th>
+            <th>Actions</th>
+        </tr>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model[i].MemberId
+                    </td>
+                    <td>@Model[i].SkillId</td>
+                    <td>@Model[i].SkillDesc</td>
+                    <td>@Model[i].SkillLevel</td>
+                    <td>@Model[i].SkillYears</td>
+                    <td>
+                        <a class="btn btn-danger" asp-action="Delete" asp-controller="Skill" asp-route-id="@Model[i].SkillId">Delete</a>
+                        <a class="btn btn-info" asp-action="Edit" asp-controller="Skill" asp-route-id="@Model[i].SkillId">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+<div class="View" mode="Model">
+
+</div>
+@if (ViewBag.msg != null)
+{
+    <h3>@ViewBag.msg</h3>
+}

@@ -47,6 +47,16 @@ namespace WebAppLexicon.Models.Members.Repo
             return skillFound;
         }
 
+        public List<Skills> GetMySkill(int memberId, int skillId)
+        {
+            if (memberId != 0)
+                return (_memberDbContext.Skills.Where(x =>
+                skillId == x.SkillId &&
+                memberId == x.MemberId
+                ).ToList());
+            else
+            return null;     
+        }
         public List<Skills> GetAll()
         {
             return _memberDbContext.Skills.ToList();
