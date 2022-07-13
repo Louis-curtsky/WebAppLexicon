@@ -13,6 +13,7 @@ namespace WebAppLexicon.Models.Members.Repo
         //Person Create(Person person, List<PersonLanguage> personLang);
         Members Create(Members member);
         Members FindByID(int id);
+        List<Members> FindLast();
 
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);
         void Update(Members member);

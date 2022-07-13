@@ -1,12 +1,17 @@
 ﻿@model WebAppLexicon.Models.Members.ViewModel.CreateSkillsViewModel
 
 @{
-    ViewData["Title"] = "Create Jobs";
+    ViewData["Title"] = "Create Skills";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
 <div class="row">
-
+    <div class="column1" style="background-color:rgb(50, 37, 102);">
+        <h3>Skills</h3>
+        <h1>
+            <i class="fa-solid fa-user-pen"></i>
+        </h1>
+    </div>
     <div class="column2" style="background-color:rgb(101, 76, 204);">
         <form asp-action="Create">
             <div class="column3" style="background-color: rgb(101, 76, 204);">
@@ -17,9 +22,12 @@
                 <span asp-validation-for="MemberId" class="text-danger"></span>
 
                 <label asp-for="SkillId" class="control-label">Skills</label>
-                <input asp-for="SkillId" name="skillId" class="form-control" />
-                <span asp-validation-for="SkillId" class="text-danger"></span>
-
+                <select id="skillId" asp-for="SkillId" name="skillId" class="select">
+                    @foreach (var item in Model.SkillList)
+                    {
+                        <option value="@item.SkillId">@item.Categories</option>
+                    }
+                </select>
                 <label asp-for="SkillDesc" class="control-label">Start Date</label>
                 <input asp-for="SkillDesc" class="form-control" />
                 <span asp-validation-for="SkillDesc" class="text-danger"></span>
@@ -28,7 +36,7 @@
                 <input asp-for="SkillLevel" class="form-control" />
                 <span asp-validation-for="SkillLevel" class="text-danger"></span>
 
-                <label asp-for="SkillYears" class="control-label">Skill Level</label>
+                <label asp-for="SkillYears" class="control-label">Skill Years</label>
                 <input asp-for="SkillYears" class="form-control" />
                 <span asp-validation-for="SkillYears" class="text-danger"></span>
                 <div class="regform">
@@ -40,15 +48,17 @@
             </div>
 
             <div class="column3" style="background-color:#bbb;">
-            <ul>
-                @foreach (var skill in ViewBag.skillList)
-                 {
-                    <li>@skill.SkillId</li>
-                    <li>@skill.SkillDesc</li>
-                    <li>@skill.SkillLevel</li>
-                    <li>@skill.SkillYears</li>
-                 }
-            </ul>
+                <h4>My Skill List</h4>
+                <hr />
+                <ul>
+                    @foreach (var skill in ViewBag.ListOfSkill)
+                    {
+                        <li>@skill.SkillId</li>
+                        <li>@skill.SkillDesc</li>
+                        <li>@skill.SkillLevel</li>
+                        <li>@skill.SkillYears</li>
+                    }
+                </ul>
             </div>
         </form>
     </div>

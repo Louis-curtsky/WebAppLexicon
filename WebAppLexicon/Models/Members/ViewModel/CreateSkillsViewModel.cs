@@ -19,5 +19,6 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [Required]
         [Display(Name = "Skill Years")]
         public int SkillYears { get; set; }
+        public List<SkillCats> SkillList { get; set; }
     }
 }

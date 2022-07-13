@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WebAppLexicon.Models;
 using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Services;
+using WebAppLexicon.Models.Members.ViewModel;
 
 namespace WebAppLexicon.Controllers
 {
@@ -14,11 +15,13 @@ namespace WebAppLexicon.Controllers
     {
         private readonly ISkillServices _skillService;
         private readonly ISkillCatsServices _skillCatsServices;
+        private readonly IPeopleService _peopleService;
 
-        public SkillsController(ISkillServices skillService, ISkillCatsServices skillCatsServices)
+        public SkillsController(ISkillServices skillService, ISkillCatsServices skillCatsServices, IPeopleService peopleService)
         {
             _skillService = skillService;
             _skillCatsServices = skillCatsServices;
+            _peopleService = peopleService;
         }
         
         // GET: SkillsController
@@ -36,14 +39,19 @@ namespace WebAppLexicon.Controllers
         }
 
         // GET: SkillsController/Create
-        public ActionResult Create(int memberId, int skillId)
+        public ActionResult Create(int skillId)
         {
-            List<Skills> skillList = _skillService.GetMySkill(memberId, skillId);
-            if (skillList == null)
-                ViewBag.skillList = "";
-            else
-                ViewBag.skillList = skillList;
-            return View();
+            List<Members> lastMember = _peopleService.FindLast();
+            List<Skills> skillList = _skillService.GetMySkill(lastMember[0].MemberId, skillId);
+            if (skillList.Count==0)
+            {
+                skillList.Add(new Skills { SkillDesc= "No Skill Added yet!!!" });
+            }
+            CreateSkillsViewModel skillViewModel = new CreateSkillsViewModel();
+            skillViewModel.MemberId = lastMember[0].MemberId;
+            skillViewModel.SkillList = _skillCatsServices.GetAll();
+            ViewBag.ListOfSkill = skillList;
+            return View(skillViewModel);
         }
 
         // POST: SkillsController/Create
@@ -61,6 +69,11 @@ namespace WebAppLexicon.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult GetSkills()
+        {
+            return Json(_skillCatsServices.GetAll());
+        }
         // GET: SkillsController/Edit/5
         public ActionResult Edit(int id)
         {

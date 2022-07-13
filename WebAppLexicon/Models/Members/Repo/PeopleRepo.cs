@@ -25,23 +25,21 @@ namespace WebAppLexicon.Models.Members.Repo
         //public Person Create(Person person, List<PersonLanguage> personLang)
         public Members Create(Members member)
         {
-            _memberDbContext.Add(member);
-            _memberDbContext.SaveChanges();
-/*            PersonLanguage addPLang = new PersonLanguage();
-            _personDbContext.Persons
-                .OrderByDescending(p => p.Id)
-                .Take(1)
-                .Select(person => person.Id);
-            foreach (PersonLanguage lang in personLang)
-            {
-                addPLang.PersonId = person.Id;
-                addPLang.LanguageId = lang.LanguageId;
-                addPLang.Language = lang.Language;
-                addPLang.Person = lang.Person;
-                _personDbContext.Add(addPLang);
+           if (member.StateId<1 || member.CntyId<1 || member.CtyId<1)
+           {
+            return null;
             }
-            _personDbContext.SaveChanges();
-*/            return member;
+           else
+           { 
+            _memberDbContext.Add(member);
+            int add = _memberDbContext.SaveChanges();
+            if (add != 1)
+                {
+                    return null;
+                }
+            else
+                return member;
+           }
         }
 
 
@@ -77,6 +75,14 @@ namespace WebAppLexicon.Models.Members.Repo
                 .SingleOrDefault(member => member.MemberId == id);
         }
 
+        public List<Members> FindLast()
+        {
+            List<Members> member = 
+            _memberDbContext.Members
+                .OrderByDescending(m => m.MemberId)
+                .Take(1).ToList();
+            return member;
+        }
 
         public void Update(Members member)
         {

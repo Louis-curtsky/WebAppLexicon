@@ -11,7 +11,7 @@ namespace WebAppLexicon.Models.Members.Services
         List<Members> All();
         Members Add(CreateMemberViewModel memberViewModel);
         Members FindById(int id);
-
+        List<Members> FindLast();
         void Edit(int id, MemberViewModel memberViewModel);
         bool Remove(int id);
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);

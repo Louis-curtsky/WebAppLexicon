@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Services;
+using WebAppLexicon.Models.Members.ViewModel;
 
 namespace WebAppLexicon.Controllers
 {
@@ -60,22 +61,30 @@ namespace WebAppLexicon.Controllers
         // GET: PersonController/Create
         public ActionResult Create()
         {
-            return View();
+            CreateMemberViewModel memberViewModel = new CreateMemberViewModel();
+            List <Members> lastMember = _peopleService.FindLast();
+            memberViewModel.MemberId = lastMember[0].MemberId+1;
+            return View(memberViewModel);
         }
 
         // POST: PersonController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                if (memberViewModel != null)
+                {
+                    List<Members> lastMember = _peopleService.FindLast();
+                    memberViewModel.MemberId = lastMember[0].MemberId + 1;
+                    memberViewModel.MemberType = memberType;
+                    memberViewModel.GovIdType = govIdType;
+                    _peopleService.Add(memberViewModel);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(memberViewModel);
+            
         }
 
         // GET: PersonController/Edit/5

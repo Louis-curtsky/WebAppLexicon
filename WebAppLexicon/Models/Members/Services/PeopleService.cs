@@ -34,7 +34,7 @@ namespace WebAppLexicon.Models.Members.Services
                 member.CntyId = personViewModel.CntyId;
                 member.StateId = personViewModel.StateId;
                 member.CtyId = personViewModel.CtyId;
-              
+
                 _peopleRepo.Update(member);
                 //_peopleRepo.UpdateLang(person.Id, langId);
             }
@@ -47,6 +47,10 @@ namespace WebAppLexicon.Models.Members.Services
 
         }
 
+        public List<Members> FindLast()
+        {
+            return _peopleRepo.FindLast();
+        }
         public bool Remove(int id)
         {
             Members member = _peopleRepo.Read(id);

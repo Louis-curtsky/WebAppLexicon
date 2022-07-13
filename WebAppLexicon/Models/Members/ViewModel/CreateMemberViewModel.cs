@@ -8,8 +8,10 @@ namespace WebAppLexicon.Models.Members.ViewModel
 {
     public class CreateMemberViewModel
     {
+        public int MemberId { get; set; }
+        
         [Required]
-        [StringLength(1)]
+        [StringLength(50)]
         public string MemberType { get; set; }
         [Required]
         [StringLength(255)]
@@ -29,12 +31,7 @@ namespace WebAppLexicon.Models.Members.ViewModel
         public string GovId { get; set; }
 
         [Required]
-        [StringLength(40)]
-        [Display(Name = "Login")]
-        public string LoginName { get; set; }
-
-        [Required]
-        [Display(Name = "Login")]
+        [Display(Name = "Age")]
         public int Age { get; set; }
         [Required]
         [StringLength(255)]
@@ -50,8 +47,8 @@ namespace WebAppLexicon.Models.Members.ViewModel
         public int CtyId { get; set; }
         public int StateId { get; set; }
         public int CntyId { get; set; }
-        public List<MemberLanguage> language1 { get; set; }
-        public int langRead1 { get; set; } // 0: None 1:Beginer 2: Intermediate 3: Advance
-        public int langWrite1 { get; set; }
+        public List<MemberLanguage> Language1 { get; set; }
+        public int LangRead1 { get; set; } // 0: None 1:Beginer 2: Intermediate 3: Advance
+        public int LangWrite1 { get; set; }
     }
 }

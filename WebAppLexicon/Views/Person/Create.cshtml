@@ -14,11 +14,15 @@
         </h1>
     </div>
     <div class="column2" style="background-color:rgb(101, 76, 204);">
-        <form asp-action="Create">
+        <form asp-controller="Person" asp-action="Create" method="post">
             <div class="column3" style="background-color: rgb(101, 76, 204);">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <label asp-for="MemberType" class="control-label">Membership Type</label>
+                <label asp-for="MemberId" class="control-label"></label>
+                <input asp-for="MemberId" name="memberId" class="form-control" disabled />
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+
+                <label asp-for="MemberType" name="memberType" class="control-label">Membership Type</label>
                 <select id="memberType" name="memberType" class="form-control">
                     <option value="SEEK">Buy Service</option>
                     <option selected="selected" value="SERV">Provide Service</option>
@@ -34,18 +38,18 @@
                 <span asp-validation-for="LastName" class="text-danger"></span>
 
                 <label asp-for="GovIdType" class="control-label"></label>
-                <input asp-for="GovIdType" class="form-control" />
+                <select id="GovIdType" name="govIdType" class="form-control">
+                    <option value="Passport">Passport</option>
+                    <option value="DrivingLic">Driving Licence</option>
+                    <option value="RPermit">Resident Permit</option>
+                    <option value="OPass">Other Pass</option>
+                    <option selected="selected" value="ID">ID</option>
+                </select>
                 <span asp-validation-for="GovIdType" class="text-danger"></span>
 
                 <label asp-for="GovId" class="control-label"></label>
                 <input asp-for="GovId" class="form-control" />
                 <span asp-validation-for="GovId" class="text-danger"></span>
-
-
-                <label asp-for="LoginName" class="control-label">Login Name</label>
-                <input asp-for="LoginName" class="form-control" />
-                <span asp-validation-for="LoginName" class="text-danger"></span>
-
 
                 <label asp-for="Age" class="control-label">Age</label>
                 <input asp-for="Age" class="form-control" />
@@ -69,35 +73,45 @@
                     <span asp-validation-for="Nationality" class="text-danger"></span>
 
                     <label asp-for="CntyId" class="control-label">Country</label>
-                    <input asp-for="CntyId" class="form-control" />
+                    <input asp-for="CntyId" name="cntyId" class="form-control" />
                     <span asp-validation-for="CntyId" class="text-danger"></span>
 
                     <label asp-for="StateId" class="control-label">State</label>
-                    <input asp-for="StateId" class="form-control" />
+                    <input asp-for="StateId" name="stateId" class="form-control" />
                     <span asp-validation-for="StateId" class="text-danger"></span>
 
                     <label asp-for="CtyId" class="control-label">City</label>
-                    <input asp-for="CtyId" class="form-control" />
+                    <input asp-for="CtyId" name="ctyId" class="form-control" />
                     <span asp-validation-for="CtyId" class="text-danger"></span>
 
-                    <label asp-for="langRead1" class="control-label">Read Level</label>
-                    <input asp-for="langRead1" class="form-control" />
-                    <span asp-validation-for="langRead1" class="text-danger"></span>
+                    <label asp-for="LangRead1" class="control-label">Read Level</label>
+                    <input asp-for="LangRead1" class="form-control" />
+                    <span asp-validation-for="LangRead1" class="text-danger"></span>
 
-                    <label asp-for="langWrite1" class="control-label">Write Level</label>
-                    <input asp-for="langWrite1" class="form-control" />
-                    <span asp-validation-for="langWrite1" class="text-danger"></span>
+                    <label asp-for="LangWrite1" class="control-label">Write Level</label>
+                    <input asp-for="LangWrite1" class="form-control" />
+                    <span asp-validation-for="LangWrite1" class="text-danger"></span>
 
                     <div class="regform">
-                        <nav>
-                            <a href="#" class="navbutton">Back</a>
-                            <a asp-area="" asp-controller="Skills" asp-action="Create" class="navbutton">Next</a>
-                        </nav>
+                        @if (Model.MemberId > 0)
+                        {
+                            <nav>
+                                <a href="#" class="navbutton">Back</a>
+                                <a asp-area="" asp-controller="Skills" asp-action="Create" class="navbutton">Next</a>
+                            </nav>
+                        }
+                        else
+                        {
+                            <nav>
+                                <a href="#" class="navbutton">Back</a>
+                                <a class="navbutton" disabled>Next</a>
+                            </nav>
+                        }
                     </div>
                 </div>
+                <input type="submit" value="Submit" class="btn btn-primary" />
         </form>
     </div>
-                <input type="submit" value="Create" class="btn btn-primary" />
   </div>
 
 
