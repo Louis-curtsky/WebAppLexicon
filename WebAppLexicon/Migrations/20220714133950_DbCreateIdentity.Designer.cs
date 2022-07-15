@@ -10,7 +10,7 @@ using WebAppLexicon.Models.Members.Data;
 namespace WebAppLexicon.Migrations
 {
     [DbContext(typeof(MemberDbContext))]
-    [Migration("20220712054650_DbCreateIdentity")]
+    [Migration("20220714133950_DbCreateIdentity")]
     partial class DbCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3b337b05-e562-4d65-9be3-b7b3de7edbba",
-                            ConcurrencyStamp = "3b337b05-e562-4d65-9be3-b7b3de7edbba",
+                            Id = "8e0075d7-1b06-460a-a2a3-124ab0032915",
+                            ConcurrencyStamp = "8e0075d7-1b06-460a-a2a3-124ab0032915",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "ebf3a17c-41df-42cd-b20c-09f0c777b636",
-                            ConcurrencyStamp = "ebf3a17c-41df-42cd-b20c-09f0c777b636",
+                            Id = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1",
+                            ConcurrencyStamp = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "0cad090e-440c-4bfb-ad10-2c1ff851f409",
-                            ConcurrencyStamp = "0cad090e-440c-4bfb-ad10-2c1ff851f409",
+                            Id = "395cf700-ff42-4f90-9437-10086fe336ff",
+                            ConcurrencyStamp = "395cf700-ff42-4f90-9437-10086fe336ff",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -229,18 +229,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "ad46e7b7-74b0-4713-a0bc-7252254d561b",
-                            RoleId = "3b337b05-e562-4d65-9be3-b7b3de7edbba"
+                            UserId = "9b74f013-5021-4fc1-80a2-aeeca1b473f2",
+                            RoleId = "8e0075d7-1b06-460a-a2a3-124ab0032915"
                         },
                         new
                         {
-                            UserId = "8fa36253-eafa-4d13-a7f9-462c6d70096c",
-                            RoleId = "ebf3a17c-41df-42cd-b20c-09f0c777b636"
+                            UserId = "f126997f-b2f2-4bf7-97ce-313f41aac32c",
+                            RoleId = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1"
                         },
                         new
                         {
-                            UserId = "77f8b0a4-7243-46b0-9b56-8d08ec09eca2",
-                            RoleId = "0cad090e-440c-4bfb-ad10-2c1ff851f409"
+                            UserId = "34e2d868-6f78-452f-ba82-e8c75d88fdd8",
+                            RoleId = "395cf700-ff42-4f90-9437-10086fe336ff"
                         });
                 });
 
@@ -986,6 +986,9 @@ namespace WebAppLexicon.Migrations
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SkillDesc")
                         .HasColumnType("nvarchar(max)");
 
@@ -1006,6 +1009,7 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 9,
                             SkillId = 1,
+                            ID = 1,
                             SkillLevel = 2,
                             SkillYears = 2
                         },
@@ -1013,6 +1017,7 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 3,
                             SkillId = 2,
+                            ID = 2,
                             SkillLevel = 3,
                             SkillYears = 1
                         },
@@ -1020,6 +1025,7 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 13,
                             SkillId = 3,
+                            ID = 3,
                             SkillLevel = 1,
                             SkillYears = 7
                         },
@@ -1027,6 +1033,7 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 13,
                             SkillId = 4,
+                            ID = 4,
                             SkillLevel = 3,
                             SkillYears = 10
                         },
@@ -1034,6 +1041,7 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 5,
                             SkillId = 5,
+                            ID = 5,
                             SkillLevel = 1,
                             SkillYears = 8
                         },
@@ -1041,13 +1049,15 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 11,
                             SkillId = 6,
+                            ID = 6,
                             SkillLevel = 3,
                             SkillYears = 9
                         },
                         new
                         {
                             MemberId = 7,
-                            SkillId = 7,
+                            SkillId = 2,
+                            ID = 7,
                             SkillLevel = 3,
                             SkillYears = 4
                         },
@@ -1055,13 +1065,15 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 1,
                             SkillId = 8,
+                            ID = 8,
                             SkillLevel = 1,
                             SkillYears = 4
                         },
                         new
                         {
                             MemberId = 6,
-                            SkillId = 9,
+                            SkillId = 3,
+                            ID = 9,
                             SkillLevel = 2,
                             SkillYears = 2
                         },
@@ -1069,6 +1081,7 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 7,
                             SkillId = 10,
+                            ID = 10,
                             SkillLevel = 2,
                             SkillYears = 2
                         });
@@ -1183,60 +1196,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ad46e7b7-74b0-4713-a0bc-7252254d561b",
+                            Id = "9b74f013-5021-4fc1-80a2-aeeca1b473f2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c32712b6-dce2-48cd-95b6-9fb2b99bf3da",
+                            ConcurrencyStamp = "445198d6-d0ef-47fe-92cb-701008438551",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKRt3vi8oprxwKlQaxsuM1McJ/yeZsHoPNVM55RGVupwMAUAYe/oyueZj+6P0YAJZQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB7z9T6zikrj1oPci/BU0dEOPUyFdVclNbDZfAf5hxYI9BE5zpUNx3h7ZmT/yfLxng==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b482e340-54e8-4aeb-82db-57f576ee14ef",
+                            SecurityStamp = "72cd5df4-b45d-4ea9-aae6-a37c84d3c872",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "3b337b05-e562-4d65-9be3-b7b3de7edbba"
+                            UserRolesId = "8e0075d7-1b06-460a-a2a3-124ab0032915"
                         },
                         new
                         {
-                            Id = "8fa36253-eafa-4d13-a7f9-462c6d70096c",
+                            Id = "f126997f-b2f2-4bf7-97ce-313f41aac32c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a399e58-207f-4d83-9377-5ff440d0b88c",
+                            ConcurrencyStamp = "4b49b136-6f2b-4a61-916c-4a2fb01dbd63",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPKmhp8sKX8G1LPmRkaCVSIbnfLtBi31PKOzMncrFl66yEEUGeIE/OXBh554FYNpyA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOGIav3c5FoK9AM7NQDHd3pVa0PFmpnt+4hDHENYbPxsgefMkl9x0BbiJAzs5W6yxg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e614c9f1-00ff-4053-ada1-548bccd478f5",
+                            SecurityStamp = "927f1976-b5a6-4209-8582-6bf5a2084af6",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "ebf3a17c-41df-42cd-b20c-09f0c777b636"
+                            UserRolesId = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1"
                         },
                         new
                         {
-                            Id = "77f8b0a4-7243-46b0-9b56-8d08ec09eca2",
+                            Id = "34e2d868-6f78-452f-ba82-e8c75d88fdd8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6dcbb974-a9ec-4e18-b987-f0fba1db2b2d",
+                            ConcurrencyStamp = "8565fd7c-99ab-4747-b67d-7815ffa6f0e6",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAECeh14lFmxu+OEe1p2uhngZoOgRAUVPYD7nRsMkJjiAG8nnaL+m9OX/f/fCvkyOPIw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBNv6lgH1RhPUQid26KpOo21FW/YHTnLAkOfBq5UgZ14Dr/Ywrkm1H2nm4Y+ZYmR9w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8568d182-af86-4df1-8823-4ea053938bf0",
+                            SecurityStamp = "5518bcb6-54d4-4e2a-b20a-80fa023af95e",
                             TwoFactorEnabled = false,
                             UserName = "User1",
                             FirstName = "Vicient",
                             LastName = "Kent",
                             MemberId = 0,
-                            UserRolesId = "0cad090e-440c-4bfb-ad10-2c1ff851f409"
+                            UserRolesId = "395cf700-ff42-4f90-9437-10086fe336ff"
                         });
                 });
 

@@ -35,6 +35,7 @@ namespace WebAppLexicon
             // -------------Connection to Database
             services.AddDbContext<MemberDbContext>
              (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             //------------------------- Identity -------------------------------------------------------
             /*            services.AddIdentity<AppUser, IdentityRole>()

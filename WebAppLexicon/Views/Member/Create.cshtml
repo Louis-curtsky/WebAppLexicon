@@ -1,7 +1,7 @@
 ﻿@model WebAppLexicon.Models.Members.ViewModel.CreateMemberViewModel
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Member Input View";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
@@ -19,7 +19,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <label asp-for="MemberId" class="control-label"></label>
-                <input asp-for="MemberId" name="memberId" class="form-control" disabled />
+                <input asp-for="MemberId" name="memId" class="form-control" disabled />
                 <span asp-validation-for="MemberId" class="text-danger"></span>
 
                 <label asp-for="MemberType" name="memberType" class="control-label">Membership Type</label>
@@ -52,7 +52,7 @@
                 <span asp-validation-for="GovId" class="text-danger"></span>
 
                 <label asp-for="Age" class="control-label">Age</label>
-                <input asp-for="Age" class="form-control" />
+                <input asp-for="Age" class="form-control" min="18" max="80"/>
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
 
@@ -73,15 +73,15 @@
                 <span asp-validation-for="Nationality" class="text-danger"></span>
 
                 <label asp-for="CntyId" class="control-label">Country</label>
-                <input asp-for="CntyId" name="cntyId" class="form-control" />
+                <input asp-for="CntyId" name="cntyId" class="form-control" min="1"/>
                 <span asp-validation-for="CntyId" class="text-danger"></span>
 
                 <label asp-for="StateId" class="control-label">State</label>
-                <input asp-for="StateId" name="stateId" class="form-control" />
+                <input asp-for="StateId" name="stateId" class="form-control" min="1"/>
                 <span asp-validation-for="StateId" class="text-danger"></span>
 
                 <label asp-for="CtyId" class="control-label">City</label>
-                <input asp-for="CtyId" name="ctyId" class="form-control" />
+                <input asp-for="CtyId" name="ctyId" class="form-control" min="1"/>
                 <span asp-validation-for="CtyId" class="text-danger"></span>
 
                 <label asp-for="LangRead1" class="control-label">Read Level</label>
@@ -112,7 +112,7 @@
             <input type="submit" value="Submit" class="btn btn-primary" />
         </form>
     </div>
-</div>
+</div> 
 
 
 

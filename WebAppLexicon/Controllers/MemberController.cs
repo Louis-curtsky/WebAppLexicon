@@ -42,8 +42,8 @@ namespace WebAppLexicon.Controllers
             CreateMemberViewModel memberViewModel = new CreateMemberViewModel();
             List<Members> lastMember = _peopleService.FindLast();
             memberViewModel.MemberId = lastMember[0].MemberId + 1;
-            ViewBag.SaveRec = true;
-            //       will be remove after test on skills create    ViewBag.SaveRec = false;
+            // For testing put to True ViewBag.SaveRec = true;
+            ViewBag.SaveRec = false;
             return View(memberViewModel);
         }
 

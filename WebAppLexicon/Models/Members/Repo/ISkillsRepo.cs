@@ -8,9 +8,9 @@ namespace WebAppLexicon.Models.Members.Repo
 {
     public interface ISkillsRepo
     {
-        Skills Create(CreateSkillsViewModel skills, int id);
+        Skills Create(Skills skills);
         List<Skills> GetAll();
-        List<Skills> GetMySkill(int memberId, int skillId);
+        List<Skills> GetMySkill(int memberId);
         Skills FindById(int id);
 
         Skills Update(Skills skills);

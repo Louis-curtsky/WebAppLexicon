@@ -12,14 +12,15 @@ namespace WebAppLexicon.Models
     {
         public Skills() { }
         [Key]
+        public int ID { get; set; }
         public int SkillId { get; set; }
-        public SkillCats SkillCat { get; set; }
-        [ForeignKey("MemberId")]
+
         public int MemberId { get; set; }
 
         public string SkillDesc { get; set; }
         public int SkillLevel { get; set; }
         public int SkillYears { get; set; }
+        public SkillCats SkillCat { get; set; }
         public WebAppLexicon.Models.Members.Members Xmembers { get; set; }
     }
 }

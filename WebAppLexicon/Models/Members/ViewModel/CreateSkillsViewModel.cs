@@ -8,7 +8,9 @@ namespace WebAppLexicon.Models.Members.ViewModel
 {
     public class CreateSkillsViewModel
     {
+
         public int SkillId { get; set; }
+        [Required]
         public int MemberId { get; set; }
         [StringLength(255)]
         [Display(Name = "Skill Description")]
@@ -19,6 +21,7 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [Required]
         [Display(Name = "Skill Years")]
         public int SkillYears { get; set; }
+        public Members Xmembers { get; set; }
         public List<SkillCats> SkillList { get; set; }
     }
 }

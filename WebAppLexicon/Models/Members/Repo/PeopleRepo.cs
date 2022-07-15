@@ -30,15 +30,14 @@ namespace WebAppLexicon.Models.Members.Repo
             return null;
             }
            else
-           { 
-            _memberDbContext.Add(member);
-            int add = _memberDbContext.SaveChanges();
-            if (add != 1)
-                {
-                    return null;
-                }
-            else
-                return member;
+           {
+               _memberDbContext.Add(member);
+              int add = _memberDbContext.SaveChanges();
+//               int add = 1;
+                if (add != 1)
+                        return null;
+                else
+                    return member;
            }
         }
 
@@ -70,7 +69,6 @@ namespace WebAppLexicon.Models.Members.Repo
         public Members FindByID(int id)
         {
             return _memberDbContext.Members
-                .Include(person => person.CntyId)
                 //.Include(person => person.languageSpoken)
                 .SingleOrDefault(member => member.MemberId == id);
         }

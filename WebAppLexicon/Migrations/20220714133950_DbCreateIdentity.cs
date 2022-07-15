@@ -320,6 +320,7 @@ namespace WebAppLexicon.Migrations
                 {
                     SkillId = table.Column<int>(nullable: false),
                     MemberId = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     SkillDesc = table.Column<string>(nullable: true),
                     SkillLevel = table.Column<int>(nullable: false),
                     SkillYears = table.Column<int>(nullable: false)
@@ -371,9 +372,9 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3b337b05-e562-4d65-9be3-b7b3de7edbba", "3b337b05-e562-4d65-9be3-b7b3de7edbba", "SuperAdmin", "SuperAdmin" },
-                    { "ebf3a17c-41df-42cd-b20c-09f0c777b636", "ebf3a17c-41df-42cd-b20c-09f0c777b636", "Admin", "Admin" },
-                    { "0cad090e-440c-4bfb-ad10-2c1ff851f409", "0cad090e-440c-4bfb-ad10-2c1ff851f409", "User", "User" }
+                    { "8e0075d7-1b06-460a-a2a3-124ab0032915", "8e0075d7-1b06-460a-a2a3-124ab0032915", "SuperAdmin", "SuperAdmin" },
+                    { "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1", "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1", "Admin", "Admin" },
+                    { "395cf700-ff42-4f90-9437-10086fe336ff", "395cf700-ff42-4f90-9437-10086fe336ff", "User", "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -381,9 +382,9 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName", "MemberId", "UserRolesId" },
                 values: new object[,]
                 {
-                    { "ad46e7b7-74b0-4713-a0bc-7252254d561b", 0, "c32712b6-dce2-48cd-95b6-9fb2b99bf3da", "AppUser", "superadmin@gmail.com", true, false, null, null, "SUPERADMIN", "AQAAAAEAACcQAAAAEKRt3vi8oprxwKlQaxsuM1McJ/yeZsHoPNVM55RGVupwMAUAYe/oyueZj+6P0YAJZQ==", null, false, "b482e340-54e8-4aeb-82db-57f576ee14ef", false, "SuperAdmin", "Louis", "Lim", 9999, "3b337b05-e562-4d65-9be3-b7b3de7edbba" },
-                    { "8fa36253-eafa-4d13-a7f9-462c6d70096c", 0, "3a399e58-207f-4d83-9377-5ff440d0b88c", "AppUser", "admin@gmail.com", true, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEPKmhp8sKX8G1LPmRkaCVSIbnfLtBi31PKOzMncrFl66yEEUGeIE/OXBh554FYNpyA==", null, false, "e614c9f1-00ff-4053-ada1-548bccd478f5", false, "Admin", "Vicient", "Hook", 9998, "ebf3a17c-41df-42cd-b20c-09f0c777b636" },
-                    { "77f8b0a4-7243-46b0-9b56-8d08ec09eca2", 0, "6dcbb974-a9ec-4e18-b987-f0fba1db2b2d", "AppUser", "user1@gmail.com", true, false, null, null, "USER1", "AQAAAAEAACcQAAAAECeh14lFmxu+OEe1p2uhngZoOgRAUVPYD7nRsMkJjiAG8nnaL+m9OX/f/fCvkyOPIw==", null, false, "8568d182-af86-4df1-8823-4ea053938bf0", false, "User1", "Vicient", "Kent", 0, "0cad090e-440c-4bfb-ad10-2c1ff851f409" }
+                    { "9b74f013-5021-4fc1-80a2-aeeca1b473f2", 0, "445198d6-d0ef-47fe-92cb-701008438551", "AppUser", "superadmin@gmail.com", true, false, null, null, "SUPERADMIN", "AQAAAAEAACcQAAAAEB7z9T6zikrj1oPci/BU0dEOPUyFdVclNbDZfAf5hxYI9BE5zpUNx3h7ZmT/yfLxng==", null, false, "72cd5df4-b45d-4ea9-aae6-a37c84d3c872", false, "SuperAdmin", "Louis", "Lim", 9999, "8e0075d7-1b06-460a-a2a3-124ab0032915" },
+                    { "f126997f-b2f2-4bf7-97ce-313f41aac32c", 0, "4b49b136-6f2b-4a61-916c-4a2fb01dbd63", "AppUser", "admin@gmail.com", true, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEOGIav3c5FoK9AM7NQDHd3pVa0PFmpnt+4hDHENYbPxsgefMkl9x0BbiJAzs5W6yxg==", null, false, "927f1976-b5a6-4209-8582-6bf5a2084af6", false, "Admin", "Vicient", "Hook", 9998, "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1" },
+                    { "34e2d868-6f78-452f-ba82-e8c75d88fdd8", 0, "8565fd7c-99ab-4747-b67d-7815ffa6f0e6", "AppUser", "user1@gmail.com", true, false, null, null, "USER1", "AQAAAAEAACcQAAAAEBNv6lgH1RhPUQid26KpOo21FW/YHTnLAkOfBq5UgZ14Dr/Ywrkm1H2nm4Y+ZYmR9w==", null, false, "5518bcb6-54d4-4e2a-b20a-80fa023af95e", false, "User1", "Vicient", "Kent", 0, "395cf700-ff42-4f90-9437-10086fe336ff" }
                 });
 
             migrationBuilder.InsertData(
@@ -424,9 +425,9 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "UserId", "RoleId" },
                 values: new object[,]
                 {
-                    { "ad46e7b7-74b0-4713-a0bc-7252254d561b", "3b337b05-e562-4d65-9be3-b7b3de7edbba" },
-                    { "8fa36253-eafa-4d13-a7f9-462c6d70096c", "ebf3a17c-41df-42cd-b20c-09f0c777b636" },
-                    { "77f8b0a4-7243-46b0-9b56-8d08ec09eca2", "0cad090e-440c-4bfb-ad10-2c1ff851f409" }
+                    { "9b74f013-5021-4fc1-80a2-aeeca1b473f2", "8e0075d7-1b06-460a-a2a3-124ab0032915" },
+                    { "f126997f-b2f2-4bf7-97ce-313f41aac32c", "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1" },
+                    { "34e2d868-6f78-452f-ba82-e8c75d88fdd8", "395cf700-ff42-4f90-9437-10086fe336ff" }
                 });
 
             migrationBuilder.InsertData(
@@ -494,19 +495,19 @@ namespace WebAppLexicon.Migrations
 
             migrationBuilder.InsertData(
                 table: "Skills",
-                columns: new[] { "MemberId", "SkillId", "SkillDesc", "SkillLevel", "SkillYears" },
+                columns: new[] { "MemberId", "SkillId", "ID", "SkillDesc", "SkillLevel", "SkillYears" },
                 values: new object[,]
                 {
-                    { 1, 8, null, 1, 4 },
-                    { 3, 2, null, 3, 1 },
-                    { 7, 7, null, 3, 4 },
-                    { 7, 10, null, 2, 2 },
-                    { 5, 5, null, 1, 8 },
-                    { 9, 1, null, 2, 2 },
-                    { 11, 6, null, 3, 9 },
-                    { 13, 3, null, 1, 7 },
-                    { 13, 4, null, 3, 10 },
-                    { 6, 9, null, 2, 2 }
+                    { 1, 8, 8, null, 1, 4 },
+                    { 3, 2, 2, null, 3, 1 },
+                    { 7, 2, 7, null, 3, 4 },
+                    { 7, 10, 10, null, 2, 2 },
+                    { 5, 5, 5, null, 1, 8 },
+                    { 9, 1, 1, null, 2, 2 },
+                    { 11, 6, 6, null, 3, 9 },
+                    { 13, 3, 3, null, 1, 7 },
+                    { 13, 4, 4, null, 3, 10 },
+                    { 6, 3, 9, null, 2, 2 }
                 });
 
             migrationBuilder.CreateIndex(

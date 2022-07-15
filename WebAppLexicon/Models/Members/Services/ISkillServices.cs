@@ -8,8 +8,8 @@ namespace WebAppLexicon.Models.Members.Services
 {
     public interface ISkillServices
     {
-        Skills Create(CreateSkillsViewModel skill);
-        List<Skills> GetMySkill(int memberId, int skillId);
+        Skills Create(Skills skill);
+        List<Skills> GetMySkill(int memberId);
         List<Skills> GetAll();
         Skills FindById(int id);
 

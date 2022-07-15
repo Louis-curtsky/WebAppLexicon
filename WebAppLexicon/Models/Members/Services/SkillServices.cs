@@ -16,25 +16,14 @@ namespace WebAppLexicon.Models.Members.Services
         {
             _skillsRepo = skillsRepo;
         }
-        public Skills Create(CreateSkillsViewModel skill)
+        public Skills Create(Skills skill)
         {
-            List<Skills> getAllSkills = new List<Skills>();
-            getAllSkills = GetAll();
-            int assignId = 0;
-            if (getAllSkills.Count==0)
-            {
-                assignId = 1;
-            }
-            else
-            {
-                assignId = getAllSkills[getAllSkills.Count - 1].SkillId;
-            }
-            return _skillsRepo.Create(skill, assignId);
+            return _skillsRepo.Create(skill);
         }
 
-        public List<Skills> GetMySkill(int memberId, int skillId)
+        public List<Skills> GetMySkill(int memberId)
         {
-            return _skillsRepo.GetMySkill(memberId, skillId);
+            return _skillsRepo.GetMySkill(memberId);
         }
         public Skills Edit(int id, Skills editskill)
         {

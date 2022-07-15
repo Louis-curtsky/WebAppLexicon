@@ -16,16 +16,13 @@ namespace WebAppLexicon.Models.Members.Repo
         {
             _memberDbContext = memberDbContext;
         }
-        public Skills Create(CreateSkillsViewModel skills, int id)
+        public Skills Create(Skills skills)
         {
-            Skills storeSkill = new Skills();
-            storeSkill.SkillId = id;
-            storeSkill.SkillDesc = skills.SkillDesc;
-            storeSkill.SkillLevel = skills.SkillLevel;
-            storeSkill.SkillYears = skills.SkillYears;
-            _memberDbContext.Skills.Add(storeSkill);
+
+            _memberDbContext
+                .Add(skills);
             _memberDbContext.SaveChanges();
-            return storeSkill;
+            return skills;
         }
 
         public bool Delete(Skills skills)
@@ -47,15 +44,30 @@ namespace WebAppLexicon.Models.Members.Repo
             return skillFound;
         }
 
-        public List<Skills> GetMySkill(int memberId, int skillId)
+        public List<Skills> GetMySkill(int memberId)
         {
             if (memberId != 0)
-                return (_memberDbContext.Skills.Where(x =>
-                skillId == x.SkillId &&
-                memberId == x.MemberId
-                ).ToList());
+            {
+                var noTrackSkill = _memberDbContext.Skills
+                    .AsNoTracking()
+                    .Where(x => memberId == x.MemberId)
+                    .ToList();
+                List<Skills> returnSkills = new List<Skills>();
+                for (int i=0; i<noTrackSkill.Count; i++)
+                {
+                    returnSkills.Add(new Skills
+                    {
+                        SkillId = noTrackSkill[i].SkillId,
+                        SkillDesc = noTrackSkill[i].SkillDesc,
+                        MemberId = memberId,
+                        SkillLevel = noTrackSkill[i].SkillLevel,
+                        SkillYears = noTrackSkill[i].SkillYears
+                    });
+                }
+                return (returnSkills);
+            }
             else
-            return null;     
+                return null;     
         }
         public List<Skills> GetAll()
         {

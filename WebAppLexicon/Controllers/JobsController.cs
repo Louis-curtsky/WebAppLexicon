@@ -58,7 +58,7 @@ namespace WebAppLexicon.Controllers
                 return RedirectToAction(nameof(Index));
             } else
             {
-                ModelState.AddModelError("System", "Job List has no record!!!");
+                ModelState.AddModelError("System", "Error Adding Jobs");
                 return View();
             }
  

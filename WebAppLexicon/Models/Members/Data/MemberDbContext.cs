@@ -14,7 +14,10 @@ namespace WebAppLexicon.Models.Members.Data
     {
         public MemberDbContext(DbContextOptions<MemberDbContext> options) : base(options)
         { }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -23,11 +26,13 @@ namespace WebAppLexicon.Models.Members.Data
             #region Skills-Jobs Join Class Config
 
             modelBuilder.Entity<Skills>()
-                .HasKey(dt => 
-                new { 
+                .HasKey(dt =>
+                new
+                {
                     dt.MemberId,
-                    dt.SkillId 
+                    dt.SkillId
                 });
+
 
             modelBuilder.Entity<Skills>()
                 .HasOne(dt => dt.SkillCat)
@@ -63,16 +68,16 @@ namespace WebAppLexicon.Models.Members.Data
                 );
 
             modelBuilder.Entity<Skills>().HasData(
-                new Skills() { SkillId=1,MemberId=9,SkillLevel=2,SkillYears=2},
-                new Skills() { SkillId=2,MemberId=3,SkillLevel=3,SkillYears=1},
-                new Skills() { SkillId=3,MemberId=13,SkillLevel=1,SkillYears=7},
-                new Skills() { SkillId=4,MemberId=13,SkillLevel=3,SkillYears=10},
-                new Skills() { SkillId=5,MemberId=5,SkillLevel=1,SkillYears=8},
-                new Skills() { SkillId=6,MemberId=11,SkillLevel=3,SkillYears=9},
-                new Skills() { SkillId=7,MemberId=7,SkillLevel=3,SkillYears=4},
-                new Skills() { SkillId=8,MemberId=1,SkillLevel=1,SkillYears=4},
-                new Skills() { SkillId=9,MemberId=6,SkillLevel=2,SkillYears=2},
-                new Skills() { SkillId=10,MemberId=7,SkillLevel=2,SkillYears=2}
+                new Skills() { ID=1, SkillId=1,MemberId=9,SkillLevel=2,SkillYears=2},
+                new Skills() { ID=2, SkillId =2,MemberId=3,SkillLevel=3,SkillYears=1},
+                new Skills() { ID=3, SkillId=3,MemberId=13,SkillLevel=1,SkillYears=7},
+                new Skills() { ID=4, SkillId=4,MemberId=13,SkillLevel=3,SkillYears=10},
+                new Skills() { ID=5, SkillId=5,MemberId=5,SkillLevel=1,SkillYears=8},
+                new Skills() { ID = 6, SkillId =6,MemberId=11,SkillLevel=3,SkillYears=9},
+                new Skills() { ID = 7, SkillId =2,MemberId=7,SkillLevel=3,SkillYears=4},
+                new Skills() { ID = 8, SkillId =8,MemberId=1,SkillLevel=1,SkillYears=4},
+                new Skills() { ID = 9, SkillId =3,MemberId=6,SkillLevel=2,SkillYears=2},
+                new Skills() { ID = 10, SkillId =10,MemberId=7,SkillLevel=2,SkillYears=2}
                 );
 
             #endregion Country-State-City Join Class Config

@@ -39,32 +39,93 @@ namespace WebAppLexicon.Controllers
         }
 
         // GET: SkillsController/Create
-        public ActionResult Create(int skillId)
+        public ActionResult Create(CreateSkillsViewModel showSkillModel, int memId)
         {
             List<Members> lastMember = _peopleService.FindLast();
-            List<Skills> skillList = _skillService.GetMySkill(lastMember[0].MemberId, skillId);
-            if (skillList.Count==0)
+            List<Skills> mySkillList = new List<Skills>();
+            if (showSkillModel.MemberId == 0 && showSkillModel.SkillId==0)
             {
-                skillList.Add(new Skills { SkillDesc= "No Skill Added yet!!!" });
+                mySkillList = _skillService.GetMySkill(lastMember[0].MemberId);
             }
+            else
+            {
+                mySkillList.Add(new Skills { 
+                    SkillId = showSkillModel.SkillId,
+                    MemberId = showSkillModel.MemberId,
+                    SkillDesc = showSkillModel.SkillDesc,
+                    SkillLevel = showSkillModel.SkillLevel,
+                    SkillYears = showSkillModel.SkillYears
+                });
+            }
+            ViewBag.ListOfSkill = mySkillList;
+
+            ViewBag.ID = showSkillModel.MemberId;
             CreateSkillsViewModel skillViewModel = new CreateSkillsViewModel();
+            if (showSkillModel != null)
+            {
+                skillViewModel = showSkillModel;
+            }
+
             skillViewModel.MemberId = lastMember[0].MemberId;
             skillViewModel.SkillList = _skillCatsServices.GetAll();
-            ViewBag.ListOfSkill = skillList;
+            
             return View(skillViewModel);
         }
 
         // POST: SkillsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Skills skillsViewModel, int skillId)
         {
-            try
+            if(ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+                int lastMemId = _peopleService.FindLast()[0].MemberId;
+                skillsViewModel.MemberId = lastMemId;
+                List<Skills> skillList = _skillService.GetMySkill(lastMemId);
+                if (skillList.Count>0 && skillsViewModel != null)
+                {
+                    foreach (var item in skillList)
+                    {
+                        if (skillsViewModel != null && skillsViewModel.SkillId != item.SkillId
+                            && skillsViewModel.MemberId != item.MemberId)
+                        {
+                            skillsViewModel.MemberId = lastMemId;
+                            skillsViewModel.SkillId = skillId;
+                            skillsViewModel.Xmembers = _peopleService.FindById(skillsViewModel.MemberId);
+                            _skillService.Create(skillsViewModel);
+                        } else
+                        {
+                            ModelState.AddModelError("System", "You added a dulplicated skills !!!");
+                        }
+                    }
+                } else if (skillList.Count==0)
+                {
+                    skillsViewModel.MemberId = lastMemId;
+                    skillsViewModel.SkillId = skillId;
+                    skillsViewModel.Xmembers = _peopleService.FindById(skillsViewModel.MemberId);
+                    _skillService.Create(skillsViewModel);
+                } else
+                {
+                    ModelState.AddModelError("System", "There is no data in Skills input !!!");
+                }
+
+
+                CreateSkillsViewModel newSkillsModel = new CreateSkillsViewModel();
+
+                newSkillsModel.MemberId = lastMemId;
+
+                newSkillsModel.SkillList = _skillCatsServices.GetAll();
+                skillList.Add(new Skills {
+                    SkillId = skillsViewModel.SkillId,
+                    SkillDesc = skillsViewModel.SkillDesc,
+                    SkillLevel = skillsViewModel.SkillLevel,
+                    SkillYears = skillsViewModel.SkillYears
+                });
+                ViewBag.ListOfSkill = skillList;
+                return View(newSkillsModel);
+            } else
             {
+                ModelState.AddModelError("System", "Problem Adding Skills- Please Contact Administrator!!!");
                 return View();
             }
         }
