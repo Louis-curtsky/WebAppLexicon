@@ -58,5 +58,10 @@ namespace WebAppLexicon.Models.Members.Services
             else
                 return false;
         }
+
+        public List<City> BindState(int stateId)
+        {
+            return _cityRepo.BindState(stateId);
+        }
     }
 }

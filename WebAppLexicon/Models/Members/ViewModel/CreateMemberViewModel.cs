@@ -47,6 +47,8 @@ namespace WebAppLexicon.Models.Members.ViewModel
         public int CtyId { get; set; }
         public int StateId { get; set; }
         public int CntyId { get; set; }
+        public string MemberApproval { get; set; }
+        public DateTime MemberDate { get; set; }
         public List<MemberLanguage> Language1 { get; set; }
         public int LangRead1 { get; set; } // 0: None 1:Beginer 2: Intermediate 3: Advance
         public int LangWrite1 { get; set; }

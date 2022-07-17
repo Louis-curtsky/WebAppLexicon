@@ -18,7 +18,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <label asp-for="MemberId" class="control-label">Member</label>
-                <input asp-for="MemberId" name="memberId" class="form-control" disabled/>
+                <input asp-for="MemberId" name="memberId" class="form-control" disabled />
 
                 <label asp-for="SkillId" class="control-label">Skills</label>
                 <select id="skillId" asp-for="SkillId" name="skillId" class="select">
@@ -39,8 +39,24 @@
                 </select>
 
                 <label asp-for="SkillYears" class="control-label">Skill Years</label>
-                <input asp-for="SkillYears" class="form-control"  min="1" max="50"/>
+                <input asp-for="SkillYears" class="form-control" min="1" max="50" />
                 <span asp-validation-for="SkillYears" class="text-danger"></span>
+
+                <label asp-for="Charges" class="control-label">Charges</label>
+                <input asp-for="Charges" class="form-control" min="1" />
+                <span asp-validation-for="Charges" class="text-danger"></span>
+
+                <select asp-for="ChargeUnit" class="control-label">
+                    <option value="HR">Hour</option>
+                    <option value="DAY">Day</option>
+                    <option value="TRIP">Per trip</option>
+                    <option value="OTHER">Others</option>
+                </select>
+
+                <label asp-for="MinUnit" class="control-label">Mini Unit</label>
+                <input asp-for="MinUnit" class="form-control" min="1" />
+                <span asp-validation-for="MinUnit" class="text-danger"></span>
+
                 <div class="regform">
                     <nav>
                         <a asp-area="" asp-controller="Home" asp-action="Index" class="navbutton">Exit</a>
@@ -53,41 +69,54 @@
                 <hr />
                 @if (ViewBag.ListOfSkill != null)
                 {
-                <table>
-                    @foreach (var skill in ViewBag.ListOfSkill)
-                    {
+            <table>
+                @foreach (var skill in ViewBag.ListOfSkill)
+                {
                     <tr class="table-dark">
-                        <th>@skill.ID</th>
-                        <td>
+                        <th class="text-danger"></th>
+                        <td class="text-danger">
                             @foreach (var item in Model.SkillList)
-                    {
-                        if (item.SkillId == skill.SkillId)
-                        {
+                            {
+                                if (item.SkillId == skill.SkillId)
+                                {
                                     @item.Categories
-                        }
-                    }
+                                }
+                            }
                         </td>
                     </tr>
                     <tr>
                         <th>Description</th>
                         <td>
-                        @skill.SkillDesc
+                            @skill.SkillDesc
                         </td>
                     </tr>
                     <tr>
                         <th>Level</th>
                         <td>
-                        @skill.SkillLevel
+                            @skill.SkillLevel
                         </td>
                     </tr>
                     <tr>
                         <th>Experinces</th>
                         <td>
-                        @skill.SkillYears
+                            @skill.SkillYears
                         </td>
                     </tr>
-                    }
-                </table>
+                    <tr>
+                        <th>Charges</th>
+                        <td>
+                            @skill.Charges per
+                            @skill.ChargeUnit
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Minimum</th>
+                        <td>
+                           @skill.MinUnit
+                        </td>
+                    </tr>
+                }
+            </table>
                 } else
                 { 
                     <h3>No Skills Entered Yet!!!</h3>

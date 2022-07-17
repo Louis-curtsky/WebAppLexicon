@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-
+<div id="memberAdd">
 <div class="row">
     <div class="column1" style="background-color:rgb(50, 37, 102);">
         <h3>Register</h3>
@@ -52,7 +52,7 @@
                 <span asp-validation-for="GovId" class="text-danger"></span>
 
                 <label asp-for="Age" class="control-label">Age</label>
-                <input asp-for="Age" class="form-control" min="18" max="80"/>
+                <input asp-for="Age" class="form-control" min="18" max="80" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
 
@@ -69,23 +69,29 @@
 
 
                 <label asp-for="Nationality" class="control-label"></label>
-                <input asp-for="Nationality" class="form-control" />
-                <span asp-validation-for="Nationality" class="text-danger"></span>
+                <select id="Nationality" name="Nationality" class="select">
+                    @foreach (var item in ViewBag.Countries)
+                    {
+                        <option value="@item.CntyName">@item.CntyName</option>
+                    }
+                </select>
 
                 <label asp-for="CntyId" class="control-label">Country</label>
-                <input asp-for="CntyId" name="cntyId" class="form-control" min="1"/>
-                <span asp-validation-for="CntyId" class="text-danger"></span>
+                <select id="CountryList" name="cntyId" class="select">
+                    @foreach (var item in ViewBag.Countries)
+                    {
+                        <option value="@item.CntyId">@item.CntyName</option>
+                    }
+                </select>
 
-                <label asp-for="StateId" class="control-label">State</label>
-                <input asp-for="StateId" name="stateId" class="form-control" min="1"/>
-                <span asp-validation-for="StateId" class="text-danger"></span>
+                <label class="control-label">State</label>
+                <select id="StateList" name="StateId" class="form-control"></select>
 
-                <label asp-for="CtyId" class="control-label">City</label>
-                <input asp-for="CtyId" name="ctyId" class="form-control" min="1"/>
-                <span asp-validation-for="CtyId" class="text-danger"></span>
+                <label class="control-label">City</label>
+                <select id="CityList" name="CityId" class="form-control" required></select>
 
                 <label asp-for="LangRead1" class="control-label">Read Level</label>
-                <input asp-for="LangRead1" class="form-control" />
+                <input asp-for="LangRead1" name="langRead1" class="form-control" />
                 <span asp-validation-for="LangRead1" class="text-danger"></span>
 
                 <label asp-for="LangWrite1" class="control-label">Write Level</label>
@@ -113,7 +119,7 @@
         </form>
     </div>
 </div> 
-
+</div>
 
 
 <div>

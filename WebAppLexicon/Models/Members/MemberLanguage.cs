@@ -9,7 +9,7 @@ namespace WebAppLexicon.Models.Members
     public class MemberLanguage
     {
         [Key]
-        public int ID { get; set; }
+        public int MLId { get; set; }
         public int MemberId { get; set; }
         public Members Members { get; set; }
         public int LanguageId { get; set; }

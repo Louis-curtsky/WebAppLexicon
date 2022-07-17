@@ -13,7 +13,7 @@ namespace WebAppLexicon.Models.Members.Services
         City FindById(int id);
         public City GetCity(int id);
         List<City> GetAll();
-
         bool Remove(City city);
+        List<City> BindState(int stateId);
     }
 }

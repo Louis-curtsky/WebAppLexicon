@@ -54,7 +54,10 @@ namespace WebAppLexicon.Controllers
                     MemberId = showSkillModel.MemberId,
                     SkillDesc = showSkillModel.SkillDesc,
                     SkillLevel = showSkillModel.SkillLevel,
-                    SkillYears = showSkillModel.SkillYears
+                    SkillYears = showSkillModel.SkillYears,
+                    Charges = showSkillModel.Charges,
+                    ChargeUnit = showSkillModel.ChargeUnit,
+                    MinUnit = showSkillModel.MinUnit
                 });
             }
             ViewBag.ListOfSkill = mySkillList;
@@ -116,10 +119,14 @@ namespace WebAppLexicon.Controllers
 
                 newSkillsModel.SkillList = _skillCatsServices.GetAll();
                 skillList.Add(new Skills {
+                    ID = skillsViewModel.ID,
                     SkillId = skillsViewModel.SkillId,
                     SkillDesc = skillsViewModel.SkillDesc,
                     SkillLevel = skillsViewModel.SkillLevel,
-                    SkillYears = skillsViewModel.SkillYears
+                    SkillYears = skillsViewModel.SkillYears,
+                    Charges = skillsViewModel.Charges,
+                    ChargeUnit = skillsViewModel.ChargeUnit,
+                    MinUnit = skillsViewModel.MinUnit
                 });
                 ViewBag.ListOfSkill = skillList;
                 return View(newSkillsModel);

@@ -61,7 +61,10 @@ namespace WebAppLexicon.Models.Members.Repo
                         SkillDesc = noTrackSkill[i].SkillDesc,
                         MemberId = memberId,
                         SkillLevel = noTrackSkill[i].SkillLevel,
-                        SkillYears = noTrackSkill[i].SkillYears
+                        SkillYears = noTrackSkill[i].SkillYears,
+                        Charges = noTrackSkill[i].Charges,
+                        ChargeUnit = noTrackSkill[i].ChargeUnit,
+                        MinUnit = noTrackSkill[i].MinUnit
                     });
                 }
                 return (returnSkills);

@@ -13,7 +13,7 @@ namespace WebAppLexicon.Models.Members.Services
         State FindById(int id);
         public State GetState(int id);
         List<State> GetAll();
-
         bool Remove(State state);
+        List<State> BindCountry(int countryId);
     }
 }

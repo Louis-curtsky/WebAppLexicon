@@ -33,7 +33,6 @@ namespace WebAppLexicon.Models.Members.Data
                     dt.SkillId
                 });
 
-
             modelBuilder.Entity<Skills>()
                 .HasOne(dt => dt.SkillCat)
                 .WithMany(d => d.Skills)
@@ -71,16 +70,13 @@ namespace WebAppLexicon.Models.Members.Data
                 new Skills() { ID=1, SkillId=1,MemberId=9,SkillLevel=2,SkillYears=2},
                 new Skills() { ID=2, SkillId =2,MemberId=3,SkillLevel=3,SkillYears=1},
                 new Skills() { ID=3, SkillId=3,MemberId=13,SkillLevel=1,SkillYears=7},
-                new Skills() { ID=4, SkillId=4,MemberId=13,SkillLevel=3,SkillYears=10},
-                new Skills() { ID=5, SkillId=5,MemberId=5,SkillLevel=1,SkillYears=8},
                 new Skills() { ID = 6, SkillId =6,MemberId=11,SkillLevel=3,SkillYears=9},
                 new Skills() { ID = 7, SkillId =2,MemberId=7,SkillLevel=3,SkillYears=4},
-                new Skills() { ID = 8, SkillId =8,MemberId=1,SkillLevel=1,SkillYears=4},
                 new Skills() { ID = 9, SkillId =3,MemberId=6,SkillLevel=2,SkillYears=2},
                 new Skills() { ID = 10, SkillId =10,MemberId=7,SkillLevel=2,SkillYears=2}
                 );
 
-            #endregion Country-State-City Join Class Config
+            #endregion Skills-Jobs Join Class Config
 
             #region Country-State-City Join Class Config
 
@@ -105,6 +101,30 @@ namespace WebAppLexicon.Models.Members.Data
 
             modelBuilder.Entity<Members>()
                 .HasKey(dt => dt.MemberId);
+
+            modelBuilder.Entity<MemberLanguage>().HasKey(ml =>
+            new
+            {
+                ml.MemberId,
+                ml.LanguageId
+            });
+
+            modelBuilder.Entity<MemberLanguage>()
+                .HasOne(ml => ml.Members)
+                .WithMany(m => m.language1)
+                .HasForeignKey(ml => ml.MemberId);
+
+            modelBuilder.Entity<MemberLanguage>()
+                .HasOne(ml => ml.Language)
+                .WithMany(m => m.MemberLanguage)
+                .HasForeignKey(ml => ml.LanguageId);
+
+            modelBuilder.Entity<Language>().HasData(
+                new Language { Id = 1, LangName = "Swedish"},
+                new Language { Id = 2, LangName = "English" },
+                new Language { Id = 3, LangName = "French" },
+                new Language { Id = 4, LangName = "Chinese" }
+                );
 
             modelBuilder.Entity<City>().HasData(
                 new City() { CityId = 1, CityName = "Stockholm", StateId = 5 },
@@ -142,26 +162,26 @@ namespace WebAppLexicon.Models.Members.Data
                 );
 
             modelBuilder.Entity<Members>().HasData(
-                new Members() { MemberId = 1, FirstName = "Giustina", LastName = "Gurnay", Phone = "108-553-0832", Gender = "Genderfluid", Age = 30, Nationality = "Panamanian", Email = "ggurnay0@opera.com", CntyId=1, StateId=1, CtyId=3 },
-                new Members() { MemberId = 2, FirstName = "Danita", LastName = "Kissick", Phone = "102-688-4545", Gender = "Female", Age = 76, Nationality = "Iroquois", Email = "dkissick1@clickbank.net", CntyId = 4, StateId = 8, CtyId = 7 },
-                new Members() { MemberId = 3, FirstName = "Creigh", LastName = "Noice", Phone = "934-181-5000", Gender = "Male", Age = 35, Nationality = "Shoshone", Email = "cnoice2@wisc.edu", CntyId = 1, StateId = 1, CtyId = 3 },
-                new Members() { MemberId = 4, FirstName = "Denis", LastName = "Hourihane", Phone = "260-684-7945", Gender = "Male", Age = 67, Nationality = "American Indian and Alaska Native (AIAN)", Email = "dhourihane3@toplist.cz", CntyId = 3, StateId = 10, CtyId = 10 },
-                new Members() { MemberId = 5, FirstName = "Ariel", LastName = "Nattriss", Phone = "662-951-7611", Gender = "Male", Age = 62, Nationality = "Chickasaw", Email = "anattriss4@baidu.com", CntyId = 1, StateId = 2, CtyId = 2 },
-                new Members() { MemberId = 6, FirstName = "Tommie", LastName = "Velte", Phone = "474-732-2163", Gender = "Male", Age = 35, Nationality = "Filipino", Email = "tvelte5@nps.gov", CntyId = 4, StateId = 8, CtyId = 7 },
-                new Members() { MemberId = 7, FirstName = "Dennison", LastName = "Gonzales", Phone = "706-580-3696", Gender = "Male", Age = 40, Nationality = "Puerto Rican", Email = "dgonzales6@yelp.com", CntyId = 1, StateId = 1, CtyId = 3 },
-                new Members() { MemberId = 8, FirstName = "Tynan", LastName = "Morphet", Phone = "298-108-6587", Gender = "Non-binary", Age = 56, Nationality = "White", Email = "tmorphet7@wix.com", CntyId = 3, StateId = 10, CtyId = 10 },
-                new Members() { MemberId = 9, FirstName = "Mischa", LastName = "Foulstone", Phone = "853-913-7659", Gender = "Male", Age = 33, Nationality = "Menominee", Email = "mfoulstone8@narod.ru", CntyId = 2, StateId = 11, CtyId = 11 },
-                new Members() { MemberId = 10, FirstName = "Lisa", LastName = "Olczak", Phone = "225-320-9656", Gender = "Female", Age = 49, Nationality = "Vietnamese", Email = "lolczak9@spiegel.de", CntyId = 1, StateId = 2, CtyId = 9 },
-                new Members() { MemberId = 11, FirstName = "Rancell", LastName = "Gennings", Phone = "594-235-3927", Gender = "Genderfluid", Age = 38, Nationality = "Tlingit-Haida", Email = "rgenningsa@bloglines.com", CntyId = 2, StateId = 11, CtyId = 11 },
-                new Members() { MemberId = 12, FirstName = "Kingsly", LastName = "Mongan", Phone = "805-257-2819", Gender = "Male", Age = 18, Nationality = "Yaqui", Email = "kmonganb@1und1.de", CntyId = 1, StateId = 2, CtyId = 2 },
-                new Members() { MemberId = 13, FirstName = "Sayer", LastName = "Ortells", Phone = "201-214-9764", Gender = "Male", Age = 55, Nationality = "Honduran", Email = "sortellsc@yelp.com", CntyId = 2, StateId = 11, CtyId = 11 },
-                new Members() { MemberId = 14, FirstName = "Abbie", LastName = "Knotte", Phone = "870-289-5196", Gender = "Male", Age = 32, Nationality = "Argentinian", Email = "aknotted@apache.org", CntyId = 4, StateId = 9, CtyId = 7 },
-                new Members() { MemberId = 15, FirstName = "Vilma", LastName = "Puttrell", Phone = "176-399-0215", Gender = "Polygender", Age = 90, Nationality = "Laotian", Email = "vputtrelle@nytimes.com", CntyId = 4, StateId = 9, CtyId = 7 },
-                new Members() { MemberId = 16, FirstName = "Amber", LastName = "Buffery", Phone = "716-926-5332", Gender = "Female", Age = 71, Nationality = "Chilean", Email = "abufferyf@jalbum.net", CntyId = 1, StateId = 1, CtyId = 3 },
-                new Members() { MemberId = 17, FirstName = "Wiatt", LastName = "Collet", Phone = "369-361-2111", Gender = "Male", Age = 64, Nationality = "Chilean", Email = "wcolletg@a8.net", CntyId = 1, StateId = 4, CtyId = 4 },
-                new Members() { MemberId = 18, FirstName = "Cacilia", LastName = "Gilstin", Phone = "582-143-5937", Gender = "Female", Age = 18, Nationality = "Cree", Email = "cgilstinh@ucla.edu", CntyId = 1, StateId = 2, CtyId = 9 },
-                new Members() { MemberId = 19, FirstName = "Libbie", LastName = "Zecchii", Phone = "529-137-4269", Gender = "Female", Age = 53, Nationality = "Paiute", Email = "lzecchiii@domainmarket.com", CntyId = 4, StateId = 9, CtyId = 7 },
-                new Members() { MemberId = 20, FirstName = "Cecilia", LastName = "Lesslie", Phone = "358-511-7422", Gender = "Female", Age = 46, Nationality = "Tongan", Email = "clessliej@boston.com", CntyId = 3, StateId = 10, CtyId = 10 }
+                new Members() { MemberId = 1, FirstName = "Giustina", LastName = "Gurnay", Phone = "108-553-0832", Gender = "Genderfluid", Age = 30, Nationality = "Panamanian", Email = "ggurnay0@opera.com", CntyId=1, StateId=1, CtyId=3, MemberApproval="P" },
+                new Members() { MemberId = 2, FirstName = "Danita", LastName = "Kissick", Phone = "102-688-4545", Gender = "Female", Age = 76, Nationality = "Iroquois", Email = "dkissick1@clickbank.net", CntyId = 4, StateId = 8, CtyId = 7, MemberApproval = "P" },
+                new Members() { MemberId = 3, FirstName = "Creigh", LastName = "Noice", Phone = "934-181-5000", Gender = "Male", Age = 35, Nationality = "Shoshone", Email = "cnoice2@wisc.edu", CntyId = 1, StateId = 1, CtyId = 3, MemberApproval = "P" },
+                new Members() { MemberId = 4, FirstName = "Denis", LastName = "Hourihane", Phone = "260-684-7945", Gender = "Male", Age = 67, Nationality = "American Indian and Alaska Native (AIAN)", Email = "dhourihane3@toplist.cz", CntyId = 3, StateId = 10, CtyId = 10, MemberApproval = "P" },
+                new Members() { MemberId = 5, FirstName = "Ariel", LastName = "Nattriss", Phone = "662-951-7611", Gender = "Male", Age = 62, Nationality = "Chickasaw", Email = "anattriss4@baidu.com", CntyId = 1, StateId = 2, CtyId = 2, MemberApproval = "P" },
+                new Members() { MemberId = 6, FirstName = "Tommie", LastName = "Velte", Phone = "474-732-2163", Gender = "Male", Age = 35, Nationality = "Filipino", Email = "tvelte5@nps.gov", CntyId = 4, StateId = 8, CtyId = 7, MemberApproval = "P" },
+                new Members() { MemberId = 7, FirstName = "Dennison", LastName = "Gonzales", Phone = "706-580-3696", Gender = "Male", Age = 40, Nationality = "Puerto Rican", Email = "dgonzales6@yelp.com", CntyId = 1, StateId = 1, CtyId = 3, MemberApproval = "P" },
+                new Members() { MemberId = 8, FirstName = "Tynan", LastName = "Morphet", Phone = "298-108-6587", Gender = "Non-binary", Age = 56, Nationality = "White", Email = "tmorphet7@wix.com", CntyId = 3, StateId = 10, CtyId = 10, MemberApproval = "P" },
+                new Members() { MemberId = 9, FirstName = "Mischa", LastName = "Foulstone", Phone = "853-913-7659", Gender = "Male", Age = 33, Nationality = "Menominee", Email = "mfoulstone8@narod.ru", CntyId = 2, StateId = 11, CtyId = 11, MemberApproval = "P" },
+                new Members() { MemberId = 10, FirstName = "Lisa", LastName = "Olczak", Phone = "225-320-9656", Gender = "Female", Age = 49, Nationality = "Vietnamese", Email = "lolczak9@spiegel.de", CntyId = 1, StateId = 2, CtyId = 9, MemberApproval = "P" },
+                new Members() { MemberId = 11, FirstName = "Rancell", LastName = "Gennings", Phone = "594-235-3927", Gender = "Genderfluid", Age = 38, Nationality = "Tlingit-Haida", Email = "rgenningsa@bloglines.com", CntyId = 2, StateId = 11, CtyId = 11, MemberApproval = "P" },
+                new Members() { MemberId = 12, FirstName = "Kingsly", LastName = "Mongan", Phone = "805-257-2819", Gender = "Male", Age = 18, Nationality = "Yaqui", Email = "kmonganb@1und1.de", CntyId = 1, StateId = 2, CtyId = 2, MemberApproval = "P" },
+                new Members() { MemberId = 13, FirstName = "Sayer", LastName = "Ortells", Phone = "201-214-9764", Gender = "Male", Age = 55, Nationality = "Honduran", Email = "sortellsc@yelp.com", CntyId = 2, StateId = 11, CtyId = 11, MemberApproval = "P" },
+                new Members() { MemberId = 14, FirstName = "Abbie", LastName = "Knotte", Phone = "870-289-5196", Gender = "Male", Age = 32, Nationality = "Argentinian", Email = "aknotted@apache.org", CntyId = 4, StateId = 9, CtyId = 7, MemberApproval = "P" },
+                new Members() { MemberId = 15, FirstName = "Vilma", LastName = "Puttrell", Phone = "176-399-0215", Gender = "Polygender", Age = 90, Nationality = "Laotian", Email = "vputtrelle@nytimes.com", CntyId = 4, StateId = 9, CtyId = 7, MemberApproval = "P" },
+                new Members() { MemberId = 16, FirstName = "Amber", LastName = "Buffery", Phone = "716-926-5332", Gender = "Female", Age = 71, Nationality = "Chilean", Email = "abufferyf@jalbum.net", CntyId = 1, StateId = 1, CtyId = 3, MemberApproval = "P" },
+                new Members() { MemberId = 17, FirstName = "Wiatt", LastName = "Collet", Phone = "369-361-2111", Gender = "Male", Age = 64, Nationality = "Chilean", Email = "wcolletg@a8.net", CntyId = 1, StateId = 4, CtyId = 4, MemberApproval = "P" },
+                new Members() { MemberId = 18, FirstName = "Cacilia", LastName = "Gilstin", Phone = "582-143-5937", Gender = "Female", Age = 18, Nationality = "Cree", Email = "cgilstinh@ucla.edu", CntyId = 1, StateId = 2, CtyId = 9, MemberApproval = "P" },
+                new Members() { MemberId = 19, FirstName = "Libbie", LastName = "Zecchii", Phone = "529-137-4269", Gender = "Female", Age = 53, Nationality = "Paiute", Email = "lzecchiii@domainmarket.com", CntyId = 4, StateId = 9, CtyId = 7, MemberApproval = "P" },
+                new Members() { MemberId = 20, FirstName = "Cecilia", LastName = "Lesslie", Phone = "358-511-7422", Gender = "Female", Age = 46, Nationality = "Tongan", Email = "clessliej@boston.com", CntyId = 3, StateId = 10, CtyId = 10, MemberApproval = "P" }
                 );
 
             #endregion Country-State-City Join Class Config
@@ -277,6 +297,7 @@ namespace WebAppLexicon.Models.Members.Data
         public DbSet<Skills> Skills { get; set; }
         public DbSet<SkillCats> SkillCats { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
-
+        public DbSet<Language> Language { get; set; }
+        public DbSet<MemberLanguage> MemberLanguages { get; set; }
     }
 }

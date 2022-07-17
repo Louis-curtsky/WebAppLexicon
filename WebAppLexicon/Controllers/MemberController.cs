@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppLexicon.Models;
 using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Services;
 using WebAppLexicon.Models.Members.ViewModel;
@@ -39,18 +40,24 @@ namespace WebAppLexicon.Controllers
         // GET: MemberController/Create
         public ActionResult Create()
         {
+            // Testing use
+            //List<State> lstStates = _stateService.BindCountry(1);
+            //ViewBag.StateList = lstStates;
+            //
             CreateMemberViewModel memberViewModel = new CreateMemberViewModel();
             List<Members> lastMember = _peopleService.FindLast();
             memberViewModel.MemberId = lastMember[0].MemberId + 1;
             // For testing put to True ViewBag.SaveRec = true;
             ViewBag.SaveRec = false;
+            ViewBag.Countries = _countryService.GetAll();
             return View(memberViewModel);
         }
 
         // POST: MemberController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType, int ctyId)
+        public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType, 
+            int countryId, int ctyId)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +68,10 @@ namespace WebAppLexicon.Controllers
                     memberViewModel.MemberType = memberType;
                     memberViewModel.GovIdType = govIdType;
                     memberViewModel.CtyId = ctyId;
+                    memberViewModel.MemberApproval = "P";
+                    memberViewModel.MemberDate = DateTime.Today;
                     _peopleService.Add(memberViewModel);
+                    ViewBag.Countries = _countryService.GetAll();
                     ViewBag.SaveRec = true;
                 }
             }
@@ -89,7 +99,27 @@ namespace WebAppLexicon.Controllers
             }
         }
 
-        // GET: MemberController/Delete/5
+        public ActionResult GetCityByStateId(int stateId)
+        {
+            {
+                List<City> lstCities = _cityService.BindState(stateId);
+
+//              var lstToReturn = lstCities.Select(s => new { id = s.CityId, Name = s.CityName });
+                return Json(lstCities);
+            }
+        }
+
+
+        public ActionResult GetStatesByCountryId(int countryId)
+        {
+            {
+                List<State> lstStates = _stateService.BindCountry(countryId);
+                //ViewBag.StateList = lstStates;
+
+ //               var lstToReturn = lstStates.Select(s => new { id = s.Id, Name = s.Name });
+                return Json(lstStates);
+            }
+        }
 
     }
 }

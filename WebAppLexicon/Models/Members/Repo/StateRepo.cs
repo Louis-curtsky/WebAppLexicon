@@ -54,5 +54,12 @@ namespace WebAppLexicon.Models.Members.Repo
             }
             return null;
         }
+
+        public List<State> BindCountry(int countryId)
+        {
+            List<State> lstStates = new List<State>();
+            lstStates = _memberDbContext.State.Where(x => x.CntyId == countryId).ToList();
+            return lstStates;
+        }
     }
 }

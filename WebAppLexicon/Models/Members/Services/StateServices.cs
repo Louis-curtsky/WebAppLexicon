@@ -61,5 +61,10 @@ namespace WebAppLexicon.Models.Members.Services
             else
                 return false;
         }
+
+        public List<State> BindCountry(int countryId)
+        {
+            return _stateRepo.BindCountry(countryId);
+        }
     }
 }

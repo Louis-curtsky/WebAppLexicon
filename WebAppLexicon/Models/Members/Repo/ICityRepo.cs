@@ -12,7 +12,8 @@ namespace WebAppLexicon.Models.Members.Repo
         City FindById(int id);
         public City GetCity(int id);
         List<City> GetAll();
-
         bool Update(City city);
+
+        List<City> BindState(int stateId);
     }
 }

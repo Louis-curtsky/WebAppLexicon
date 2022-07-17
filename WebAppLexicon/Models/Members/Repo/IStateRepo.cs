@@ -14,5 +14,7 @@ namespace WebAppLexicon.Models.Members.Repo
 
         State Update(State state);
         bool Delete(State state);
+
+        List<State> BindCountry(int countryId);
     }
 }

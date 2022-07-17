@@ -10,7 +10,7 @@ using WebAppLexicon.Models.Members.Data;
 namespace WebAppLexicon.Migrations
 {
     [DbContext(typeof(MemberDbContext))]
-    [Migration("20220714133950_DbCreateIdentity")]
+    [Migration("20220717160828_DbCreateIdentity")]
     partial class DbCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8e0075d7-1b06-460a-a2a3-124ab0032915",
-                            ConcurrencyStamp = "8e0075d7-1b06-460a-a2a3-124ab0032915",
+                            Id = "3315e586-b15e-4638-b10b-066af33a977b",
+                            ConcurrencyStamp = "3315e586-b15e-4638-b10b-066af33a977b",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1",
-                            ConcurrencyStamp = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1",
+                            Id = "12af27d9-4eb2-4501-8efa-349114e125ca",
+                            ConcurrencyStamp = "12af27d9-4eb2-4501-8efa-349114e125ca",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "395cf700-ff42-4f90-9437-10086fe336ff",
-                            ConcurrencyStamp = "395cf700-ff42-4f90-9437-10086fe336ff",
+                            Id = "c6c8a915-cddb-4e22-b8c5-470af487e503",
+                            ConcurrencyStamp = "c6c8a915-cddb-4e22-b8c5-470af487e503",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -229,18 +229,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "9b74f013-5021-4fc1-80a2-aeeca1b473f2",
-                            RoleId = "8e0075d7-1b06-460a-a2a3-124ab0032915"
+                            UserId = "886ccb26-8207-47b7-8013-bdc8c69e3561",
+                            RoleId = "3315e586-b15e-4638-b10b-066af33a977b"
                         },
                         new
                         {
-                            UserId = "f126997f-b2f2-4bf7-97ce-313f41aac32c",
-                            RoleId = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1"
+                            UserId = "90fa7ed2-e4c2-4bd8-8cca-88393053238a",
+                            RoleId = "12af27d9-4eb2-4501-8efa-349114e125ca"
                         },
                         new
                         {
-                            UserId = "34e2d868-6f78-452f-ba82-e8c75d88fdd8",
-                            RoleId = "395cf700-ff42-4f90-9437-10086fe336ff"
+                            UserId = "d210e5d3-ccbd-4807-8639-90666c19db59",
+                            RoleId = "c6c8a915-cddb-4e22-b8c5-470af487e503"
                         });
                 });
 
@@ -436,31 +436,46 @@ namespace WebAppLexicon.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Language");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            LangName = "Swedish"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            LangName = "English"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            LangName = "French"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            LangName = "Chinese"
+                        });
                 });
 
             modelBuilder.Entity("WebAppLexicon.Models.Members.MemberLanguage", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MemberId")
+                    b.Property<int>("MLId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MembersMemberId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
+                    b.HasKey("MemberId", "LanguageId");
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("MembersMemberId");
-
-                    b.ToTable("MemberLanguage");
+                    b.ToTable("MemberLanguages");
                 });
 
             modelBuilder.Entity("WebAppLexicon.Models.Members.Members", b =>
@@ -556,6 +571,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gurnay",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Panamanian",
                             Phone = "108-553-0832",
@@ -573,6 +589,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Kissick",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Iroquois",
                             Phone = "102-688-4545",
@@ -590,6 +607,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Noice",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Shoshone",
                             Phone = "934-181-5000",
@@ -607,6 +625,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Hourihane",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "American Indian and Alaska Native (AIAN)",
                             Phone = "260-684-7945",
@@ -624,6 +643,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Nattriss",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Chickasaw",
                             Phone = "662-951-7611",
@@ -641,6 +661,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Velte",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Filipino",
                             Phone = "474-732-2163",
@@ -658,6 +679,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gonzales",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Puerto Rican",
                             Phone = "706-580-3696",
@@ -675,6 +697,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Morphet",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "White",
                             Phone = "298-108-6587",
@@ -692,6 +715,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Foulstone",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Menominee",
                             Phone = "853-913-7659",
@@ -709,6 +733,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Olczak",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Vietnamese",
                             Phone = "225-320-9656",
@@ -726,6 +751,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gennings",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Tlingit-Haida",
                             Phone = "594-235-3927",
@@ -743,6 +769,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Mongan",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Yaqui",
                             Phone = "805-257-2819",
@@ -760,6 +787,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Ortells",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Honduran",
                             Phone = "201-214-9764",
@@ -777,6 +805,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Knotte",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Argentinian",
                             Phone = "870-289-5196",
@@ -794,6 +823,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Puttrell",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Laotian",
                             Phone = "176-399-0215",
@@ -811,6 +841,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Buffery",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Chilean",
                             Phone = "716-926-5332",
@@ -828,6 +859,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Collet",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Chilean",
                             Phone = "369-361-2111",
@@ -845,6 +877,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gilstin",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Cree",
                             Phone = "582-143-5937",
@@ -862,6 +895,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Zecchii",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Paiute",
                             Phone = "529-137-4269",
@@ -879,6 +913,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Lesslie",
+                            MemberApproval = "P",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Tongan",
                             Phone = "358-511-7422",
@@ -986,7 +1021,16 @@ namespace WebAppLexicon.Migrations
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ChargeUnit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Charges")
+                        .HasColumnType("int");
+
                     b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinUnit")
                         .HasColumnType("int");
 
                     b.Property<string>("SkillDesc")
@@ -1009,7 +1053,9 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 9,
                             SkillId = 1,
+                            Charges = 0,
                             ID = 1,
+                            MinUnit = 0,
                             SkillLevel = 2,
                             SkillYears = 2
                         },
@@ -1017,7 +1063,9 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 3,
                             SkillId = 2,
+                            Charges = 0,
                             ID = 2,
+                            MinUnit = 0,
                             SkillLevel = 3,
                             SkillYears = 1
                         },
@@ -1025,31 +1073,19 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 13,
                             SkillId = 3,
+                            Charges = 0,
                             ID = 3,
+                            MinUnit = 0,
                             SkillLevel = 1,
                             SkillYears = 7
                         },
                         new
                         {
-                            MemberId = 13,
-                            SkillId = 4,
-                            ID = 4,
-                            SkillLevel = 3,
-                            SkillYears = 10
-                        },
-                        new
-                        {
-                            MemberId = 5,
-                            SkillId = 5,
-                            ID = 5,
-                            SkillLevel = 1,
-                            SkillYears = 8
-                        },
-                        new
-                        {
                             MemberId = 11,
                             SkillId = 6,
+                            Charges = 0,
                             ID = 6,
+                            MinUnit = 0,
                             SkillLevel = 3,
                             SkillYears = 9
                         },
@@ -1057,23 +1093,19 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 7,
                             SkillId = 2,
+                            Charges = 0,
                             ID = 7,
+                            MinUnit = 0,
                             SkillLevel = 3,
-                            SkillYears = 4
-                        },
-                        new
-                        {
-                            MemberId = 1,
-                            SkillId = 8,
-                            ID = 8,
-                            SkillLevel = 1,
                             SkillYears = 4
                         },
                         new
                         {
                             MemberId = 6,
                             SkillId = 3,
+                            Charges = 0,
                             ID = 9,
+                            MinUnit = 0,
                             SkillLevel = 2,
                             SkillYears = 2
                         },
@@ -1081,7 +1113,9 @@ namespace WebAppLexicon.Migrations
                         {
                             MemberId = 7,
                             SkillId = 10,
+                            Charges = 0,
                             ID = 10,
+                            MinUnit = 0,
                             SkillLevel = 2,
                             SkillYears = 2
                         });
@@ -1196,60 +1230,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9b74f013-5021-4fc1-80a2-aeeca1b473f2",
+                            Id = "886ccb26-8207-47b7-8013-bdc8c69e3561",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "445198d6-d0ef-47fe-92cb-701008438551",
+                            ConcurrencyStamp = "be58153e-6280-49a8-8789-993dd5e46f6b",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB7z9T6zikrj1oPci/BU0dEOPUyFdVclNbDZfAf5hxYI9BE5zpUNx3h7ZmT/yfLxng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGpp0baZQVujf08kAXoH4QeNcg8Dc9B3j/QkLjnzgZaAtyElDTsZOMuPR7JZevmiuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "72cd5df4-b45d-4ea9-aae6-a37c84d3c872",
+                            SecurityStamp = "096bb9a8-f45a-4017-bb22-1625cec44eb7",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "8e0075d7-1b06-460a-a2a3-124ab0032915"
+                            UserRolesId = "3315e586-b15e-4638-b10b-066af33a977b"
                         },
                         new
                         {
-                            Id = "f126997f-b2f2-4bf7-97ce-313f41aac32c",
+                            Id = "90fa7ed2-e4c2-4bd8-8cca-88393053238a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4b49b136-6f2b-4a61-916c-4a2fb01dbd63",
+                            ConcurrencyStamp = "dbc3134e-212f-48ad-8185-4505072b80b1",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOGIav3c5FoK9AM7NQDHd3pVa0PFmpnt+4hDHENYbPxsgefMkl9x0BbiJAzs5W6yxg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENuDSOussH39MPoIWG0RtVByF/IuKszgrkRN4grQ0f0NzOD4dT0zFd44Fa1lytqjBQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "927f1976-b5a6-4209-8582-6bf5a2084af6",
+                            SecurityStamp = "f7a6d11e-4fbe-42dc-8ac0-7848142d43de",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "7fd271c6-1afc-48c1-8d3a-6feacaa6d9b1"
+                            UserRolesId = "12af27d9-4eb2-4501-8efa-349114e125ca"
                         },
                         new
                         {
-                            Id = "34e2d868-6f78-452f-ba82-e8c75d88fdd8",
+                            Id = "d210e5d3-ccbd-4807-8639-90666c19db59",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8565fd7c-99ab-4747-b67d-7815ffa6f0e6",
+                            ConcurrencyStamp = "bf5eb466-87bf-41ce-b872-4fe69d02690e",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBNv6lgH1RhPUQid26KpOo21FW/YHTnLAkOfBq5UgZ14Dr/Ywrkm1H2nm4Y+ZYmR9w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAQndneECzuLur+RwWXbwSH0UZeOdFVG0X+aBIQTSp23EXIdoe6+OVhei3Yv4pBAeQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5518bcb6-54d4-4e2a-b20a-80fa023af95e",
+                            SecurityStamp = "1023e3e5-78a5-4e96-bae4-9b8cb80e0940",
                             TwoFactorEnabled = false,
                             UserName = "User1",
                             FirstName = "Vicient",
                             LastName = "Kent",
                             MemberId = 0,
-                            UserRolesId = "395cf700-ff42-4f90-9437-10086fe336ff"
+                            UserRolesId = "c6c8a915-cddb-4e22-b8c5-470af487e503"
                         });
                 });
 
@@ -1328,7 +1362,9 @@ namespace WebAppLexicon.Migrations
 
                     b.HasOne("WebAppLexicon.Models.Members.Members", "Members")
                         .WithMany("language1")
-                        .HasForeignKey("MembersMemberId");
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebAppLexicon.Models.Members.Members", b =>
