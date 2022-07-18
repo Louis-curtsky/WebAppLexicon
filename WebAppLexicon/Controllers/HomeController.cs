@@ -6,22 +6,27 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models;
+using WebAppLexicon.Models.Identity;
+using WebAppLexicon.Models.Members;
+using WebAppLexicon.Models.Members.Services;
 using WebAppLexicon.Models.Members.ViewModel;
 
 namespace WebAppLexicon.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
+        private readonly IPeopleService _peopleService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IPeopleService peopleService)
         {
-            _logger = logger;
+            _peopleService = peopleService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            Members member = _peopleService.FindById(id);
+            return View(member);
         }
 
         [HttpGet]

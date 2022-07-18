@@ -284,5 +284,6 @@ namespace WebAppLexicon.Models.Members.Data
         public DbSet<SkillCats> SkillCats { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Language> Language { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
     }
 }

@@ -9,6 +9,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using WebAppLexicon.Models.Identity;
 using WebAppLexicon.Models.Identity.ViewModels;
+using WebAppLexicon.Models.Members;
+using WebAppLexicon.Models.Members.Data;
+using WebAppLexicon.Models.Members.Services;
 
 namespace WebAppLexicon.Controllers
 {
@@ -17,11 +20,15 @@ namespace WebAppLexicon.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)// Constructor Injection
+        private readonly MemberDbContext _memberDbContext;
+
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, 
+                    RoleManager<IdentityRole> roleManager, MemberDbContext memberDbContext)// Constructor Injection
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _memberDbContext = memberDbContext;
         }
 
 
@@ -90,15 +97,11 @@ namespace WebAppLexicon.Controllers
             {
 
                 Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(loginUser.UserName, password, false, false);
-
                 if (result.Succeeded)
                 {
-                    AppUser identUser = new AppUser();
-                    identUser.UserName = loginUser.UserName;
-
-
-
-                    return RedirectToAction("Index", "Home");
+                    AppUser showUser = await _userManager.FindByNameAsync(loginUser.UserName);
+//                    AppUser appUser = _memberDbContext.AppUser.SingleOrDefault( au=>au.UserName == loginUser.UserName);
+                    return RedirectToAction("Index", "Home", new {id=showUser.MemberId});
                 }
                 ViewBag.Msg = "Login Successful!";
             }

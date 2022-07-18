@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebAppLexicon.Models.Members.Members
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -13,5 +14,15 @@
     <a href="test-page.html" class="mybutton">Book Online</a>
 </div>
 <div class="herobox2">
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h4>
+            <a href="#">
+               @Model.MemberType @Model.FirstName @Model.LastName ID:@Model.MemberId
+            </a>
+            </h4>
+        }
+        </div>
     <img src="/images/pexels-andrea-piacquadio-3771087.jpg" width="350" alt="person servicing">
 </div>
