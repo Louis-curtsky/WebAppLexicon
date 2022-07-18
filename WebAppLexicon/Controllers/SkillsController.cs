@@ -45,7 +45,7 @@ namespace WebAppLexicon.Controllers
             List<Skills> mySkillList = new List<Skills>();
             if (showSkillModel.MemberId == 0 && showSkillModel.SkillId==0)
             {
-                mySkillList = _skillService.GetMySkill(lastMember[0].MemberId);
+                mySkillList = _skillService.GetMySkill(memId);
             }
             else
             {
@@ -68,8 +68,9 @@ namespace WebAppLexicon.Controllers
             {
                 skillViewModel = showSkillModel;
             }
-
-            skillViewModel.MemberId = lastMember[0].MemberId;
+            if (skillViewModel.MemberId == 0)
+                skillViewModel.MemberId = memId;
+            ViewBag.MemId = memId;
             skillViewModel.SkillList = _skillCatsServices.GetAll();
             
             return View(skillViewModel);
@@ -78,13 +79,16 @@ namespace WebAppLexicon.Controllers
         // POST: SkillsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Skills skillsViewModel, int skillId)
+        public ActionResult Create(Skills skillsViewModel, int memId, int skillId)
         {
             if(ModelState.IsValid)
             {
-                int lastMemId = _peopleService.FindLast()[0].MemberId;
-                skillsViewModel.MemberId = lastMemId;
-                List<Skills> skillList = _skillService.GetMySkill(lastMemId);
+                
+                if (skillsViewModel.MemberId==0)
+                {
+                    skillsViewModel.MemberId = memId;
+                }
+                List<Skills> skillList = _skillService.GetMySkill(memId);
                 if (skillList.Count>0 && skillsViewModel != null)
                 {
                     foreach (var item in skillList)
@@ -92,9 +96,8 @@ namespace WebAppLexicon.Controllers
                         if (skillsViewModel != null && skillsViewModel.SkillId != item.SkillId
                             && skillsViewModel.MemberId != item.MemberId)
                         {
-                            skillsViewModel.MemberId = lastMemId;
                             skillsViewModel.SkillId = skillId;
-                            skillsViewModel.Xmembers = _peopleService.FindById(skillsViewModel.MemberId);
+                            skillsViewModel.Xmembers = _peopleService.FindById(memId);
                             _skillService.Create(skillsViewModel);
                         } else
                         {
@@ -103,7 +106,7 @@ namespace WebAppLexicon.Controllers
                     }
                 } else if (skillList.Count==0)
                 {
-                    skillsViewModel.MemberId = lastMemId;
+                    skillsViewModel.MemberId = memId;
                     skillsViewModel.SkillId = skillId;
                     skillsViewModel.Xmembers = _peopleService.FindById(skillsViewModel.MemberId);
                     _skillService.Create(skillsViewModel);
@@ -115,7 +118,7 @@ namespace WebAppLexicon.Controllers
 
                 CreateSkillsViewModel newSkillsModel = new CreateSkillsViewModel();
 
-                newSkillsModel.MemberId = lastMemId;
+                newSkillsModel.MemberId = memId;
 
                 newSkillsModel.SkillList = _skillCatsServices.GetAll();
                 skillList.Add(new Skills {

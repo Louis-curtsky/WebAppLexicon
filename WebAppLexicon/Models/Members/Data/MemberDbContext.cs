@@ -102,22 +102,8 @@ namespace WebAppLexicon.Models.Members.Data
             modelBuilder.Entity<Members>()
                 .HasKey(dt => dt.MemberId);
 
-            modelBuilder.Entity<MemberLanguage>().HasKey(ml =>
-            new
-            {
-                ml.MemberId,
-                ml.LanguageId
-            });
-
-            modelBuilder.Entity<MemberLanguage>()
-                .HasOne(ml => ml.Members)
-                .WithMany(m => m.language1)
-                .HasForeignKey(ml => ml.MemberId);
-
-            modelBuilder.Entity<MemberLanguage>()
-                .HasOne(ml => ml.Language)
-                .WithMany(m => m.MemberLanguage)
-                .HasForeignKey(ml => ml.LanguageId);
+            modelBuilder.Entity<Language>()
+                .HasKey(dl => dl.Id);
 
             modelBuilder.Entity<Language>().HasData(
                 new Language { Id = 1, LangName = "Swedish"},
@@ -298,6 +284,5 @@ namespace WebAppLexicon.Models.Members.Data
         public DbSet<SkillCats> SkillCats { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Language> Language { get; set; }
-        public DbSet<MemberLanguage> MemberLanguages { get; set; }
     }
 }

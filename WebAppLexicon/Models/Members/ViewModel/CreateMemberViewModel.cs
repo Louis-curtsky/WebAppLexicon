@@ -15,7 +15,7 @@ namespace WebAppLexicon.Models.Members.ViewModel
         public string MemberType { get; set; }
         [Required]
         [StringLength(255)]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } 
         [Required]
         [StringLength(255)]
         public string LastName { get; set; }
@@ -34,6 +34,9 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [Display(Name = "Age")]
         public int Age { get; set; }
         [Required]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+        [Required]
         [StringLength(255)]
         [Display(Name = "Nationality")]
         public string Nationality { get; set; }
@@ -49,7 +52,7 @@ namespace WebAppLexicon.Models.Members.ViewModel
         public int CntyId { get; set; }
         public string MemberApproval { get; set; }
         public DateTime MemberDate { get; set; }
-        public List<MemberLanguage> Language1 { get; set; }
+        public int LangId { get; set; }
         public int LangRead1 { get; set; } // 0: None 1:Beginer 2: Intermediate 3: Advance
         public int LangWrite1 { get; set; }
     }

@@ -10,7 +10,7 @@ using WebAppLexicon.Models.Members.Data;
 namespace WebAppLexicon.Migrations
 {
     [DbContext(typeof(MemberDbContext))]
-    [Migration("20220717160828_DbCreateIdentity")]
+    [Migration("20220717192604_DbCreateIdentity")]
     partial class DbCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3315e586-b15e-4638-b10b-066af33a977b",
-                            ConcurrencyStamp = "3315e586-b15e-4638-b10b-066af33a977b",
+                            Id = "70bef0b5-d7f2-4079-9313-501968acdd6e",
+                            ConcurrencyStamp = "70bef0b5-d7f2-4079-9313-501968acdd6e",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "12af27d9-4eb2-4501-8efa-349114e125ca",
-                            ConcurrencyStamp = "12af27d9-4eb2-4501-8efa-349114e125ca",
+                            Id = "f125ae28-463d-4a3c-9604-2a120b4ac5cd",
+                            ConcurrencyStamp = "f125ae28-463d-4a3c-9604-2a120b4ac5cd",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "c6c8a915-cddb-4e22-b8c5-470af487e503",
-                            ConcurrencyStamp = "c6c8a915-cddb-4e22-b8c5-470af487e503",
+                            Id = "ff6021ad-b4d1-497c-86ff-3ca43168135a",
+                            ConcurrencyStamp = "ff6021ad-b4d1-497c-86ff-3ca43168135a",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -229,18 +229,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "886ccb26-8207-47b7-8013-bdc8c69e3561",
-                            RoleId = "3315e586-b15e-4638-b10b-066af33a977b"
+                            UserId = "9479e42a-ab54-4fd3-810a-911be834ab27",
+                            RoleId = "70bef0b5-d7f2-4079-9313-501968acdd6e"
                         },
                         new
                         {
-                            UserId = "90fa7ed2-e4c2-4bd8-8cca-88393053238a",
-                            RoleId = "12af27d9-4eb2-4501-8efa-349114e125ca"
+                            UserId = "04088d7c-c53a-4395-a2ec-16bd7d3cbb2e",
+                            RoleId = "f125ae28-463d-4a3c-9604-2a120b4ac5cd"
                         },
                         new
                         {
-                            UserId = "d210e5d3-ccbd-4807-8639-90666c19db59",
-                            RoleId = "c6c8a915-cddb-4e22-b8c5-470af487e503"
+                            UserId = "58f1a86e-262e-4638-9a1a-1d11a9e9abda",
+                            RoleId = "ff6021ad-b4d1-497c-86ff-3ca43168135a"
                         });
                 });
 
@@ -423,7 +423,7 @@ namespace WebAppLexicon.Migrations
                     b.ToTable("Jobs");
                 });
 
-            modelBuilder.Entity("WebAppLexicon.Models.Members.Language", b =>
+            modelBuilder.Entity("WebAppLexicon.Models.Language", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -458,24 +458,6 @@ namespace WebAppLexicon.Migrations
                             Id = 4,
                             LangName = "Chinese"
                         });
-                });
-
-            modelBuilder.Entity("WebAppLexicon.Models.Members.MemberLanguage", b =>
-                {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MLId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MemberId", "LanguageId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("MemberLanguages");
                 });
 
             modelBuilder.Entity("WebAppLexicon.Models.Members.Members", b =>
@@ -514,6 +496,9 @@ namespace WebAppLexicon.Migrations
 
                     b.Property<string>("GovIdType")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LangId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LangRead1")
                         .HasColumnType("int");
@@ -568,6 +553,7 @@ namespace WebAppLexicon.Migrations
                             Email = "ggurnay0@opera.com",
                             FirstName = "Giustina",
                             Gender = "Genderfluid",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gurnay",
@@ -586,6 +572,7 @@ namespace WebAppLexicon.Migrations
                             Email = "dkissick1@clickbank.net",
                             FirstName = "Danita",
                             Gender = "Female",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Kissick",
@@ -604,6 +591,7 @@ namespace WebAppLexicon.Migrations
                             Email = "cnoice2@wisc.edu",
                             FirstName = "Creigh",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Noice",
@@ -622,6 +610,7 @@ namespace WebAppLexicon.Migrations
                             Email = "dhourihane3@toplist.cz",
                             FirstName = "Denis",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Hourihane",
@@ -640,6 +629,7 @@ namespace WebAppLexicon.Migrations
                             Email = "anattriss4@baidu.com",
                             FirstName = "Ariel",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Nattriss",
@@ -658,6 +648,7 @@ namespace WebAppLexicon.Migrations
                             Email = "tvelte5@nps.gov",
                             FirstName = "Tommie",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Velte",
@@ -676,6 +667,7 @@ namespace WebAppLexicon.Migrations
                             Email = "dgonzales6@yelp.com",
                             FirstName = "Dennison",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gonzales",
@@ -694,6 +686,7 @@ namespace WebAppLexicon.Migrations
                             Email = "tmorphet7@wix.com",
                             FirstName = "Tynan",
                             Gender = "Non-binary",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Morphet",
@@ -712,6 +705,7 @@ namespace WebAppLexicon.Migrations
                             Email = "mfoulstone8@narod.ru",
                             FirstName = "Mischa",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Foulstone",
@@ -730,6 +724,7 @@ namespace WebAppLexicon.Migrations
                             Email = "lolczak9@spiegel.de",
                             FirstName = "Lisa",
                             Gender = "Female",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Olczak",
@@ -748,6 +743,7 @@ namespace WebAppLexicon.Migrations
                             Email = "rgenningsa@bloglines.com",
                             FirstName = "Rancell",
                             Gender = "Genderfluid",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gennings",
@@ -766,6 +762,7 @@ namespace WebAppLexicon.Migrations
                             Email = "kmonganb@1und1.de",
                             FirstName = "Kingsly",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Mongan",
@@ -784,6 +781,7 @@ namespace WebAppLexicon.Migrations
                             Email = "sortellsc@yelp.com",
                             FirstName = "Sayer",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Ortells",
@@ -802,6 +800,7 @@ namespace WebAppLexicon.Migrations
                             Email = "aknotted@apache.org",
                             FirstName = "Abbie",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Knotte",
@@ -820,6 +819,7 @@ namespace WebAppLexicon.Migrations
                             Email = "vputtrelle@nytimes.com",
                             FirstName = "Vilma",
                             Gender = "Polygender",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Puttrell",
@@ -838,6 +838,7 @@ namespace WebAppLexicon.Migrations
                             Email = "abufferyf@jalbum.net",
                             FirstName = "Amber",
                             Gender = "Female",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Buffery",
@@ -856,6 +857,7 @@ namespace WebAppLexicon.Migrations
                             Email = "wcolletg@a8.net",
                             FirstName = "Wiatt",
                             Gender = "Male",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Collet",
@@ -874,6 +876,7 @@ namespace WebAppLexicon.Migrations
                             Email = "cgilstinh@ucla.edu",
                             FirstName = "Cacilia",
                             Gender = "Female",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Gilstin",
@@ -892,6 +895,7 @@ namespace WebAppLexicon.Migrations
                             Email = "lzecchiii@domainmarket.com",
                             FirstName = "Libbie",
                             Gender = "Female",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Zecchii",
@@ -910,6 +914,7 @@ namespace WebAppLexicon.Migrations
                             Email = "clessliej@boston.com",
                             FirstName = "Cecilia",
                             Gender = "Female",
+                            LangId = 0,
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Lesslie",
@@ -1230,60 +1235,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "886ccb26-8207-47b7-8013-bdc8c69e3561",
+                            Id = "9479e42a-ab54-4fd3-810a-911be834ab27",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "be58153e-6280-49a8-8789-993dd5e46f6b",
+                            ConcurrencyStamp = "2dca4621-6246-4b8e-b79b-c90a9b0419ac",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGpp0baZQVujf08kAXoH4QeNcg8Dc9B3j/QkLjnzgZaAtyElDTsZOMuPR7JZevmiuA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBueKJ7kpinGsWEXazyUM4DnEZA8qxzUb0Hn1xMcJKgAY6N8rbsW9zKsmV+txCvggw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "096bb9a8-f45a-4017-bb22-1625cec44eb7",
+                            SecurityStamp = "2d4b7fd9-5c3d-4dc2-8b92-3d95ed88b87b",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "3315e586-b15e-4638-b10b-066af33a977b"
+                            UserRolesId = "70bef0b5-d7f2-4079-9313-501968acdd6e"
                         },
                         new
                         {
-                            Id = "90fa7ed2-e4c2-4bd8-8cca-88393053238a",
+                            Id = "04088d7c-c53a-4395-a2ec-16bd7d3cbb2e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dbc3134e-212f-48ad-8185-4505072b80b1",
+                            ConcurrencyStamp = "d0f3c396-4e58-4d5d-b072-e04c7cc51cca",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENuDSOussH39MPoIWG0RtVByF/IuKszgrkRN4grQ0f0NzOD4dT0zFd44Fa1lytqjBQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG+qqyjltTVKD7/e4MVuRL/l1sxFyireUFuGFgzL4mmV4Z71fIRMjgYQ938MC0QpLA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f7a6d11e-4fbe-42dc-8ac0-7848142d43de",
+                            SecurityStamp = "46937c0f-4e94-4617-b26c-4e136d58c34a",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "12af27d9-4eb2-4501-8efa-349114e125ca"
+                            UserRolesId = "f125ae28-463d-4a3c-9604-2a120b4ac5cd"
                         },
                         new
                         {
-                            Id = "d210e5d3-ccbd-4807-8639-90666c19db59",
+                            Id = "58f1a86e-262e-4638-9a1a-1d11a9e9abda",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bf5eb466-87bf-41ce-b872-4fe69d02690e",
+                            ConcurrencyStamp = "78c603fe-8a34-49eb-9764-f47ae5332384",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAQndneECzuLur+RwWXbwSH0UZeOdFVG0X+aBIQTSp23EXIdoe6+OVhei3Yv4pBAeQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELOfUv+rq2V+LMMPWZQbm9WEZy711NUugIN7O+9N0eOLjxVKA+t135fZGNlSzQXDug==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1023e3e5-78a5-4e96-bae4-9b8cb80e0940",
+                            SecurityStamp = "e9d88b62-0052-47a0-92be-7a6fd3a9a35f",
                             TwoFactorEnabled = false,
                             UserName = "User1",
                             FirstName = "Vicient",
                             LastName = "Kent",
                             MemberId = 0,
-                            UserRolesId = "c6c8a915-cddb-4e22-b8c5-470af487e503"
+                            UserRolesId = "ff6021ad-b4d1-497c-86ff-3ca43168135a"
                         });
                 });
 
@@ -1350,21 +1355,6 @@ namespace WebAppLexicon.Migrations
                     b.HasOne("WebAppLexicon.Models.Skills", "Skills")
                         .WithMany()
                         .HasForeignKey("SkillsMemberId", "SkillsSkillId");
-                });
-
-            modelBuilder.Entity("WebAppLexicon.Models.Members.MemberLanguage", b =>
-                {
-                    b.HasOne("WebAppLexicon.Models.Members.Language", "Language")
-                        .WithMany("MemberLanguage")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebAppLexicon.Models.Members.Members", "Members")
-                        .WithMany("language1")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebAppLexicon.Models.Members.Members", b =>

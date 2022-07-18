@@ -19,7 +19,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <label asp-for="MemberId" class="control-label"></label>
-                <input asp-for="MemberId" name="memId" class="form-control" disabled />
+                <input asp-for="MemberId" id="memId" name="memId" class="form-control" disabled />
                 <span asp-validation-for="MemberId" class="text-danger"></span>
 
                 <label asp-for="MemberType" name="memberType" class="control-label">Membership Type</label>
@@ -54,14 +54,20 @@
                 <label asp-for="Age" class="control-label">Age</label>
                 <input asp-for="Age" class="form-control" min="18" max="80" />
                 <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-
-            <div class="column3" style="background-color:#bbb;">
 
                 <label asp-for="Phone" class="control-label"></label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
 
+                <select id="Gender" name="gender" class="form-control">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                    <option value="No disclose">No disclose</option>
+                </select>
+            </div>
+
+            <div class="column3" style="background-color:#bbb;">
 
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
@@ -90,6 +96,14 @@
                 <label class="control-label">City</label>
                 <select id="CityList" name="CityId" class="form-control" required></select>
 
+                <label asp-for="LangId" class="control-label">Language</label>
+                <select name="LangId" class="select">
+                    @foreach (var item in ViewBag.Language)
+                    {
+                        <option value="@item.Id">@item.LangName</option>
+                    }
+                </select>
+
                 <label asp-for="LangRead1" class="control-label">Read Level</label>
                 <input asp-for="LangRead1" name="langRead1" class="form-control" />
                 <span asp-validation-for="LangRead1" class="text-danger"></span>
@@ -101,10 +115,11 @@
                 <div class="regform">
                     @if (ViewBag.SaveRec == true)
                     {
-                        <nav>
-                            <a href="#" class="navbutton">Back</a>
-                            <a asp-area="" asp-controller="Skills" asp-action="Create" class="navbutton">Next</a>
-                        </nav>
+                    <nav>
+                        <a href="#" class="navbutton">Back</a>
+                        @*<a asp-area="" asp-controller="Skills" asp-action="Create" asp-route-id="@Model.MemberId" class="navbutton">Next</a>*@
+                        <a href='@Url.Action("Create", "Skills", new {memId=Model.MemberId})' class="navbutton">Next</a>
+                    </nav>
                     }
                     else
                     {
@@ -115,7 +130,7 @@
                     }
                 </div>
             </div>
-            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="submit" value="Create" class="btn btn-primary" />
         </form>
     </div>
 </div> 

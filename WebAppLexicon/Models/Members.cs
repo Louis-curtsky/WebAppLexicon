@@ -30,7 +30,7 @@ namespace WebAppLexicon.Models.Members
         public int CtyId { get; set; }
         public int StateId { get; set; }
         public int CntyId { get; set; }
-        public List<MemberLanguage> language1 { get; set; }
+        public int LangId { get; set; }
         public int LangRead1 { get; set; } // 0: None 1:Beginer 2: Intermediate 3: Advance
         public int LangWrite1 { get; set; }
         public string MemberApproval { get; set; } // "A: Approve", "P: Pending", "S: Suspended" "T: Terminated"

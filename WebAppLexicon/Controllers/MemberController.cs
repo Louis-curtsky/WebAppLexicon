@@ -17,13 +17,16 @@ namespace WebAppLexicon.Controllers
         private readonly ICountryServices _countryService;
         private readonly ICityServices _cityService;
         private readonly IStateServices _stateService;
+        private readonly ILanguageService _languageService;
+
         public MemberController(IPeopleService peopleService, ICountryServices countryService,
-            ICityServices cityService, IStateServices stateService)
+            ICityServices cityService, IStateServices stateService, ILanguageService languageService)
         {
             _peopleService = peopleService;
             _countryService = countryService;
             _cityService = cityService;
             _stateService = stateService;
+            _languageService = languageService;
         }
         // GET: MemberController
         public ActionResult Index()
@@ -50,14 +53,15 @@ namespace WebAppLexicon.Controllers
             // For testing put to True ViewBag.SaveRec = true;
             ViewBag.SaveRec = false;
             ViewBag.Countries = _countryService.GetAll();
+            ViewBag.Language = _languageService.GetAll();
             return View(memberViewModel);
         }
 
         // POST: MemberController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType, 
-            int countryId, int ctyId)
+        public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType,
+            int cntyId, int stateId, int cityId)
         {
             if (ModelState.IsValid)
             {
@@ -67,11 +71,14 @@ namespace WebAppLexicon.Controllers
                     memberViewModel.MemberId = lastMember[0].MemberId + 1;
                     memberViewModel.MemberType = memberType;
                     memberViewModel.GovIdType = govIdType;
-                    memberViewModel.CtyId = ctyId;
-                    memberViewModel.MemberApproval = "P";
+                    memberViewModel.CntyId = cntyId;
+                    memberViewModel.StateId = stateId;
+                    memberViewModel.CtyId = cityId;
+                    memberViewModel.MemberApproval = "Pending";
                     memberViewModel.MemberDate = DateTime.Today;
                     _peopleService.Add(memberViewModel);
                     ViewBag.Countries = _countryService.GetAll();
+                    ViewBag.Language = _languageService.GetAll();
                     ViewBag.SaveRec = true;
                 }
             }

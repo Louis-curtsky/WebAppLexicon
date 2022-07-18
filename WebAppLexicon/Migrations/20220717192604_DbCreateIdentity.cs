@@ -257,6 +257,7 @@ namespace WebAppLexicon.Migrations
                     CtyId = table.Column<int>(nullable: false),
                     StateId = table.Column<int>(nullable: false),
                     CntyId = table.Column<int>(nullable: false),
+                    LangId = table.Column<int>(nullable: false),
                     LangRead1 = table.Column<int>(nullable: false),
                     LangWrite1 = table.Column<int>(nullable: false),
                     MemberApproval = table.Column<string>(nullable: true),
@@ -284,31 +285,6 @@ namespace WebAppLexicon.Migrations
                         column: x => x.StateId,
                         principalTable: "State",
                         principalColumn: "StateId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MemberLanguages",
-                columns: table => new
-                {
-                    MemberId = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    MLId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MemberLanguages", x => new { x.MemberId, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_MemberLanguages_Language_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Language",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MemberLanguages_Members_MemberId",
-                        column: x => x.MemberId,
-                        principalTable: "Members",
-                        principalColumn: "MemberId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -373,9 +349,9 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3315e586-b15e-4638-b10b-066af33a977b", "3315e586-b15e-4638-b10b-066af33a977b", "SuperAdmin", "SuperAdmin" },
-                    { "12af27d9-4eb2-4501-8efa-349114e125ca", "12af27d9-4eb2-4501-8efa-349114e125ca", "Admin", "Admin" },
-                    { "c6c8a915-cddb-4e22-b8c5-470af487e503", "c6c8a915-cddb-4e22-b8c5-470af487e503", "User", "User" }
+                    { "70bef0b5-d7f2-4079-9313-501968acdd6e", "70bef0b5-d7f2-4079-9313-501968acdd6e", "SuperAdmin", "SuperAdmin" },
+                    { "f125ae28-463d-4a3c-9604-2a120b4ac5cd", "f125ae28-463d-4a3c-9604-2a120b4ac5cd", "Admin", "Admin" },
+                    { "ff6021ad-b4d1-497c-86ff-3ca43168135a", "ff6021ad-b4d1-497c-86ff-3ca43168135a", "User", "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -383,9 +359,9 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName", "MemberId", "UserRolesId" },
                 values: new object[,]
                 {
-                    { "90fa7ed2-e4c2-4bd8-8cca-88393053238a", 0, "dbc3134e-212f-48ad-8185-4505072b80b1", "AppUser", "admin@gmail.com", true, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAENuDSOussH39MPoIWG0RtVByF/IuKszgrkRN4grQ0f0NzOD4dT0zFd44Fa1lytqjBQ==", null, false, "f7a6d11e-4fbe-42dc-8ac0-7848142d43de", false, "Admin", "Vicient", "Hook", 9998, "12af27d9-4eb2-4501-8efa-349114e125ca" },
-                    { "886ccb26-8207-47b7-8013-bdc8c69e3561", 0, "be58153e-6280-49a8-8789-993dd5e46f6b", "AppUser", "superadmin@gmail.com", true, false, null, null, "SUPERADMIN", "AQAAAAEAACcQAAAAEGpp0baZQVujf08kAXoH4QeNcg8Dc9B3j/QkLjnzgZaAtyElDTsZOMuPR7JZevmiuA==", null, false, "096bb9a8-f45a-4017-bb22-1625cec44eb7", false, "SuperAdmin", "Louis", "Lim", 9999, "3315e586-b15e-4638-b10b-066af33a977b" },
-                    { "d210e5d3-ccbd-4807-8639-90666c19db59", 0, "bf5eb466-87bf-41ce-b872-4fe69d02690e", "AppUser", "user1@gmail.com", true, false, null, null, "USER1", "AQAAAAEAACcQAAAAEAQndneECzuLur+RwWXbwSH0UZeOdFVG0X+aBIQTSp23EXIdoe6+OVhei3Yv4pBAeQ==", null, false, "1023e3e5-78a5-4e96-bae4-9b8cb80e0940", false, "User1", "Vicient", "Kent", 0, "c6c8a915-cddb-4e22-b8c5-470af487e503" }
+                    { "04088d7c-c53a-4395-a2ec-16bd7d3cbb2e", 0, "d0f3c396-4e58-4d5d-b072-e04c7cc51cca", "AppUser", "admin@gmail.com", true, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEG+qqyjltTVKD7/e4MVuRL/l1sxFyireUFuGFgzL4mmV4Z71fIRMjgYQ938MC0QpLA==", null, false, "46937c0f-4e94-4617-b26c-4e136d58c34a", false, "Admin", "Vicient", "Hook", 9998, "f125ae28-463d-4a3c-9604-2a120b4ac5cd" },
+                    { "9479e42a-ab54-4fd3-810a-911be834ab27", 0, "2dca4621-6246-4b8e-b79b-c90a9b0419ac", "AppUser", "superadmin@gmail.com", true, false, null, null, "SUPERADMIN", "AQAAAAEAACcQAAAAEBueKJ7kpinGsWEXazyUM4DnEZA8qxzUb0Hn1xMcJKgAY6N8rbsW9zKsmV+txCvggw==", null, false, "2d4b7fd9-5c3d-4dc2-8b92-3d95ed88b87b", false, "SuperAdmin", "Louis", "Lim", 9999, "70bef0b5-d7f2-4079-9313-501968acdd6e" },
+                    { "58f1a86e-262e-4638-9a1a-1d11a9e9abda", 0, "78c603fe-8a34-49eb-9764-f47ae5332384", "AppUser", "user1@gmail.com", true, false, null, null, "USER1", "AQAAAAEAACcQAAAAELOfUv+rq2V+LMMPWZQbm9WEZy711NUugIN7O+9N0eOLjxVKA+t135fZGNlSzQXDug==", null, false, "e9d88b62-0052-47a0-92be-7a6fd3a9a35f", false, "User1", "Vicient", "Kent", 0, "ff6021ad-b4d1-497c-86ff-3ca43168135a" }
                 });
 
             migrationBuilder.InsertData(
@@ -437,9 +413,9 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "UserId", "RoleId" },
                 values: new object[,]
                 {
-                    { "886ccb26-8207-47b7-8013-bdc8c69e3561", "3315e586-b15e-4638-b10b-066af33a977b" },
-                    { "90fa7ed2-e4c2-4bd8-8cca-88393053238a", "12af27d9-4eb2-4501-8efa-349114e125ca" },
-                    { "d210e5d3-ccbd-4807-8639-90666c19db59", "c6c8a915-cddb-4e22-b8c5-470af487e503" }
+                    { "9479e42a-ab54-4fd3-810a-911be834ab27", "70bef0b5-d7f2-4079-9313-501968acdd6e" },
+                    { "04088d7c-c53a-4395-a2ec-16bd7d3cbb2e", "f125ae28-463d-4a3c-9604-2a120b4ac5cd" },
+                    { "58f1a86e-262e-4638-9a1a-1d11a9e9abda", "ff6021ad-b4d1-497c-86ff-3ca43168135a" }
                 });
 
             migrationBuilder.InsertData(
@@ -480,29 +456,29 @@ namespace WebAppLexicon.Migrations
 
             migrationBuilder.InsertData(
                 table: "Members",
-                columns: new[] { "MemberId", "Age", "CityId", "CntyId", "CountryCntyId", "CtyId", "Email", "FirstName", "Gender", "GovId", "GovIdType", "LangRead1", "LangWrite1", "LastName", "LoginId", "LoginName", "MemberApproval", "MemberDate", "MemberType", "Nationality", "Phone", "StateId" },
+                columns: new[] { "MemberId", "Age", "CityId", "CntyId", "CountryCntyId", "CtyId", "Email", "FirstName", "Gender", "GovId", "GovIdType", "LangId", "LangRead1", "LangWrite1", "LastName", "LoginId", "LoginName", "MemberApproval", "MemberDate", "MemberType", "Nationality", "Phone", "StateId" },
                 values: new object[,]
                 {
-                    { 12, 18, null, 1, null, 2, "kmonganb@1und1.de", "Kingsly", "Male", null, null, 0, 0, "Mongan", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Yaqui", "805-257-2819", 2 },
-                    { 14, 32, null, 4, null, 7, "aknotted@apache.org", "Abbie", "Male", null, null, 0, 0, "Knotte", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Argentinian", "870-289-5196", 9 },
-                    { 1, 30, null, 1, null, 3, "ggurnay0@opera.com", "Giustina", "Genderfluid", null, null, 0, 0, "Gurnay", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Panamanian", "108-553-0832", 1 },
-                    { 6, 35, null, 4, null, 7, "tvelte5@nps.gov", "Tommie", "Male", null, null, 0, 0, "Velte", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Filipino", "474-732-2163", 8 },
-                    { 2, 76, null, 4, null, 7, "dkissick1@clickbank.net", "Danita", "Female", null, null, 0, 0, "Kissick", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Iroquois", "102-688-4545", 8 },
-                    { 3, 35, null, 1, null, 3, "cnoice2@wisc.edu", "Creigh", "Male", null, null, 0, 0, "Noice", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Shoshone", "934-181-5000", 1 },
-                    { 7, 40, null, 1, null, 3, "dgonzales6@yelp.com", "Dennison", "Male", null, null, 0, 0, "Gonzales", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Puerto Rican", "706-580-3696", 1 },
-                    { 20, 46, null, 3, null, 10, "clessliej@boston.com", "Cecilia", "Female", null, null, 0, 0, "Lesslie", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tongan", "358-511-7422", 10 },
-                    { 8, 56, null, 3, null, 10, "tmorphet7@wix.com", "Tynan", "Non-binary", null, null, 0, 0, "Morphet", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "White", "298-108-6587", 10 },
-                    { 16, 71, null, 1, null, 3, "abufferyf@jalbum.net", "Amber", "Female", null, null, 0, 0, "Buffery", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Chilean", "716-926-5332", 1 },
-                    { 10, 49, null, 1, null, 9, "lolczak9@spiegel.de", "Lisa", "Female", null, null, 0, 0, "Olczak", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Vietnamese", "225-320-9656", 2 },
-                    { 13, 55, null, 2, null, 11, "sortellsc@yelp.com", "Sayer", "Male", null, null, 0, 0, "Ortells", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Honduran", "201-214-9764", 11 },
-                    { 11, 38, null, 2, null, 11, "rgenningsa@bloglines.com", "Rancell", "Genderfluid", null, null, 0, 0, "Gennings", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tlingit-Haida", "594-235-3927", 11 },
-                    { 9, 33, null, 2, null, 11, "mfoulstone8@narod.ru", "Mischa", "Male", null, null, 0, 0, "Foulstone", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Menominee", "853-913-7659", 11 },
-                    { 15, 90, null, 4, null, 7, "vputtrelle@nytimes.com", "Vilma", "Polygender", null, null, 0, 0, "Puttrell", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Laotian", "176-399-0215", 9 },
-                    { 17, 64, null, 1, null, 4, "wcolletg@a8.net", "Wiatt", "Male", null, null, 0, 0, "Collet", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Chilean", "369-361-2111", 4 },
-                    { 5, 62, null, 1, null, 2, "anattriss4@baidu.com", "Ariel", "Male", null, null, 0, 0, "Nattriss", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Chickasaw", "662-951-7611", 2 },
-                    { 18, 18, null, 1, null, 9, "cgilstinh@ucla.edu", "Cacilia", "Female", null, null, 0, 0, "Gilstin", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Cree", "582-143-5937", 2 },
-                    { 4, 67, null, 3, null, 10, "dhourihane3@toplist.cz", "Denis", "Male", null, null, 0, 0, "Hourihane", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "American Indian and Alaska Native (AIAN)", "260-684-7945", 10 },
-                    { 19, 53, null, 4, null, 7, "lzecchiii@domainmarket.com", "Libbie", "Female", null, null, 0, 0, "Zecchii", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Paiute", "529-137-4269", 9 }
+                    { 12, 18, null, 1, null, 2, "kmonganb@1und1.de", "Kingsly", "Male", null, null, 0, 0, 0, "Mongan", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Yaqui", "805-257-2819", 2 },
+                    { 14, 32, null, 4, null, 7, "aknotted@apache.org", "Abbie", "Male", null, null, 0, 0, 0, "Knotte", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Argentinian", "870-289-5196", 9 },
+                    { 1, 30, null, 1, null, 3, "ggurnay0@opera.com", "Giustina", "Genderfluid", null, null, 0, 0, 0, "Gurnay", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Panamanian", "108-553-0832", 1 },
+                    { 6, 35, null, 4, null, 7, "tvelte5@nps.gov", "Tommie", "Male", null, null, 0, 0, 0, "Velte", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Filipino", "474-732-2163", 8 },
+                    { 2, 76, null, 4, null, 7, "dkissick1@clickbank.net", "Danita", "Female", null, null, 0, 0, 0, "Kissick", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Iroquois", "102-688-4545", 8 },
+                    { 3, 35, null, 1, null, 3, "cnoice2@wisc.edu", "Creigh", "Male", null, null, 0, 0, 0, "Noice", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Shoshone", "934-181-5000", 1 },
+                    { 7, 40, null, 1, null, 3, "dgonzales6@yelp.com", "Dennison", "Male", null, null, 0, 0, 0, "Gonzales", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Puerto Rican", "706-580-3696", 1 },
+                    { 20, 46, null, 3, null, 10, "clessliej@boston.com", "Cecilia", "Female", null, null, 0, 0, 0, "Lesslie", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tongan", "358-511-7422", 10 },
+                    { 8, 56, null, 3, null, 10, "tmorphet7@wix.com", "Tynan", "Non-binary", null, null, 0, 0, 0, "Morphet", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "White", "298-108-6587", 10 },
+                    { 16, 71, null, 1, null, 3, "abufferyf@jalbum.net", "Amber", "Female", null, null, 0, 0, 0, "Buffery", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Chilean", "716-926-5332", 1 },
+                    { 10, 49, null, 1, null, 9, "lolczak9@spiegel.de", "Lisa", "Female", null, null, 0, 0, 0, "Olczak", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Vietnamese", "225-320-9656", 2 },
+                    { 13, 55, null, 2, null, 11, "sortellsc@yelp.com", "Sayer", "Male", null, null, 0, 0, 0, "Ortells", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Honduran", "201-214-9764", 11 },
+                    { 11, 38, null, 2, null, 11, "rgenningsa@bloglines.com", "Rancell", "Genderfluid", null, null, 0, 0, 0, "Gennings", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tlingit-Haida", "594-235-3927", 11 },
+                    { 9, 33, null, 2, null, 11, "mfoulstone8@narod.ru", "Mischa", "Male", null, null, 0, 0, 0, "Foulstone", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Menominee", "853-913-7659", 11 },
+                    { 15, 90, null, 4, null, 7, "vputtrelle@nytimes.com", "Vilma", "Polygender", null, null, 0, 0, 0, "Puttrell", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Laotian", "176-399-0215", 9 },
+                    { 17, 64, null, 1, null, 4, "wcolletg@a8.net", "Wiatt", "Male", null, null, 0, 0, 0, "Collet", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Chilean", "369-361-2111", 4 },
+                    { 5, 62, null, 1, null, 2, "anattriss4@baidu.com", "Ariel", "Male", null, null, 0, 0, 0, "Nattriss", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Chickasaw", "662-951-7611", 2 },
+                    { 18, 18, null, 1, null, 9, "cgilstinh@ucla.edu", "Cacilia", "Female", null, null, 0, 0, 0, "Gilstin", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Cree", "582-143-5937", 2 },
+                    { 4, 67, null, 3, null, 10, "dhourihane3@toplist.cz", "Denis", "Male", null, null, 0, 0, 0, "Hourihane", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "American Indian and Alaska Native (AIAN)", "260-684-7945", 10 },
+                    { 19, 53, null, 4, null, 7, "lzecchiii@domainmarket.com", "Libbie", "Female", null, null, 0, 0, 0, "Zecchii", null, null, "P", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Paiute", "529-137-4269", 9 }
                 });
 
             migrationBuilder.InsertData(
@@ -569,11 +545,6 @@ namespace WebAppLexicon.Migrations
                 columns: new[] { "SkillsMemberId", "SkillsSkillId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MemberLanguages_LanguageId",
-                table: "MemberLanguages",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Members_CityId",
                 table: "Members",
                 column: "CityId");
@@ -620,7 +591,7 @@ namespace WebAppLexicon.Migrations
                 name: "Jobs");
 
             migrationBuilder.DropTable(
-                name: "MemberLanguages");
+                name: "Language");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -630,9 +601,6 @@ namespace WebAppLexicon.Migrations
 
             migrationBuilder.DropTable(
                 name: "Skills");
-
-            migrationBuilder.DropTable(
-                name: "Language");
 
             migrationBuilder.DropTable(
                 name: "Members");

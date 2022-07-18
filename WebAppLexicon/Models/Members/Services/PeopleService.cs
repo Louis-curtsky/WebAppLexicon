@@ -64,14 +64,26 @@ namespace WebAppLexicon.Models.Members.Services
         public Members Add(CreateMemberViewModel personViewModel)
         {
             Members member = new Members();
+
             member.FirstName = personViewModel.FirstName;
             member.LastName = personViewModel.LastName;
             member.Phone = personViewModel.Phone;
             member.CntyId = personViewModel.CntyId;
             member.StateId = personViewModel.StateId;
             member.CtyId = personViewModel.CtyId;
+            member.Nationality = personViewModel.Nationality;
+            member.Age = personViewModel.Age;
+            member.Email = personViewModel.Email;
+            member.Gender = personViewModel.Gender;
+            member.GovIdType = personViewModel.GovIdType;
+            member.GovId = personViewModel.GovId;
+            member.LangId = personViewModel.LangId;
+            member.LangRead1 = personViewModel.LangRead1;
+            member.LangWrite1 = personViewModel.LangWrite1;
+            member.MemberType = personViewModel.MemberType;
+            member.MemberApproval = "Pending";
+            member.MemberDate = personViewModel.MemberDate;
 
-            //return _peopleRepo.Create(person, personLang);
             return _peopleRepo.Create(member);
 
         }

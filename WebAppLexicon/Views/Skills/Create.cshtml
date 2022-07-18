@@ -17,8 +17,7 @@
             <div class="column3" style="background-color: rgb(101, 76, 204);">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <label asp-for="MemberId" class="control-label">Member</label>
-                <input asp-for="MemberId" name="memberId" class="form-control" disabled />
+                <input type="hidden" asp-for="MemberId" name="memId" class="form-control"/>
 
                 <label asp-for="SkillId" class="control-label">Skills</label>
                 <select id="skillId" asp-for="SkillId" name="skillId" class="select">
@@ -122,7 +121,7 @@
                     <h3>No Skills Entered Yet!!!</h3>
                 }
             </div>
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" value="Create" class="btn btn-primary"/>
         </form>
     </div>
 </div>

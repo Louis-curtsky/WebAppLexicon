@@ -32,7 +32,7 @@ namespace WebAppLexicon.Models.Members.Repo
            else
            {
                _memberDbContext.Add(member);
-              int add = _memberDbContext.SaveChanges();
+               int add = _memberDbContext.SaveChanges();
 //               int add = 1;
                 if (add != 1)
                         return null;
