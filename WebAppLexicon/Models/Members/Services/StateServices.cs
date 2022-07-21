@@ -54,10 +54,13 @@ namespace WebAppLexicon.Models.Members.Services
             return _stateRepo.GetAll();
         }
 
-        public bool Remove(State state)
+        public bool Remove(int id)
         {
-            if (_stateRepo.Delete(state))
-                return true;
+            if (_stateRepo.FindById(id) != null)
+            {
+                State state = _stateRepo.GetState(id);
+                return _stateRepo.Delete(state);
+            }
             else
                 return false;
         }

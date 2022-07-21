@@ -20,5 +20,7 @@ namespace WebAppLexicon.Models
         public int? StateId { get; set; }
 
         public State States { get; set; }
+
+        public List<State> StateList {get; set;}
     }
 }

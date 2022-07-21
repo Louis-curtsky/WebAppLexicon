@@ -16,14 +16,16 @@ namespace WebAppLexicon.Controllers
         private readonly ICountryServices _countryService;
         private readonly ICityServices _cityService;
         private readonly IStateServices _stateService;
+        private readonly ILanguageService _languageService;
 
         public PersonController(IPeopleService peopleService, ICountryServices countryService,
-            ICityServices cityService, IStateServices stateService)
+            ICityServices cityService, IStateServices stateService, ILanguageService languageService)
         {
             _peopleService = peopleService;
             _countryService = countryService;
             _cityService = cityService;
             _stateService = stateService;
+            _languageService = languageService;
         }
         // GET: PersonController
         public ActionResult Index()
@@ -90,7 +92,10 @@ namespace WebAppLexicon.Controllers
         // GET: PersonController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Members member = _peopleService.FindById(id);
+            ViewBag.Countries = _countryService.GetAll();
+            ViewBag.Language = _languageService.GetAll();
+            return View(member);
         }
 
         // POST: PersonController/Edit/5

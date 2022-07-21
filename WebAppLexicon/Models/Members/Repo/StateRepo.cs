@@ -17,37 +17,37 @@ namespace WebAppLexicon.Models.Members.Repo
         }
         public State Create(State state)
         {
-            _memberDbContext.State.Add(state);
+            _memberDbContext.States.Add(state);
             _memberDbContext.SaveChanges();
             return state;
         }
 
         public bool Delete(State state)
         {
-            _memberDbContext.State.Remove(state);
+            _memberDbContext.States.Remove(state);
             int returnValue = _memberDbContext.SaveChanges();
             return returnValue == 1 ? true : false;
         }
 
         public State FindById(int id)
         {
-            State stateFound = _memberDbContext.State.Find(id);
+            State stateFound = _memberDbContext.States.Find(id);
             return stateFound;
         }
 
         public State GetState(int id)
         {
-            return _memberDbContext.State.Find(id);
+            return _memberDbContext.States.Find(id);
         }
         public List<State> GetAll()
         {
-            return (_memberDbContext.State.Include(state => state.StateId).ToList());
+            return (_memberDbContext.States.Include(state => state.Cities).ToList());
         }
 
 
         public State Update(State state)
         {
-            _memberDbContext.State.Update(state);
+            _memberDbContext.States.Update(state);
             if (_memberDbContext.SaveChanges() > 0)
             {
                 return state;
@@ -58,7 +58,7 @@ namespace WebAppLexicon.Models.Members.Repo
         public List<State> BindCountry(int countryId)
         {
             List<State> lstStates = new List<State>();
-            lstStates = _memberDbContext.State.Where(x => x.CntyId == countryId).ToList();
+            lstStates = _memberDbContext.States.Where(x => x.CntyId == countryId).ToList();
             return lstStates;
         }
     }

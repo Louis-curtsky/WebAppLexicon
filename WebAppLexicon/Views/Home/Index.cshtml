@@ -15,7 +15,7 @@
 </div>
 <div class="herobox2">
     <div>
-        @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
             <h4>
             <a href="#">

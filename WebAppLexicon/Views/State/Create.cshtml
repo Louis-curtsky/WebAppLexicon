@@ -1,0 +1,35 @@
+﻿@model WebAppLexicon.Models.Members.ViewModel.CreateStateViewModel
+
+@{
+    ViewData["Title"] = "Create State";
+}
+
+<h3>Create State</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <label asp-for="StateName" class="control-label"></label>
+            <input id="CityInput" asp-for="StateName" class="form-control" />
+            <span asp-validation-for="StateName" class="text-danger"></span>
+
+            <label asp-for="CntyId" class="control-label">Country</label>
+            <select id="CountryAll" name="cntyId" class="select">
+                @foreach (var item in ViewBag.CountryList)
+                {
+                    <option value="@item.CntyId">@item.CntyName</option>
+                }
+            </select>
+
+            <input type="submit" value="Create" class="btn btn-primary" />
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

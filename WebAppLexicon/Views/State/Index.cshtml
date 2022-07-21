@@ -1,0 +1,36 @@
+﻿@model List<State>
+
+@{
+    ViewData["Title"] = "Index on List of States";
+}
+
+<h3>States</h3>
+
+<a asp-action="Create" class="btn-secondary mt-4 mb-4">Add new State</a>
+<hr />
+<table class="contact">
+    <tr>
+        <th>ID</th>
+        <th>State</th>
+        <th>Country</th>
+        <th>Actions</th>
+    </tr>
+    <tbody>
+        @foreach (State state in Model)
+        {
+            <tr>
+                <td>@state.StateId</td>
+                <td>@state.StateName</td>
+                <td>@state.CntyId</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="State" asp-route-id="@state.StateId" class="mr-4 text-warning">Edit</a>
+                    <a asp-action="Delete" asp-controller="State" asp-route-id="@state.StateId" class="mr-4 text-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (ViewBag.msg != null)
+{
+    <h3>@ViewBag.msg</h3>
+}

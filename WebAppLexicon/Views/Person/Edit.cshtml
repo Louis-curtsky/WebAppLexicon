@@ -1,0 +1,167 @@
+﻿@model WebAppLexicon.Models.Members.Members
+
+@{
+    ViewData["Title"] = "Edit View";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<form asp-controller="Person" asp-action="Edit" method="post" class="row g-4 p-3 mb-2 bg-warning text-dark">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <h3>Edit Member</h3>
+    <div class="col-md-12">
+        <div>
+            <label class="control-label">Member ID</label>
+            <input asp-for="MemberId" id="memId" name="memId" class="form-control m-md-3 w-25" disabled />
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div>
+            <label class="control-label">Member Date: </label>
+            <input asp-for="MemberDate" class="form-control m-md-3 w-25" disabled />
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="MemberType" name="memberType" class="control-label"></label>
+        <div>
+            <select id="memberType" name="memberType" class="custom-select m-md-3 w-50" aria-label="Default select example">
+                <option value="SEEK">Buy Service</option>
+                <option value="SERV">Provide Service</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="FirstName" class="control-label">First Name</label>
+        <input asp-for="FirstName" class="form-control m-md-3 w-25" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="LastName" class="control-label">Last Name</label>
+        <input asp-for="LastName" class="form-control m-md-3 w-50" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Age" class="control-label">Age</label>
+        <input asp-for="Age" class="form-control m-md-3 w-25" min="18" max="80" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label class="control-label">Gender</label>
+        <div>
+            <select id="Gender" name="gender" class="custom-select m-md-3 w-50">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+                <option value="No disclose">No disclose</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <label class="control-label">Nationality</label>
+        <div>
+            <select id="Nationality" name="Nationality" class="custom-select m-md-3 w-25" aria-label="Default select example">
+                @foreach (var item in ViewBag.Countries)
+                {
+                    <option value="@item.CntyName">@item.CntyName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <label asp-for="GovIdType" class="control-label"></label>
+        <div>
+            <select id="GovIdType" name="govIdType" class="custom-select m-md-3 w-50">
+                <option value="Passport">Passport</option>
+                <option value="DrivingLic">Driving Licence</option>
+                <option value="RPermit">Resident Permit</option>
+                <option value="OPass">Other Pass</option>
+                <option value="ID">ID</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="GovId" class="control-label"></label>
+        <input asp-for="GovId" class="form-control" />
+        <span asp-validation-for="GovId" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control m-md-3 w-25" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="CntyId" class="control-label">Country</label>
+        <div>
+            <select id="CountryList" name="cntyId" class="custom-select m-md-3 w-25">
+                @foreach (var item in ViewBag.Countries)
+                {
+                    <option value="@item.CntyId">@item.CntyName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <label class="control-label">State</label>
+        <div>
+            <select id="StateList" name="StateId" class="custom-select m-md-3 w-50"></select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label class="control-label">City</label>
+        <div>
+            <select id="CityList" name="CityId" class="custom-select m-md-3 w-100" required></select>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="LangId" class="control-label">Language</label>
+        <div>
+            <select name="LangId" class="custom-select m-md-3 w-25">
+                @foreach (var item in ViewBag.Language)
+                {
+                    <option value="@item.Id">@item.LangName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <label asp-for="LangRead1" class="control-label">Read Level</label>
+        <input asp-for="LangRead1" name="langRead1" class="form-control m-md-3 w-25" />
+        <span asp-validation-for="LangRead1" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="LangWrite1" class="control-label">Write Level</label>
+        <input asp-for="LangWrite1" class="form-control m-md-3 w-50" />
+        <span asp-validation-for="LangWrite1" class="text-danger"></span>
+    </div>
+    <hr />
+    <div class="col-md-12">
+        <label>Approval</label>
+        <div>
+            <select id="memberApproval" name="memberApproval" class="custom-select m-md-3 w-25">
+                <option value="Approved">Approved</option>
+                <option value="Pending">Pending</option>
+                <option value="Suspended">Suspended</option>
+                <option value="Terminated">Terminated</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <p></p>
+    </div>
+    <div class="col-md-3">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

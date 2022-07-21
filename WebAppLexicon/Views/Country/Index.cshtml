@@ -1,0 +1,31 @@
+﻿@model List<Country>
+@{
+    ViewData["Title"] = "List of Countries";
+}
+
+<h3>Country List</h3>
+<a asp-action="Create" class="btn-secondary mt-4 mb-4">Add new Country</a>
+<table class="contact">
+    <tr>
+        <th>ID</th>
+        <th>Country</th>
+        <th>Actions</th>
+    </tr>
+    <tbody>
+        @foreach (Country country in Model)
+        {
+            <tr>
+                <td>@country.CntyId</td>
+                <td>@country.CntyName</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Country" asp-route-id="@country.CntyId" class="mr-4 text-warning">Edit</a>
+                    <a asp-action="Delete" asp-controller="Country" asp-route-id="@country.CntyName" class="mr-4 text-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (ViewBag.msg != null)
+{
+    <h3>@ViewBag.msg</h3>
+}

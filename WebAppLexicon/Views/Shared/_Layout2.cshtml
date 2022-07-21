@@ -3,15 +3,13 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width" charset="UTF-8" />
-    <title>Louis @ViewBag.Title</title>
+    <title>@ViewData["Title"] - WebAppLexicon</title>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>What can you offer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     <!-- This is my own style sheet for admin maintenance -->
-    <link rel="stylesheet" href="./css/mystyle2.css">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/css/mystyle2.css">
+    <link href="~/css/all.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -21,7 +19,7 @@
                 if ((User.IsInRole("Admin")) || (User.IsInRole("SuperAdmin")))
                 {
                     <div class="container-fluid">
-                        <a class="navbar-brand" asp-area="" asp-controller="Person" asp-action="Index">Members Maintenance</a>
+                        <a class="navbar-brand">Members Maintenance</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -38,9 +36,6 @@
                                             <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Index">List</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Create">Add</a>
-                                        </li>
-                                        <li>
                                             <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="Edit">Update</a>
                                         </li>
                                         <li>
@@ -51,15 +46,18 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#"> Languages </a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"> Languages </a>
+                                </li>
+
                                 <li class="nav-item dropdown" data-bs-toggle="dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Others</a>
+                                    <a class="nav-link dropdown-toggle" id="GeoLocation" href="href=" @Url.Action("Country", "Index") "" data-bs-toggle="dropdown">GeoLocation</a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
+                                            <a class="dropdown-item" id="CountryIndex" asp-area="" asp-controller="Country" asp-action="Index">Countries</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Cities" asp-action="Index">Cities</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="City" asp-action="Index">Cities</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" asp-area="" asp-controller="Language" asp-action="Index">Language</a>
@@ -78,7 +76,6 @@
                                 }
                                 else
                                 {
-
                                     <li class="nav-item">
                                         <p class="nav-link text-success">@User.Identity.Name</p>
                                     </li>
@@ -92,7 +89,26 @@
                 } <!-- EndIf Check Roles-->
             } <!-- EndIf Check Authentication-->
         </nav>
-    </header>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Country" asp-action="Index">Country</a>
+                            <a class="nav-link" asp-area="" asp-controller="State" asp-action="Index">State</a>
+                            <a class="nav-link" asp-area="" asp-controller="City" asp-action="Index">City</a>
+                            <a class="nav-link" asp-area="" asp-controller="Language" asp-action="Index">Language</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        }
+        </header>
     <div class="container">
         <div>
             @RenderBody()
@@ -104,10 +120,11 @@
             &copy; 2022 - Service Offering Platform(Louis Lim) - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/js/all.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/all.js"></script>
+    @*<script src="~/js/Layout2Script.js" asp-append-version="true"></script>*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>

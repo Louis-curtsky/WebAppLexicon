@@ -18,7 +18,6 @@ namespace WebAppLexicon.Models
         [ForeignKey("CntyId")]
         public int? CntyId { get; set; }
         public Country Countries { get; set; }
-
         public List<City> Cities { get; set; }
     }
 }

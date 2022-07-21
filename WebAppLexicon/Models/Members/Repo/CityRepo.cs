@@ -49,7 +49,7 @@ namespace WebAppLexicon.Models.Members.Repo
 
         public List<City> GetAll()
         {
-            List<City> cityList = _memberDBContext.Cities.Include(city => city.States).ToList();
+            List<City> cityList = _memberDBContext.Cities.ToList();
             return cityList;
         }
 
