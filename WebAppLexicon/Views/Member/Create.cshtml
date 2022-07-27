@@ -7,20 +7,44 @@
 
 <div id="memberAdd">
 <div class="row">
-    <div class="column1" style="background-color:rgb(50, 37, 102);">
-        <h3>Register</h3>
-        <h1>
-            <i class="fa-solid fa-user-pen"></i>
-        </h1>
-    </div>
-    <div class="column2" style="background-color:rgb(101, 76, 204);">
-        <form asp-controller="Member" asp-action="Create" method="post">
-            <div class="column3" style="background-color: rgb(101, 76, 204);">
+        <form asp-controller="Member" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="column1" style="background-color:rgb(50, 37, 102);">
+                <h3>Register</h3>
+                @if (Model.ProfileImage == null)
+                {
+                    <h1>
+                        <i class="fa-solid fa-user-pen"></i>
+                    </h1>
+                }
+                else
+                {
+                    <img src="~/images/@Model.ProfileImage.FileName"
+                         class="rounded-circle"
+                         height="100" width="100"
+                         asp-append-version="true" />
+                }
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <label asp-for="MemberId" class="control-label"></label>
-                <input asp-for="MemberId" id="memId" name="memId" class="form-control" disabled />
-                <span asp-validation-for="MemberId" class="text-danger"></span>
+                <label class="control-label">Member ID</label>
+                <input asp-for="MemberId" id="memId" name="memId" class="form-control" style='width:auto' disabled />
+
+                <label asp-for="ProfileImage" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
+                    @if (Model.ProfileImage != null)
+                    {
+                        <label class="custom-file-label" for="customFile">@Model.ProfileImage.FileName</label>
+                    }
+                    else
+                    {
+                        <label class="custom-file-label" for="customFile">Select Image</label>
+                    }
+                </div>
+                <span asp-validation-for="ProfileImage" class="text-danger"></span>
+
+            </div>
+    <div class="column2" style="background-color:rgb(101, 76, 204);">
+            <div class="column3" style="background-color: rgb(101, 76, 204);">
 
                 <label asp-for="MemberType" name="memberType" class="control-label">Membership Type</label>
                 <select id="memberType" name="memberType" class="form-control">
@@ -75,7 +99,7 @@
 
 
                 <label asp-for="Nationality" class="control-label"></label>
-                <select id="Nationality" name="Nationality" class="select">
+                <select id="Nationality" name="nationality" class="select">
                     @foreach (var item in ViewBag.Countries)
                     {
                         <option value="@item.CntyName">@item.CntyName</option>
@@ -131,8 +155,8 @@
                 </div>
             </div>
             <input type="submit" value="Create" class="btn btn-primary" />
-        </form>
     </div>
+   </form>
 </div> 
 </div>
 

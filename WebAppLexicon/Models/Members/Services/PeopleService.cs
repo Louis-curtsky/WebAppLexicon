@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models.Members.Repo;
@@ -94,10 +96,26 @@ namespace WebAppLexicon.Models.Members.Services
             return member;
         }
 
-/*        public List<PersonLanguage> GetLanguage(int id)
+        public string UploadedFile(CreateMemberViewModel model)
         {
-            return _peopleRepo.GetLanguage(id);
-        }*/
+            string uniqueFileName = null;
+
+            if (model.ProfileImage != null)
+            {
+                //               string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                string uploadsFolder = Path.Combine("wwwroot/", "images");
+                uniqueFileName = "_" + model.ProfileImage.FileName;
+//                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.ProfileImage.CopyTo(fileStream);
+            }
+            return uniqueFileName;
+        }
+        /*        public List<PersonLanguage> GetLanguage(int id)
+                {
+                    return _peopleRepo.GetLanguage(id);
+                }*/
     }
 }
 

@@ -18,6 +18,7 @@
             <th>Read</th>
             <th>Write</th>
             <th>Status</th>
+            <th>Images</th>
             <th>Actions</th>
         </tr>
         <tbody>
@@ -43,6 +44,12 @@
                 </td>
                 <td>
                     @Model[i].MemberApproval;
+                </td>
+                <td>
+                    <img src="~/images/@Model[i].ProfilePicture"
+                         class="rounded-circle"
+                         height="40" width="40"
+                         asp-append-version="true" />
                 </td>
                 <td>
                     <a class="btn btn-danger" asp-action="Delete" asp-controller="Person" asp-route-id="@Model[i].MemberId">Delete</a>

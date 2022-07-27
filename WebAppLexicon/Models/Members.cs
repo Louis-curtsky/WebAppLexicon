@@ -10,7 +10,9 @@ namespace WebAppLexicon.Models.Members
     public class Members
     {
         public Members()
-        { }
+        {
+        }
+
         [Key]
         public int MemberId { get; set; }
         public string MemberType { get; set; } //G: General 
@@ -35,10 +37,12 @@ namespace WebAppLexicon.Models.Members
         public int LangWrite1 { get; set; }
         public string MemberApproval { get; set; } // "A: Approve", "P: Pending", "S: Suspended" "T: Terminated"
         public DateTime MemberDate { get; set; }
+        public string ProfilePicture { get; set; }
         public Country Country { get; set; }
         public State State { get; set; }
         public City City { get; set; }
         public List<Skills> SkillSet { get; set; }
+        public List<Jobs> Jobs { get; set; }
         //Add Language2, 3 at later stage
 
         // Add image table link at later stage

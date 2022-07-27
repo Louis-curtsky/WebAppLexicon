@@ -61,27 +61,31 @@ namespace WebAppLexicon.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType,
-            int cntyId, int stateId, int cityId)
+            int cntyId, int stateId, int cityId, string nationality)
         {
+            memberViewModel.MemberApproval = "Pending";
             if (ModelState.IsValid)
             {
+                string uniqueFileName = _peopleService.UploadedFile(memberViewModel);
                 if (memberViewModel != null)
                 {
                     List<Members> lastMember = _peopleService.FindLast();
                     memberViewModel.MemberId = lastMember[0].MemberId + 1;
+                    lastMember[0].ProfilePicture = uniqueFileName;
+
                     memberViewModel.MemberType = memberType;
                     memberViewModel.GovIdType = govIdType;
                     memberViewModel.CntyId = cntyId;
                     memberViewModel.StateId = stateId;
                     memberViewModel.CtyId = cityId;
-                    memberViewModel.MemberApproval = "Pending";
+                    memberViewModel.Nationality = nationality;
                     memberViewModel.MemberDate = DateTime.Today;
                     _peopleService.Add(memberViewModel);
-                    ViewBag.Countries = _countryService.GetAll();
-                    ViewBag.Language = _languageService.GetAll();
                     ViewBag.SaveRec = true;
                 }
             }
+                    ViewBag.Countries = _countryService.GetAll();
+                    ViewBag.Language = _languageService.GetAll();
             return View(memberViewModel);
         }
 

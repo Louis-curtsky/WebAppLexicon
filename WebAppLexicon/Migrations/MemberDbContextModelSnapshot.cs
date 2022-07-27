@@ -48,22 +48,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "20752ede-51cd-4e7e-bdd3-f01c21954cfa",
-                            ConcurrencyStamp = "20752ede-51cd-4e7e-bdd3-f01c21954cfa",
+                            Id = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19",
+                            ConcurrencyStamp = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "5666cfb4-2952-457c-a9d1-b86e6c650444",
-                            ConcurrencyStamp = "5666cfb4-2952-457c-a9d1-b86e6c650444",
+                            Id = "c6d40590-b56c-4294-bc2d-026564321399",
+                            ConcurrencyStamp = "c6d40590-b56c-4294-bc2d-026564321399",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "492f65c5-5347-4791-9c40-9672c8524ee9",
-                            ConcurrencyStamp = "492f65c5-5347-4791-9c40-9672c8524ee9",
+                            Id = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c",
+                            ConcurrencyStamp = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -227,18 +227,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "39d7cb72-e5bc-4b20-853b-7347807967a4",
-                            RoleId = "20752ede-51cd-4e7e-bdd3-f01c21954cfa"
+                            UserId = "d3e828f1-c077-478c-b113-c2ae6ad232f5",
+                            RoleId = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19"
                         },
                         new
                         {
-                            UserId = "2e9fbde5-f4d2-4dd6-8792-28952b09e038",
-                            RoleId = "5666cfb4-2952-457c-a9d1-b86e6c650444"
+                            UserId = "7e3295df-407f-4b00-9793-d0d3642640e4",
+                            RoleId = "c6d40590-b56c-4294-bc2d-026564321399"
                         },
                         new
                         {
-                            UserId = "00550930-2568-4d0e-ab1f-959f64204b74",
-                            RoleId = "492f65c5-5347-4791-9c40-9672c8524ee9"
+                            UserId = "71f61d10-8aee-4b85-bef1-4a65847b722b",
+                            RoleId = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c"
                         });
                 });
 
@@ -383,6 +383,11 @@ namespace WebAppLexicon.Migrations
                         {
                             CntyId = 4,
                             CntyName = "Germany"
+                        },
+                        new
+                        {
+                            CntyId = 5,
+                            CntyName = "Turkey"
                         });
                 });
 
@@ -393,6 +398,9 @@ namespace WebAppLexicon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ChatId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -401,6 +409,12 @@ namespace WebAppLexicon.Migrations
 
                     b.Property<string>("JobDesc")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("JobRecordDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
@@ -415,6 +429,8 @@ namespace WebAppLexicon.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("JobId");
+
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("SkillsMemberId", "SkillsSkillId");
 
@@ -526,6 +542,9 @@ namespace WebAppLexicon.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StateId")
@@ -1238,60 +1257,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "39d7cb72-e5bc-4b20-853b-7347807967a4",
+                            Id = "d3e828f1-c077-478c-b113-c2ae6ad232f5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "60cf50f4-756c-496d-b3db-d9e0c442fc3b",
+                            ConcurrencyStamp = "569ee828-dbf4-4d78-bf7d-f2a6764c001f",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM9UZ9r77B3KOEkHxkcbYybXdyHNqlgAW5vbOR/cjnhC4L9pUWi5A9xDv5Prr6NbmA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENVZOob7vRXAjznwPPvLDAq1RrRJV4biyHNOIjBHGwiBxcXo75n69EcIuygeocJHxw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a02503a0-a8d8-44c2-bf6f-8fbd48e69e92",
+                            SecurityStamp = "ae0c10a2-306d-4c83-b166-9890dc92daca",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "20752ede-51cd-4e7e-bdd3-f01c21954cfa"
+                            UserRolesId = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19"
                         },
                         new
                         {
-                            Id = "2e9fbde5-f4d2-4dd6-8792-28952b09e038",
+                            Id = "7e3295df-407f-4b00-9793-d0d3642640e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2088fb83-a7d2-4db2-9656-041f3a8d0f21",
+                            ConcurrencyStamp = "0c497c2d-82b3-4e33-806c-6add6cae55ed",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ10tAm/MCy4gt6+/Pe3v8MZtClTFBJcA3BaP5KhN7FGYoCKERwwv7ClnKPqFzqlLQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDPhA/Sf7JF5g9h8mXpgC0vTnqObW2KlCtuN1rFoH2y0XCJyh2s6Sx9G5RESDI1ogA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bd8c205d-f88d-4cfb-98ba-af7c999d8050",
+                            SecurityStamp = "389aa079-a289-46fd-bb1e-126c7b7943d3",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "5666cfb4-2952-457c-a9d1-b86e6c650444"
+                            UserRolesId = "c6d40590-b56c-4294-bc2d-026564321399"
                         },
                         new
                         {
-                            Id = "00550930-2568-4d0e-ab1f-959f64204b74",
+                            Id = "71f61d10-8aee-4b85-bef1-4a65847b722b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9615feb9-b5f0-4f40-8fc0-516b435b3fcf",
+                            ConcurrencyStamp = "79434d48-18d3-4419-85d2-0446360de9a5",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGlMIGWztGEbsl65zSEsumSpLcTdN/6dq3Bg27WMhmHE9JwwZIx77DwWNc1AfxDVrw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDUhlI+AZg1L50bRSrDz5jdLgObm3xEsTzhyxrGVRdJ6S7TbG1oJEKdNZBrkE0is6A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c98bfea6-2d83-4457-9e3d-8903b2816b23",
+                            SecurityStamp = "1a166827-155f-47e3-b2d4-19de28950c3d",
                             TwoFactorEnabled = false,
                             UserName = "User1",
                             FirstName = "Vicient",
                             LastName = "Kent",
-                            MemberId = 0,
-                            UserRolesId = "492f65c5-5347-4791-9c40-9672c8524ee9"
+                            MemberId = 20,
+                            UserRolesId = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c"
                         });
                 });
 
@@ -1355,6 +1374,12 @@ namespace WebAppLexicon.Migrations
 
             modelBuilder.Entity("WebAppLexicon.Models.Jobs", b =>
                 {
+                    b.HasOne("WebAppLexicon.Models.Members.Members", "Members")
+                        .WithMany("Jobs")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WebAppLexicon.Models.Skills", "Skills")
                         .WithMany()
                         .HasForeignKey("SkillsMemberId", "SkillsSkillId");

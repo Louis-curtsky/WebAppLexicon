@@ -45,7 +45,9 @@ namespace WebAppLexicon.Models.Members.Data
                 
 
             modelBuilder.Entity<Jobs>()
-                .HasKey(dt => dt.JobId);
+                .HasOne(dt => dt.Members)
+                .WithMany(j => j.Jobs)
+                .HasForeignKey(dt => dt.MemberId);
 
             modelBuilder.Entity<SkillCats>().HasData(
                 new SkillCats() { SkillId = 1, Categories = "Cleaning" },
@@ -144,7 +146,8 @@ namespace WebAppLexicon.Models.Members.Data
                 new Country() { CntyId = 1, CntyName = "Sweden" },
                 new Country() { CntyId = 2, CntyName = "France" },
                 new Country() { CntyId = 3, CntyName = "Italy" },
-                new Country() { CntyId = 4, CntyName = "Germany" }
+                new Country() { CntyId = 4, CntyName = "Germany" },
+                new Country() { CntyId = 5, CntyName = "Turkey" }
                 );
 
             modelBuilder.Entity<Members>().HasData(
@@ -252,6 +255,7 @@ namespace WebAppLexicon.Models.Members.Data
                 EmailConfirmed = true,
                 //DateOfBirth = DateTime.Now,
                 SecurityStamp = Guid.NewGuid().ToString(),
+                MemberId = 20, // After seeding 20 users. For last user
                 UserRolesId = userRoleId
             });
 

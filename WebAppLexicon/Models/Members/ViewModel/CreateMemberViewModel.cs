@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -47,6 +48,10 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email address")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Please choose profile image")]
+        [Display(Name = "Profile Picture")]
+        public IFormFile ProfileImage { get; set; }
         public int CtyId { get; set; }
         public int StateId { get; set; }
         public int CntyId { get; set; }

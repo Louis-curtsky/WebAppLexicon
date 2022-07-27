@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +16,6 @@ namespace WebAppLexicon.Models.Members.Services
         void Edit(int id, MemberViewModel memberViewModel);
         bool Remove(int id);
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);
+        string UploadedFile(CreateMemberViewModel model);
     }
 }

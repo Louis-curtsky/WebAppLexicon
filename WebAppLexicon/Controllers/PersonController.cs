@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models.Members;
@@ -50,6 +51,8 @@ namespace WebAppLexicon.Controllers
                 };*/
             }
  //           ViewBag.Language = chkLang;
+
+            ViewBag.FilePath = Path.Combine("./", "Images/");
 
             return View(listPerson);
         }
