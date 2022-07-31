@@ -48,22 +48,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19",
-                            ConcurrencyStamp = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19",
+                            Id = "c96dbcf0-7d7e-47e1-94ec-11429a097c84",
+                            ConcurrencyStamp = "c96dbcf0-7d7e-47e1-94ec-11429a097c84",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "c6d40590-b56c-4294-bc2d-026564321399",
-                            ConcurrencyStamp = "c6d40590-b56c-4294-bc2d-026564321399",
+                            Id = "509056be-ed85-4b4b-b11b-4b4572664629",
+                            ConcurrencyStamp = "509056be-ed85-4b4b-b11b-4b4572664629",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c",
-                            ConcurrencyStamp = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c",
+                            Id = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5",
+                            ConcurrencyStamp = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -227,18 +227,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d3e828f1-c077-478c-b113-c2ae6ad232f5",
-                            RoleId = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19"
+                            UserId = "d7a4f1b5-174c-4a85-abf1-44ec65911ec8",
+                            RoleId = "c96dbcf0-7d7e-47e1-94ec-11429a097c84"
                         },
                         new
                         {
-                            UserId = "7e3295df-407f-4b00-9793-d0d3642640e4",
-                            RoleId = "c6d40590-b56c-4294-bc2d-026564321399"
+                            UserId = "7d6ad142-8185-4617-a517-daffb07de900",
+                            RoleId = "509056be-ed85-4b4b-b11b-4b4572664629"
                         },
                         new
                         {
-                            UserId = "71f61d10-8aee-4b85-bef1-4a65847b722b",
-                            RoleId = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c"
+                            UserId = "52a839b5-d34d-45a5-8c60-1208d697bc6b",
+                            RoleId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5"
                         });
                 });
 
@@ -521,12 +521,6 @@ namespace WebAppLexicon.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LoginId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LoginName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MemberApproval")
@@ -1257,60 +1251,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d3e828f1-c077-478c-b113-c2ae6ad232f5",
+                            Id = "d7a4f1b5-174c-4a85-abf1-44ec65911ec8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "569ee828-dbf4-4d78-bf7d-f2a6764c001f",
+                            ConcurrencyStamp = "b1e7b7a6-0da3-4464-98ef-a40c1ab4d00f",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENVZOob7vRXAjznwPPvLDAq1RrRJV4biyHNOIjBHGwiBxcXo75n69EcIuygeocJHxw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENSQ+T9HkobJIJP3IJHI//Fb/6jGtbxUPArAiNl6sGA0YmK4NnpBuBDDy3dYRcQmHQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ae0c10a2-306d-4c83-b166-9890dc92daca",
+                            SecurityStamp = "efa7d92f-5847-4683-b8d0-8a82b4759ba8",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "eb18ad61-6e56-48b0-b8d2-80a40f79ca19"
+                            UserRolesId = "c96dbcf0-7d7e-47e1-94ec-11429a097c84"
                         },
                         new
                         {
-                            Id = "7e3295df-407f-4b00-9793-d0d3642640e4",
+                            Id = "7d6ad142-8185-4617-a517-daffb07de900",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c497c2d-82b3-4e33-806c-6add6cae55ed",
+                            ConcurrencyStamp = "f5f4c4a5-d201-4f68-8d10-67a956afdad4",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDPhA/Sf7JF5g9h8mXpgC0vTnqObW2KlCtuN1rFoH2y0XCJyh2s6Sx9G5RESDI1ogA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPElRuY6fW+v35wRry5pE/Xhku4Iclntc7smUjF4qfFwxd/H6j+WF5qkyNMHn5/j6Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "389aa079-a289-46fd-bb1e-126c7b7943d3",
+                            SecurityStamp = "b2b83b69-11c4-4616-9a8d-82f2a6de0c84",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "c6d40590-b56c-4294-bc2d-026564321399"
+                            UserRolesId = "509056be-ed85-4b4b-b11b-4b4572664629"
                         },
                         new
                         {
-                            Id = "71f61d10-8aee-4b85-bef1-4a65847b722b",
+                            Id = "52a839b5-d34d-45a5-8c60-1208d697bc6b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "79434d48-18d3-4419-85d2-0446360de9a5",
+                            ConcurrencyStamp = "e22dc0ba-275d-46c2-87c9-b38ea8fb4d34",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDUhlI+AZg1L50bRSrDz5jdLgObm3xEsTzhyxrGVRdJ6S7TbG1oJEKdNZBrkE0is6A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF9kWiv4EHs/9hwrKvLF/7hIEB31OoqfhKpz8FbplBw3kTjqaBZDCdkUcjaUVLjjcg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a166827-155f-47e3-b2d4-19de28950c3d",
+                            SecurityStamp = "1e2e73b7-3862-44dd-a537-b500d1ada477",
                             TwoFactorEnabled = false,
                             UserName = "User1",
                             FirstName = "Vicient",
                             LastName = "Kent",
                             MemberId = 20,
-                            UserRolesId = "fa8f1bec-51d7-4d6b-91b9-e5f45ff08a7c"
+                            UserRolesId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5"
                         });
                 });
 

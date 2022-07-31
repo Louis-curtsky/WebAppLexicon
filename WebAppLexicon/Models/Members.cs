@@ -22,8 +22,6 @@ namespace WebAppLexicon.Models.Members
         public string LastName { get; set; }
         public string GovIdType { get; set; }
         public string GovId { get; set; }
-        public string? LoginId { get; set; }
-        public string LoginName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
         public string Nationality { get; set; } 

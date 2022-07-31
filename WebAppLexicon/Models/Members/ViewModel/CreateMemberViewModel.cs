@@ -49,7 +49,6 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please choose profile image")]
         [Display(Name = "Profile Picture")]
         public IFormFile ProfileImage { get; set; }
         public int CtyId { get; set; }

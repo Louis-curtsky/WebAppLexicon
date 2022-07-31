@@ -1,0 +1,179 @@
+﻿@model WebAppLexicon.Models.Members.ViewModel.MemberViewModel
+
+@{
+    ViewData["Title"] = "Member Edit View";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div id="memberAdd">
+    <div class="row">
+        <form asp-controller="Member" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div class="column1" style="background-color:rgb(50, 37, 102);">
+                <h3>Update profile</h3>
+                @if (Model.Profile != null)
+                {
+                    <img src="~/images/@Model.Profile"
+                         class="rounded-circle"
+                         height="200" width="200"
+                         asp-append-version="true" />
+                }
+                else
+                {
+                    <img src="~/images/@ViewBag.FileName"
+                         class="rounded-circle"
+                         height="200" width="200"
+                         asp-append-version="true" />
+                }
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label class="control-label">Member ID</label>
+                <input asp-for="MemberId" id="memId" name="memId" class="form-control" style='width:auto' disabled />
+                <label asp-for="MemberApproval" class="control-label"></label>
+                <input asp-for="MemberApproval" id="memApproval" name="memApproval" class="form-control" style='width:auto' disabled />
+                <label asp-for="MemberDate" class="control-label"></label>
+                <input asp-for="MemberDate" id="memDate" name="memDate" class="form-control" style='width:auto' disabled />
+                <label asp-for="Profile" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="Profile" class="custom-file-input" id="customFile" name="customFile" ,
+                           style='width:auto'>
+                    @if (Model.Profile == null)
+                    {
+                        <label class="custom-file-label" for="customFile" id="ImageDisplay" style='height:200px'>@ViewBag.FileName</label>
+                    }
+                    else
+                    {
+                        <label class="custom-file-label" for="customFile" id="ImageDisplay" style='height: 200px'>@Model.Profile</label>
+                    }
+                </div>
+                <span asp-validation-for="Profile" class="text-danger"></span>
+
+            </div>
+            <div class="column2" style="background-color:rgb(101, 76, 204);">
+                <div class="column3" style="background-color: rgb(101, 76, 204);">
+
+                    <label asp-for="MemberType" name="memberType" class="control-label">Membership Type</label>
+                    <select id="memberType" name="memberType" class="form-control">
+                        <option value="SEEK">Buy Service</option>
+                        <option selected="selected" value="SERV">Provide Service</option>
+                    </select>
+                    <span asp-validation-for="MemberType" class="text-danger"></span>
+
+                    <label asp-for="FirstName" class="control-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                    <label asp-for="LastName" class="control-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+
+                    <label asp-for="GovIdType" class="control-label"></label>
+                    <select id="GovIdType" name="govIdType" class="form-control">
+                        <option value="Passport">Passport</option>
+                        <option value="DrivingLic">Driving Licence</option>
+                        <option value="RPermit">Resident Permit</option>
+                        <option value="OPass">Other Pass</option>
+                        <option selected="selected" value="ID">ID</option>
+                    </select>
+                    <span asp-validation-for="GovIdType" class="text-danger"></span>
+
+                    <label asp-for="GovId" class="control-label"></label>
+                    <input asp-for="GovId" class="form-control" />
+                    <span asp-validation-for="GovId" class="text-danger"></span>
+
+                    <label asp-for="Age" class="control-label">Age</label>
+                    <input asp-for="Age" class="form-control" min="18" max="80" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+
+                    <label asp-for="Gender" class="control-label"></label>
+                    <select asp-for="Gender" id="Gender" name="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                        <option value="No disclose">No disclose</option>
+                    </select>
+                </div>
+
+                <div class="column3" style="background-color:#bbb;">
+
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+
+                    <label asp-for="Nationality" class="control-label"></label>
+                    <select id="Nationality" name="nationality" class="select">
+                        @foreach (var item in ViewBag.Countries)
+                        {
+                            <option value="@item.CntyName">@item.CntyName</option>
+                        }
+                    </select>
+
+                    <label asp-for="CntyId" class="control-label">Country</label>
+                    <select id="CountryList" name="cntyId" class="select">
+                        @foreach (var item in ViewBag.Countries)
+                        {
+                            <option value="@item.CntyId">@item.CntyName</option>
+                        }
+                    </select>
+
+                    <label class="control-label">State</label>
+                    <select id="StateList" name="StateId" class="form-control"></select>
+
+                    <label class="control-label">City</label>
+                    <select id="CityList" name="CityId" class="form-control" required></select>
+
+                    <label asp-for="LangId" class="control-label">Language</label>
+                    <select name="LangId" class="select">
+                        @foreach (var item in ViewBag.Language)
+                        {
+                            <option value="@item.Id">@item.LangName</option>
+                        }
+                    </select>
+
+                    <label asp-for="LangRead1" class="control-label">Read Level</label>
+                    <input asp-for="LangRead1" name="langRead1" class="form-control" />
+                    <span asp-validation-for="LangRead1" class="text-danger"></span>
+
+                    <label asp-for="LangWrite1" class="control-label">Write Level</label>
+                    <input asp-for="LangWrite1" class="form-control" />
+                    <span asp-validation-for="LangWrite1" class="text-danger"></span>
+
+                    <div class="regform">
+                        @if (ViewBag.SaveRec == true)
+                        {
+                            <nav>
+                                <a href="#" class="navbutton">Back</a>
+                                @*<a asp-area="" asp-controller="Skills" asp-action="Create" asp-route-id="@Model.MemberId" class="navbutton">Next</a>*@
+                                <a href='@Url.Action("Create", "Skills", new {memId=Model.MemberId})' class="navbutton">Next</a>
+                            </nav>
+                        }
+                        else
+                        {
+                            <nav>
+                                <a href="#" class="navbutton">Back</a>
+                                <a class="navbutton" disabled>Next</a>
+                            </nav>
+                        }
+                    </div>
+                </div>
+                @if (ViewBag.SaveRec == false)
+                {
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                }
+                else
+                {
+                    <input type="submit" value="Edit" class="btn btn-primary" disabled />
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

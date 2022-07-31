@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,62 +83,18 @@ namespace WebAppLexicon.Models.Members.Repo
             return member;
         }
 
-        public void Update(Members member)
+        public bool Update(Members member)
         {
             _memberDbContext
                 .Update(member);
-            _memberDbContext.SaveChanges();
-        }
-
- /*       public void UpdateLang(int pId, List<PersonLanguage> langId)
-        {
-            Person lPerson = new Person();
-            Language lLang = new Language();
-            //int pId = 0;
-            //int lId = 0;
-            PersonLanguage perLang = new PersonLanguage();
-
-            for (int i = 0; i < langId.Count; i++)
+            if (_memberDbContext.SaveChanges() > 0)
             {
-                perLang = _personDbContext.PersonLanguage
-                    .AsNoTracking()
-                        .FirstOrDefault(p => p.PersonId == langId[i].PersonId && p.LanguageId == langId[i].LanguageId);
-                if (perLang == null) // If no pID and no LID found == New entry to PersonLanguage
-                {
-                    var s1 =
-                        new PersonLanguage
-                        {
-                            PersonId = langId[i].PersonId,
-                            LanguageId = langId[i].LanguageId,
-                            Person = lPerson,
-                            Language = lLang
-                        };
-                    _personDbContext.Entry<PersonLanguage>(s1).State = EntityState.Detached;
-                }
-                else
-                {
-                    perLang = _personDbContext.PersonLanguage.FirstOrDefault(p => p.PersonId == langId[i].PersonId && p.LanguageId != langId[i].LanguageId);
-                    if (perLang != null) // Found Person ID and no Language ID = New Language
-                    {
-                        var s1 =
-                            new PersonLanguage
-                            {
-                                PersonId = langId[i].PersonId,
-                                LanguageId = langId[i].LanguageId,
-                                Person = lPerson,
-                                Language = lLang
-                            };
-                        _personDbContext.Entry<PersonLanguage>(s1).State = EntityState.Detached;
-                    }
-                    else // Exisiting record
-                    {
-                        _personDbContext.Update(langId[i]);
-                    }
-                } // End If
-            } // end foreach 
-            _personDbContext.SaveChanges();
-        } // End Update*/
-
+                return true;
+            } else
+            {
+                return false;
+            };
+        }
         public bool Delete(Members member)
         {
             _memberDbContext.Remove(member);
@@ -160,18 +117,6 @@ namespace WebAppLexicon.Models.Members.Repo
             return null;
         }
 
-/*        public List<PersonLanguage> GetLanguage(int id)
-        {
-            List<PersonLanguage> spokeLang = new List<PersonLanguage>();
-            foreach (PersonLanguage langSpoke in _personDbContext.PersonLanguage)
-            {
-                if (langSpoke.PersonId == id)
-                {
-                    spokeLang.Add(langSpoke);
-                }
-            }
-            return spokeLang;
-        }*/
 
     }
 }

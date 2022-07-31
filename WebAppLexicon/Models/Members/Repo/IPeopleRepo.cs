@@ -16,7 +16,7 @@ namespace WebAppLexicon.Models.Members.Repo
         List<Members> FindLast();
 
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);
-        void Update(Members member);
+        bool Update(Members member);
 
         //void UpdateLang(int pId, List<PersonLanguage> langPer);
 

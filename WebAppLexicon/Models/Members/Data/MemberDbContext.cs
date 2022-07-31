@@ -170,7 +170,7 @@ namespace WebAppLexicon.Models.Members.Data
                 new Members() { MemberId = 17, FirstName = "Wiatt", LastName = "Collet", Phone = "369-361-2111", Gender = "Male", Age = 64, Nationality = "Chilean", Email = "wcolletg@a8.net", CntyId = 1, StateId = 4, CtyId = 4, MemberApproval = "Pending" },
                 new Members() { MemberId = 18, FirstName = "Cacilia", LastName = "Gilstin", Phone = "582-143-5937", Gender = "Female", Age = 18, Nationality = "Cree", Email = "cgilstinh@ucla.edu", CntyId = 1, StateId = 2, CtyId = 9, MemberApproval = "Pending" },
                 new Members() { MemberId = 19, FirstName = "Libbie", LastName = "Zecchii", Phone = "529-137-4269", Gender = "Female", Age = 53, Nationality = "Paiute", Email = "lzecchiii@domainmarket.com", CntyId = 4, StateId = 9, CtyId = 7, MemberApproval = "Pending" },
-                new Members() { MemberId = 20, FirstName = "Cecilia", LastName = "Lesslie", Phone = "358-511-7422", Gender = "Female", Age = 46, Nationality = "Tongan", Email = "clessliej@boston.com", CntyId = 3, StateId = 10, CtyId = 10, MemberApproval = "Pending" }
+                new Members() { MemberId = 20, FirstName = "Cecilia", LastName = "Lesslie", Phone = "358-511-7422", Gender = "Female", Age = 46, Nationality = "Tongan", Email = "clessliej@boston.com", CntyId = 3, StateId = 10, CtyId = 10, MemberApproval = "Approved" }
                 );
 
             #endregion Country-State-City Join Class Config
@@ -289,5 +289,6 @@ namespace WebAppLexicon.Models.Members.Data
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Language> Language { get; set; }
         public DbSet<AppUser> AppUser { get; set; }
+        public DbSet<AppRoles> AppRoles { get; set; }
     }
 }

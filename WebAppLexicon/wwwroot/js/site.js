@@ -47,13 +47,12 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 ddlCities.empty();
-
-                ddlCities.append($('<option/>', { value: -1, text: 'Select Cities' }))
+                //ddlCities.append($('<option/>', { value: -1, text: 'Select Cities' }))
                 ddlCities.prop('disabled', false);
                 $(data).each(function (index, item) {
                     console.log(item);
                     ddlCities.append($('<option/>', { value: item.cityId, text: item.cityName }))
-                })
+                });
             },
 
             error: function (err) {
@@ -62,4 +61,10 @@ $(document).ready(function () {
         }) //End ajax
     }) //Onchange State
 
+    $("#customFile").change(
+        function () {
+            var data = $("#customFile").val();
+            console.log(data);
+            $("#ImageDisplay").html(data);
+        });
 }) // document

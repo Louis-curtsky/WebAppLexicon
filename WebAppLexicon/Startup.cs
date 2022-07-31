@@ -35,18 +35,13 @@ namespace WebAppLexicon
             // -------------Connection to Database
             services.AddDbContext<MemberDbContext>
              (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-             //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             //------------------------- Identity -------------------------------------------------------
-            /*            services.AddIdentity<AppUser, IdentityRole>()
-                            .AddRoles<IdentityRole>()
-                            .AddEntityFrameworkStores<MemberDbContext>()
-                            .AddDefaultTokenProviders();*/
-
             services.AddIdentity<AppUser, IdentityRole>()
-             .AddRoles<IdentityRole>()
-             .AddEntityFrameworkStores<MemberDbContext>()
-             .AddDefaultTokenProviders();
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<MemberDbContext>()
+                .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options =>
             {

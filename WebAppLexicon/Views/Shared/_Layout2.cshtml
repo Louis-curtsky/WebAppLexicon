@@ -74,15 +74,12 @@
                                         <a class="nav-link text-danger" asp-area="" asp-controller="Admin" asp-action="Index">Admin Zone</a>
                                     </li>
                                 }
-                                else
-                                {
                                     <li class="nav-item">
                                         <p class="nav-link text-success">@User.Identity.Name</p>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-warning" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
                                     </li>
-                                }
                             </ul>
                         </div> <!-- navbar-collapse.// -->
                     </div> <!-- container-fluid.// -->

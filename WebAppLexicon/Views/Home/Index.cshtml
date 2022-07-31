@@ -18,15 +18,13 @@
         {
         <div>
             <h4>
-            <a href="#">
+            <a asp-controller="Member" asp-action="Edit" asp-route-id="@Model.MemberId">
                @Model.MemberType @Model.FirstName @Model.LastName ID:@Model.MemberId
-            </a>
-            </h4>
-        </div>
-        <div>
             <img src="~/images/@Model.ProfilePicture"
                  height="300" width="300"
                  asp-append-version="true" />
+            </a>
+            </h4>
         </div>
         } else
         {

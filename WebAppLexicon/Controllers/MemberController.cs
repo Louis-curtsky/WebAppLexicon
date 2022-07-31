@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models;
@@ -61,7 +62,7 @@ namespace WebAppLexicon.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateMemberViewModel memberViewModel, string memberType, string govIdType,
-            int cntyId, int stateId, int cityId, string nationality)
+            int cntyId, int stateId, int cityId, string nationality, int id)
         {
             memberViewModel.MemberApproval = "Pending";
             if (ModelState.IsValid)
@@ -71,7 +72,7 @@ namespace WebAppLexicon.Controllers
                 {
                     List<Members> lastMember = _peopleService.FindLast();
                     memberViewModel.MemberId = lastMember[0].MemberId + 1;
-                    lastMember[0].ProfilePicture = uniqueFileName;
+  //                  memberViewModel.ProfileImage.FileName = uniqueFileName;
 
                     memberViewModel.MemberType = memberType;
                     memberViewModel.GovIdType = govIdType;
@@ -92,22 +93,97 @@ namespace WebAppLexicon.Controllers
         // GET: MemberController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            MemberViewModel memberViewModel = new MemberViewModel();
+            Members members = _peopleService.FindById(id);
+            if (members != null)
+            {
+                memberViewModel.MemberId = members.MemberId;
+                memberViewModel.MemberType = members.MemberType;
+                memberViewModel.FirstName = members.FirstName;
+                memberViewModel.LastName = members.LastName;
+                memberViewModel.Nationality = members.Nationality;
+                memberViewModel.Age = members.Age;
+                memberViewModel.Gender = members.Gender;
+                memberViewModel.GovIdType = members.GovIdType;
+                memberViewModel.GovId = members.GovId;
+                memberViewModel.CntyId = members.CntyId;
+                memberViewModel.StateId = members.StateId;
+                memberViewModel.CtyId = members.CtyId;
+                memberViewModel.Email = members.Email;
+                memberViewModel.Phone = members.Phone;
+                memberViewModel.LangId = members.LangId;
+                memberViewModel.LangRead1 = members.LangRead1;
+                memberViewModel.LangWrite1 = members.LangWrite1;
+                memberViewModel.MemberDate = members.MemberDate;
+                memberViewModel.MemberApproval = members.MemberApproval;
+                FileStream stream = _peopleService.DownLoadFile(members.ProfilePicture);
+                if (members.ProfilePicture == null)
+                {
+                    ViewBag.FileName = "Not-found-lex-project.svg";
+
+                }
+                else
+                {
+                    ViewBag.FileName = members.ProfilePicture;
+                }
+
+                ViewBag.SaveRec = false;
+                ViewBag.Countries = _countryService.GetAll();
+                ViewBag.Language = _languageService.GetAll();
+                return View(memberViewModel);
+            } else
+            {
+                ModelState.AddModelError("System", "Fail to Find Members!!!");
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: MemberController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, string memberType, string govIdType,
+            int cntyId, int stateId, int cityId, string nationality, string customFile, MemberViewModel memberViewModel)
         {
-            try
+   
+            if (memberViewModel.MemberApproval == null)
+                memberViewModel.MemberApproval = "Approved";
+
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                Members members = new Members()
+                {
+                    MemberId = id,
+                    MemberType = memberType,
+                    FirstName = memberViewModel.FirstName,
+                    LastName = memberViewModel.LastName,
+                    Nationality = nationality,
+                    Age = memberViewModel.Age,
+                    Gender = memberViewModel.Gender,
+                    GovIdType = govIdType,
+                    GovId = memberViewModel.GovId,
+                    CntyId = cntyId,
+                    StateId = stateId,
+                    CtyId = cityId,
+                    Email = memberViewModel.Email,
+                    Phone = memberViewModel.Phone,
+                    LangId = memberViewModel.LangId,
+                    LangRead1 = memberViewModel.LangRead1,
+                    LangWrite1 = memberViewModel.LangWrite1,
+                    MemberApproval = memberViewModel.MemberApproval,
+                    MemberDate = DateTime.Today,
+                    ProfilePicture = customFile
+                };
+                if (memberViewModel.Profile == null)
+                    members.ProfilePicture = HttpContext.Request.Form.Files[0].FileName;
+
+                ViewBag.Countries = _countryService.GetAll();
+                ViewBag.Language = _languageService.GetAll();
+
+                if ( _peopleService.Edit(members))
+                   return View(memberViewModel);
             }
-            catch
-            {
-                return View();
-            }
+            ModelState.AddModelError("System", "Fail to edit Members!!!");
+            return RedirectToAction(nameof(Index));
         }
 
         public ActionResult GetCityByStateId(int stateId)

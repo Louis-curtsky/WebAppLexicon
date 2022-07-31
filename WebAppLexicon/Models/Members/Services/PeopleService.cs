@@ -25,21 +25,10 @@ namespace WebAppLexicon.Models.Members.Services
             return _peopleRepo.All();
         }
 
-        public void Edit(int id, MemberViewModel personViewModel)
+        public bool Edit(Members member)
         {
-            Members member = _peopleRepo.FindByID(id);
-            if (member != null)
-            {
-                member.FirstName = personViewModel.FirstName;
-                member.LastName = personViewModel.LastName;
-                member.Phone = personViewModel.Phone;
-                member.CntyId = personViewModel.CntyId;
-                member.StateId = personViewModel.StateId;
-                member.CtyId = personViewModel.CtyId;
-
-                _peopleRepo.Update(member);
-                //_peopleRepo.UpdateLang(person.Id, langId);
-            }
+           
+          return (_peopleRepo.Update(member));
         }
 
         public Members FindById(int id)
@@ -85,6 +74,7 @@ namespace WebAppLexicon.Models.Members.Services
             member.MemberType = personViewModel.MemberType;
             member.MemberApproval = "Pending";
             member.MemberDate = personViewModel.MemberDate;
+            member.ProfilePicture = personViewModel.ProfileImage.FileName;
 
             return _peopleRepo.Create(member);
 
@@ -102,15 +92,29 @@ namespace WebAppLexicon.Models.Members.Services
 
             if (model.ProfileImage != null)
             {
-                //               string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                string uploadsFolder = Path.Combine("wwwroot/", "images");
-                uniqueFileName = "_" + model.ProfileImage.FileName;
-//                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
+                // Below statement will be replaced for real application          
+                // string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                string uploadsFolder = Path.Combine("wwwroot", "images");
+                //                uniqueFileName = "_" + model.ProfileImage.FileName;
+                uniqueFileName = model.ProfileImage.FileName;
+
+                // Below will be replace for real application
+                //   uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using var fileStream = new FileStream(filePath, FileMode.Create);
                 model.ProfileImage.CopyTo(fileStream);
             }
             return uniqueFileName;
+        }
+
+        public FileStream DownLoadFile(string fileName)
+        {
+            if (fileName == null)
+                fileName = "Not-found-lex-project.svg";
+            string path = Path.Combine("wwwroot/", "images/", fileName);
+            using var fileStream = new FileStream(path, FileMode.OpenOrCreate);
+          
+            return fileStream;
         }
         /*        public List<PersonLanguage> GetLanguage(int id)
                 {
