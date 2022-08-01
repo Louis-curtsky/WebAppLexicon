@@ -83,6 +83,12 @@ namespace WebAppLexicon.Models.Members.Repo
             return member;
         }
 
+        public List<Members> FindWithPending()
+        {
+            return _memberDbContext.Members
+           .Where(member => member.MemberApproval == "Pending").ToList();
+        }
+
         public bool Update(Members member)
         {
             _memberDbContext

@@ -13,13 +13,22 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [StringLength(30, MinimumLength = 3)]
         public string UserName { get; set; }
 
+
+        [Display(Name="Member ID")]
+        public int MemberId { get; set; 
+        }
+
         [Required]
         [EmailAddress]
         [StringLength(50, MinimumLength = 5)]
         public string Email { get; set; }
 
-        [Phone]
-        public string Phone { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

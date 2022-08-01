@@ -20,21 +20,25 @@ namespace WebAppLexicon.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
-        private readonly MemberDbContext _memberDbContext;
+        private readonly IPeopleService _peopleService;
+
+        //        private readonly MemberDbContext _memberDbContext;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, 
-                    RoleManager<IdentityRole> roleManager, MemberDbContext memberDbContext)// Constructor Injection
+                    RoleManager<IdentityRole> roleManager, IPeopleService peopleService)// Constructor Injection
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _memberDbContext = memberDbContext;
+            _peopleService = peopleService;
+ //           _memberDbContext = memberDbContext;
         }
 
 
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Members = _peopleService.FindWithPending();
             return View();
         }
 
@@ -45,33 +49,46 @@ namespace WebAppLexicon.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterUserViewModel userReg)
+        public async Task<IActionResult> Register(RegisterUserViewModel userReg, int memberId)
         {
-            if (ModelState.IsValid)
-            {
-                AppUser user = new AppUser()
+            List<Members> memberList = _peopleService.FindWithPending();
+            AppUser user = new AppUser();
+                foreach (var item in memberList)
                 {
-                    UserName = userReg.UserName,
-                    Email = userReg.Email,
-                    FirstName = userReg.FirstName,
-                    LastName = userReg.LastName,
-                    MemberId = userReg.MemberId,
-                    PhoneNumber = userReg.Phone,
+                    if (item.MemberId == memberId)
+                    {
+                        user.UserName = userReg.UserName;
+                        user.NormalizedUserName = userReg.UserName;
+                        user.NormalizedEmail = item.Email;
+                        user.Email = item.Email;
+                        user.FirstName = item.FirstName;
+                        user.LastName = item.LastName;
+                        user.MemberId = item.MemberId;
+                        user.PhoneNumber = item.Phone;
+                        user.PhoneNumberConfirmed = true;
+//                        user.UserRolesId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5";
+
                     // UserRoleID string is taken from NetUser after Seeding
 
-                    // Admin = 
-                    // UserRoleID = 
+                    }
                 };
+
+            if (ModelState.IsValid)
+            {
                 IdentityResult result = await _userManager.CreateAsync(user, userReg.Password);
 
                 if (result.Succeeded)
                 {
-                    // Login with user role assigned...but if policy is only allow superAdmin to assign roles then remark this
-                    // personally it is normal to have login creation with use role assign and limit user role accessibility.
+                    Members member = _peopleService.FindById(memberId);
+                    IdentityRole roleU = new IdentityRole("User");
+                    IdentityResult resultU = await _userManager.AddToRoleAsync(user, roleU.Name);
 
-                    //                   await _roleManager.CreateAsync(new IdentityRole("User"));
-
-                    return RedirectToAction("Index", "Home");
+                    if (resultU.Succeeded)
+                    {
+                        member.MemberApproval = "Approved";
+                        _peopleService.Edit(member);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
 
                 foreach (var item in result.Errors)
@@ -100,7 +117,6 @@ namespace WebAppLexicon.Controllers
                 if (result.Succeeded)
                 {
                     AppUser showUser = await _userManager.FindByNameAsync(loginUser.UserName);
-//                    AppUser appUser = _memberDbContext.AppUser.SingleOrDefault( au=>au.UserName == loginUser.UserName);
                     return RedirectToAction("Index", "Home", new {id=showUser.MemberId});
                 }
                 ViewBag.Msg = "Login Successful!";
@@ -123,6 +139,16 @@ namespace WebAppLexicon.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult GetMemberById(int memberId)
+        {
+            {
+                Members regMembers = _peopleService.FindById(memberId);
+
+                //              var lstToReturn = lstCities.Select(s => new { id = s.CityId, Name = s.CityName });
+                return Json(regMembers);
+            }
         }
     }
 }

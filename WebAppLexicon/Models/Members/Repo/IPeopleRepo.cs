@@ -14,7 +14,7 @@ namespace WebAppLexicon.Models.Members.Repo
         Members Create(Members member);
         Members FindByID(int id);
         List<Members> FindLast();
-
+        List<Members> FindWithPending();
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);
         bool Update(Members member);
 

@@ -42,6 +42,11 @@ namespace WebAppLexicon.Models.Members.Services
         {
             return _peopleRepo.FindLast();
         }
+
+        public List<Members> FindWithPending()
+        {
+            return _peopleRepo.FindWithPending();
+        }
         public bool Remove(int id)
         {
             Members member = _peopleRepo.Read(id);

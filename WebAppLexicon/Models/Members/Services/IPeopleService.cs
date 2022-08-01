@@ -14,6 +14,8 @@ namespace WebAppLexicon.Models.Members.Services
         Members Add(CreateMemberViewModel memberViewModel);
         Members FindById(int id);
         List<Members> FindLast();
+
+        List<Members> FindWithPending();
         bool Edit(Members member);
         bool Remove(int id);
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);

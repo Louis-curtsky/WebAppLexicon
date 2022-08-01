@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppLexicon.Models.Identity;
+using WebAppLexicon.Models.Members.Services;
 
 namespace WebAppLexicon.Controllers
 {
