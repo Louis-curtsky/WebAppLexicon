@@ -66,7 +66,8 @@ namespace WebAppLexicon.Controllers
                         user.MemberId = item.MemberId;
                         user.PhoneNumber = item.Phone;
                         user.PhoneNumberConfirmed = true;
-//                        user.UserRolesId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5";
+                    // UserRolesId is taken care of at NetUserRole in AddRoleAsync
+                    // Aug 1 2022 Current context user.UserRolesId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5";
 
                     // UserRoleID string is taken from NetUser after Seeding
 
