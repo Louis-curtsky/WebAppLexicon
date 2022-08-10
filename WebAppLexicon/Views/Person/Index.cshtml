@@ -6,21 +6,23 @@
 
 <h2>Members Maintenance</h2>
 <form asp-action="Edit" method="post">
-    <table class="contact">
-        <tr>
-            <th width="10px">ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>State</th>
-            <th>City</th>
-            <th>Read</th>
-            <th>Write</th>
-            <th>Status</th>
-            <th>Images</th>
-            <th>Actions</th>
-        </tr>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>Mem</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>Nationality and Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Read-1</th>
+                <th>Write-1</th>
+                <th>Status</th>
+                <th>Images</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         <tbody>
             @for (int i = 0; i < Model.Count; i++)
             {
@@ -31,7 +33,7 @@
                 <td>@Model[i].FirstName</td>
                 <td>@Model[i].LastName</td>
                 <td>@Model[i].Phone</td>
-                <td>@Model[i].CntyId</td>
+                <td>@Model[i].Nationality / @Model[i].CntyId</td>
                 <td>@Model[i].StateId</td>
                 <td id="cityName">
                     @Model[i].CtyId

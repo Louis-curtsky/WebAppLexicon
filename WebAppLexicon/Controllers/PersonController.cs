@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppLexicon.Models;
 using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Services;
 using WebAppLexicon.Models.Members.ViewModel;
@@ -96,6 +97,10 @@ namespace WebAppLexicon.Controllers
         public ActionResult Edit(int id)
         {
             Members member = _peopleService.FindById(id);
+            State state = _stateService.FindById(member.StateId);
+            ViewBag.State = state.StateName;
+            City city = _cityService.FindById(member.CtyId);
+            ViewBag.City = city.CityName;
             ViewBag.Countries = _countryService.GetAll();
             ViewBag.Language = _languageService.GetAll();
             return View(member);

@@ -19,23 +19,37 @@
             </div>
             <div>
                 <div>
-                    <nav>
-                        <h3>
-                            <a href="#" class="navbutton1">
-                                <i class="fa-solid fa-person-through-window"></i>
-                            </a>
-                            <a href="#" class="navbutton1"><i class="fa-solid fa-cash-register"></i></a>
-                            <a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user-pen"></i></a>
-                        </h3>
-                    </nav>
-                    <p> </p>
-                </div>
-                <div>
-                    <nav>
-                        <a class="navbutton" asp-controller="Home" asp-action="Create">Register</a>
-                        <a href="#" class="navbutton">About</a>
-                        <a href="#" class="navbutton">Conact</a>
-                    </nav>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <nav>
+                            <h3>
+                                <a asp-area="" asp-controller="Account" asp-action="Logout">
+                                    <i class="fa-solid fa-person-through-window"></i>
+                                </a>
+                                <a href="#" class="navbutton1"><i class="fa-solid fa-cash-register"></i></a>
+
+                            </h3>
+                        </nav>
+                        <div>
+                            <nav>
+                                <a href="#" class="navbutton">About</a>
+                                <a href="#" class="navbutton">Conact</a>
+                            </nav>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <h3>
+                                <a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user-pen"></i></a>
+                            </h3>
+                            <nav>
+                                <a class="navbutton" asp-controller="Member" asp-action="Create">Register</a>
+                                <a href="#" class="navbutton">About</a>
+                                <a href="#" class="navbutton">Conact</a>
+                            </nav>
+                        </div>
+                    }
                 </div>
             </div>
         </header>

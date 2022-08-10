@@ -62,14 +62,7 @@
 
     <div class="col-md-12">
         <label class="control-label">Nationality</label>
-        <div>
-            <select id="Nationality" name="Nationality" class="custom-select m-md-3 w-25" aria-label="Default select example">
-                @foreach (var item in ViewBag.Countries)
-                {
-                    <option value="@item.CntyName">@item.CntyName</option>
-                }
-            </select>
-        </div>
+        <input asp-for="Nationality" class="form-control m-md-3 w-50" />
     </div>
     <div class="col-md-9">
         <label asp-for="GovIdType" class="control-label"></label>
@@ -101,10 +94,16 @@
     <div class="col-md-12">
         <label asp-for="CntyId" class="control-label">Country</label>
         <div>
-            <select id="CountryList" name="cntyId" class="custom-select m-md-3 w-25">
+            <select id="CountryEdit" name="cntyId" class="custom-select m-md-3 w-25">
                 @foreach (var item in ViewBag.Countries)
                 {
-                    <option value="@item.CntyId">@item.CntyName</option>
+                    if(Model.CntyId==item.CntyId)
+                    {
+                        <option selected value="@item.CntyId">@item.CntyName</option>
+                    } else
+                    {
+                        <option value="@item.CntyId">@item.CntyName</option>
+                    }
                 }
             </select>
         </div>
@@ -112,13 +111,18 @@
     <div class="col-md-9">
         <label class="control-label">State</label>
         <div>
-            <select id="StateList" name="StateId" class="custom-select m-md-3 w-50"></select>
+            <select id="StateEdit" name="StateId" class="custom-select m-md-3 w-50">
+                <option selected value="StateId">@ViewBag.State</option>
+            </select>
+
         </div>
     </div>
     <div class="col-md-3">
         <label class="control-label">City</label>
         <div>
-            <select id="CityList" name="CityId" class="custom-select m-md-3 w-100" required></select>
+            <select id="CityEdit" name="CityId" class="custom-select m-md-3 w-100" required>
+                <option selected value="CityId">@ViewBag.City</option>
+            </select>
         </div>
     </div>
     <div class="col-md-12">
@@ -146,12 +150,7 @@
     <div class="col-md-12">
         <label>Approval</label>
         <div>
-            <select id="memberApproval" name="memberApproval" class="custom-select m-md-3 w-25">
-                <option value="Approved">Approved</option>
-                <option value="Pending">Pending</option>
-                <option value="Suspended">Suspended</option>
-                <option value="Terminated">Terminated</option>
-            </select>
+            <input asp-for="MemberApproval" name="memberApproval" class="custom-select m-md-3 w-25" disabled />
         </div>
     </div>
     <div class="col-md-9">
