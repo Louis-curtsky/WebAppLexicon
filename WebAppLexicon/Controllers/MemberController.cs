@@ -9,6 +9,7 @@ using WebAppLexicon.Models;
 using WebAppLexicon.Models.Members;
 using WebAppLexicon.Models.Members.Services;
 using WebAppLexicon.Models.Members.ViewModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAppLexicon.Controllers
 {
@@ -30,15 +31,17 @@ namespace WebAppLexicon.Controllers
             _languageService = languageService;
         }
         // GET: MemberController
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            Members members = _peopleService.FindById(id);
+            return View(members);
         }
 
         // GET: MemberController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Members members = _peopleService.FindById(id);
+            return View(members);
         }
 
         // GET: MemberController/Create
@@ -116,7 +119,7 @@ namespace WebAppLexicon.Controllers
                 memberViewModel.LangWrite1 = members.LangWrite1;
                 memberViewModel.MemberDate = members.MemberDate;
                 memberViewModel.MemberApproval = members.MemberApproval;
-                FileStream stream = _peopleService.DownLoadFile(members.ProfilePicture);
+
                 if (members.ProfilePicture == null)
                 {
                     ViewBag.FileName = "Not-found-lex-project.svg";
@@ -130,6 +133,8 @@ namespace WebAppLexicon.Controllers
                 ViewBag.SaveRec = false;
                 ViewBag.Countries = _countryService.GetAll();
                 ViewBag.Language = _languageService.GetAll();
+                ViewBag.State = _stateService.FindById(memberViewModel.StateId).StateName;
+                ViewBag.City = _cityService.FindById(memberViewModel.CtyId).CityName;
                 return View(memberViewModel);
             } else
             {
@@ -147,6 +152,9 @@ namespace WebAppLexicon.Controllers
    
             if (memberViewModel.MemberApproval == null)
                 memberViewModel.MemberApproval = "Approved";
+            
+            memberViewModel.StateId = stateId;
+            memberViewModel.CtyId = cityId;
 
             if (ModelState.IsValid)
             {
@@ -174,15 +182,23 @@ namespace WebAppLexicon.Controllers
                     ProfilePicture = customFile
                 };
                 if (memberViewModel.Profile == null)
+                {
                     members.ProfilePicture = HttpContext.Request.Form.Files[0].FileName;
+                }
+                else
+                {
+                    members.ProfilePicture = memberViewModel.Profile.FileName;
+                    string uploadFileName = _peopleService.UploadedFile2(memberViewModel) ;
+                }
 
                 ViewBag.Countries = _countryService.GetAll();
                 ViewBag.Language = _languageService.GetAll();
 
                 if ( _peopleService.Edit(members))
-                   return View(memberViewModel);
+                   return RedirectToAction(nameof(Index), new { id=members.MemberId});
             }
             ModelState.AddModelError("System", "Fail to edit Members!!!");
+            ViewBag.Msg = "Fail to Update Member Data !!!";
             return RedirectToAction(nameof(Index));
         }
 

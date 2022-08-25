@@ -49,10 +49,14 @@ namespace WebAppLexicon.Models.Members.ViewModel
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
+
         [Display(Name = "Profile Picture")]
         public IFormFile ProfileImage { get; set; }
+        [Required]
         public int CtyId { get; set; }
+        [Required]
         public int StateId { get; set; }
+        [Required]
         public int CntyId { get; set; }
         public string MemberApproval { get; set; }
         public DateTime MemberDate { get; set; }

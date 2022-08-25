@@ -34,8 +34,7 @@
                 <input asp-for="MemberDate" id="memDate" name="memDate" class="form-control" style='width:auto' disabled />
                 <label asp-for="Profile" class="control-label"></label>
                 <div class="custom-file">
-                    <input asp-for="Profile" class="custom-file-input" id="customFile" name="customFile" ,
-                           style='width:auto'>
+                    <input asp-for="@Model.Profile" class="custom-file-input" id="customFile" style='width:auto'>
                     @if (Model.Profile == null)
                     {
                         <label class="custom-file-label" for="customFile" id="ImageDisplay" style='height:200px'>@ViewBag.FileName</label>
@@ -105,26 +104,32 @@
 
 
                     <label asp-for="Nationality" class="control-label"></label>
-                    <select id="Nationality" name="nationality" class="select">
-                        @foreach (var item in ViewBag.Countries)
-                        {
-                            <option value="@item.CntyName">@item.CntyName</option>
-                        }
-                    </select>
+                    <input asp-for="Nationality" class="form-control m-md-3 w-50" />
 
                     <label asp-for="CntyId" class="control-label">Country</label>
                     <select id="CountryList" name="cntyId" class="select">
                         @foreach (var item in ViewBag.Countries)
                         {
-                            <option value="@item.CntyId">@item.CntyName</option>
+                            if (Model.CntyId == item.CntyId)
+                            {
+                                <option selected value="@item.CntyId">@item.CntyName</option>
+                            }
+                            else
+                            {
+                                <option value="@item.CntyId">@item.CntyName</option>
+                            }
                         }
                     </select>
 
                     <label class="control-label">State</label>
-                    <select id="StateList" name="StateId" class="form-control"></select>
+                    <select id="StateList" name="stateId" class="form-control">
+                        <option selected value="@Model.StateId">@ViewBag.State</option>
+                    </select>
 
                     <label class="control-label">City</label>
-                    <select id="CityList" name="CityId" class="form-control" required></select>
+                    <select id="CityList" name="cityId" class="form-control" required>
+                        <option selected value="@Model.CtyId">@ViewBag.City</option>
+                    </select>
 
                     <label asp-for="LangId" class="control-label">Language</label>
                     <select name="LangId" class="select">

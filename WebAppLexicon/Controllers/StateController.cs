@@ -63,16 +63,11 @@ namespace WebAppLexicon.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            CreateStateViewModel editState = new CreateStateViewModel()
-            {
-                StateName = state.StateName
-            };
-
+            ViewBag.CountryList = _countryService.GetAll();
 
             ViewBag.id = id;
 
-            return View(editState);
+            return View(state);
         }
 
         // POST: CountryController/Edit/5
@@ -89,6 +84,7 @@ namespace WebAppLexicon.Controllers
                 ModelState.AddModelError("System", "Fail to edit Country!!!");
             }
             ViewBag.id = id;
+            ViewBag.CountryList = _countryService.GetAll();
             return View(state);
         }
 

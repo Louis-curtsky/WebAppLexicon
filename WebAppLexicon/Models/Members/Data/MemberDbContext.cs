@@ -10,7 +10,6 @@ using WebAppLexicon.Models.Identity;
 namespace WebAppLexicon.Models.Members.Data
 {
     public class MemberDbContext : IdentityDbContext<IdentityUser>
-//    public class MemberDbContext : DbContext
     {
         public MemberDbContext(DbContextOptions<MemberDbContext> options) : base(options)
         { }
@@ -65,7 +64,6 @@ namespace WebAppLexicon.Models.Members.Data
                 new SkillCats() { SkillId = 13, Categories = "Panio" },
                 new SkillCats() { SkillId = 14, Categories = "Teach Panio" },
                 new SkillCats() { SkillId = 999, Categories = "Others" }
-
                 );
 
             modelBuilder.Entity<Skills>().HasData(
@@ -111,7 +109,10 @@ namespace WebAppLexicon.Models.Members.Data
                 new Language { Id = 1, LangName = "Swedish"},
                 new Language { Id = 2, LangName = "English" },
                 new Language { Id = 3, LangName = "French" },
-                new Language { Id = 4, LangName = "Chinese" }
+                new Language { Id = 4, LangName = "Chinese" },
+                new Language { Id = 5, LangName = "Spanish" },
+                new Language { Id = 6, LangName = "Turkic" },
+                new Language { Id = 7, LangName = "Arabic" }
                 );
 
             modelBuilder.Entity<City>().HasData(
@@ -147,7 +148,8 @@ namespace WebAppLexicon.Models.Members.Data
                 new Country() { CntyId = 2, CntyName = "France" },
                 new Country() { CntyId = 3, CntyName = "Italy" },
                 new Country() { CntyId = 4, CntyName = "Germany" },
-                new Country() { CntyId = 5, CntyName = "Turkey" }
+                new Country() { CntyId = 5, CntyName = "Turkey" },
+                new Country() { CntyId = 6, CntyName = "USA" }
                 );
 
             modelBuilder.Entity<Members>().HasData(
@@ -246,8 +248,8 @@ namespace WebAppLexicon.Models.Members.Data
             new AppUser
             {
                 Id = userId,
-                UserName = "User1",
-                NormalizedUserName = "USER1",
+                UserName = "User20",
+                NormalizedUserName = "USER20",
                 Email = "user1@gmail.com",
                 PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "NeWY@8rs"),
                 FirstName = "Vicient",

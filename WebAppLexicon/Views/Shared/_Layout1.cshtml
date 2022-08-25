@@ -27,7 +27,6 @@
                                     <i class="fa-solid fa-person-through-window"></i>
                                 </a>
                                 <a href="#" class="navbutton1"><i class="fa-solid fa-cash-register"></i></a>
-
                             </h3>
                         </nav>
                         <div>
@@ -41,7 +40,13 @@
                     {
                         <div>
                             <h3>
-                                <a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user-pen"></i></a>
+                                <a asp-area="" asp-controller="Account" asp-action="Login">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </a>
+                                
+                                <a asp-area="" asp-controller="Home" asp-action="Index"> 
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                </a>
                             </h3>
                             <nav>
                                 <a class="navbutton" asp-controller="Member" asp-action="Create">Register</a>
@@ -61,7 +66,23 @@
     <footer class="border-top footer text-muted">
         <hr>
         <div class="container">
-            &copy; 2022 - Service Offering Platform(Louis Lim) - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="d-inline-flex">
+                <div class="item">
+                    <img src="~/images/basket.png" height="75 " width="75" />
+                </div>
+                <div class="circle" style="animation-delay: 2s"></div>
+                <div class="circle" style="animation-delay: 3s"></div>
+                <div class="circle" style="animation-delay: 4s"></div>
+                <div class="circle" style="animation-delay: 5s"></div>
+            </div>
+            <div class="d-inline-flex">
+                <div>
+                    &copy; 2022 - Service Offering Platform(Louis Lim) - <a asp-area="" asp-controller="Person" asp-action="Index">A FullStack Developer Project /</a>
+                </div>
+                <div>
+                    <a href="https://iconscout.com/icons/basket" target="_blank">Basket Icon</a> by <a href="https://iconscout.com/contributors/ecommdesign">EcommDesign</a> on <a href="https://iconscout.com">IconScout</a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

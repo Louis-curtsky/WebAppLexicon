@@ -1,0 +1,49 @@
+﻿@model WebAppLexicon.Models.State
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>State</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StateId" />
+            <div class="form-group">
+                <label asp-for="StateName" class="control-label"></label>
+                <input asp-for="StateName" class="form-control" />
+                <span asp-validation-for="StateName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CntyId" class="control-label"></label>
+                <select id="CountryAll" name="cntyId" class="select">
+                    @foreach (var item in ViewBag.CountryList)
+                    {
+                        if (item.CntyId == Model.CntyId)
+                        {
+                            <option value="@item.CntyId" selected>@item.CntyName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CntyId">@item.CntyName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="CntyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -20,6 +20,7 @@ namespace WebAppLexicon.Models.Members.Services
         bool Remove(int id);
         List<Members> Search(string firstName, string lastName, int countryId, int cityId);
         string UploadedFile(CreateMemberViewModel model);
+        string UploadedFile2(MemberViewModel model);
         FileStream DownLoadFile(string fileName);
     }
 }

@@ -48,22 +48,22 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c96dbcf0-7d7e-47e1-94ec-11429a097c84",
-                            ConcurrencyStamp = "c96dbcf0-7d7e-47e1-94ec-11429a097c84",
+                            Id = "b85c822f-4bc9-44bb-b4a6-4b2890dfe858",
+                            ConcurrencyStamp = "b85c822f-4bc9-44bb-b4a6-4b2890dfe858",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "509056be-ed85-4b4b-b11b-4b4572664629",
-                            ConcurrencyStamp = "509056be-ed85-4b4b-b11b-4b4572664629",
+                            Id = "0f45e947-827d-491a-a8b7-ab52c82b47aa",
+                            ConcurrencyStamp = "0f45e947-827d-491a-a8b7-ab52c82b47aa",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5",
-                            ConcurrencyStamp = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5",
+                            Id = "beb69b58-f86c-4376-969b-b4762666da94",
+                            ConcurrencyStamp = "beb69b58-f86c-4376-969b-b4762666da94",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -227,18 +227,18 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d7a4f1b5-174c-4a85-abf1-44ec65911ec8",
-                            RoleId = "c96dbcf0-7d7e-47e1-94ec-11429a097c84"
+                            UserId = "cd27e143-e9a9-49bd-a832-14f92e6a35b6",
+                            RoleId = "b85c822f-4bc9-44bb-b4a6-4b2890dfe858"
                         },
                         new
                         {
-                            UserId = "7d6ad142-8185-4617-a517-daffb07de900",
-                            RoleId = "509056be-ed85-4b4b-b11b-4b4572664629"
+                            UserId = "c63d8402-fc63-415d-9353-433479e12681",
+                            RoleId = "0f45e947-827d-491a-a8b7-ab52c82b47aa"
                         },
                         new
                         {
-                            UserId = "52a839b5-d34d-45a5-8c60-1208d697bc6b",
-                            RoleId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5"
+                            UserId = "4855507e-37a3-47af-a43c-44659217f7b1",
+                            RoleId = "beb69b58-f86c-4376-969b-b4762666da94"
                         });
                 });
 
@@ -388,6 +388,11 @@ namespace WebAppLexicon.Migrations
                         {
                             CntyId = 5,
                             CntyName = "Turkey"
+                        },
+                        new
+                        {
+                            CntyId = 6,
+                            CntyName = "USA"
                         });
                 });
 
@@ -471,6 +476,21 @@ namespace WebAppLexicon.Migrations
                         {
                             Id = 4,
                             LangName = "Chinese"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            LangName = "Spanish"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            LangName = "Turkic"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            LangName = "Arabic"
                         });
                 });
 
@@ -929,7 +949,7 @@ namespace WebAppLexicon.Migrations
                             LangRead1 = 0,
                             LangWrite1 = 0,
                             LastName = "Lesslie",
-                            MemberApproval = "Pending",
+                            MemberApproval = "Approved",
                             MemberDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Tongan",
                             Phone = "358-511-7422",
@@ -1230,6 +1250,19 @@ namespace WebAppLexicon.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebAppLexicon.Models.Identity.AppRoles", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("AppRoles");
+                });
+
             modelBuilder.Entity("WebAppLexicon.Models.Identity.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -1251,60 +1284,60 @@ namespace WebAppLexicon.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d7a4f1b5-174c-4a85-abf1-44ec65911ec8",
+                            Id = "cd27e143-e9a9-49bd-a832-14f92e6a35b6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b1e7b7a6-0da3-4464-98ef-a40c1ab4d00f",
+                            ConcurrencyStamp = "cfc29d80-1e45-4237-9726-36bed592e327",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENSQ+T9HkobJIJP3IJHI//Fb/6jGtbxUPArAiNl6sGA0YmK4NnpBuBDDy3dYRcQmHQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB+JjKC5xsy9icpdvm6wpRnL6txuBWAAy+yX2OaS5GN5mCf/TmRmm605jTFYUIOV1g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "efa7d92f-5847-4683-b8d0-8a82b4759ba8",
+                            SecurityStamp = "3c490fd5-2fe5-4a5f-80ba-3b3fc11a8b91",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin",
                             FirstName = "Louis",
                             LastName = "Lim",
                             MemberId = 9999,
-                            UserRolesId = "c96dbcf0-7d7e-47e1-94ec-11429a097c84"
+                            UserRolesId = "b85c822f-4bc9-44bb-b4a6-4b2890dfe858"
                         },
                         new
                         {
-                            Id = "7d6ad142-8185-4617-a517-daffb07de900",
+                            Id = "c63d8402-fc63-415d-9353-433479e12681",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f5f4c4a5-d201-4f68-8d10-67a956afdad4",
+                            ConcurrencyStamp = "32f75635-4e93-42b9-9e35-91b525302e47",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPElRuY6fW+v35wRry5pE/Xhku4Iclntc7smUjF4qfFwxd/H6j+WF5qkyNMHn5/j6Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO2DE7K2B7bUrneNOiJLD5HtTth5SESwAx2QqlwAegMKIQBkBc40duOFSH1qNJ622Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2b83b69-11c4-4616-9a8d-82f2a6de0c84",
+                            SecurityStamp = "5ce0e532-bcc1-4b35-91df-611ba0a5e6ab",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FirstName = "Vicient",
                             LastName = "Hook",
                             MemberId = 9998,
-                            UserRolesId = "509056be-ed85-4b4b-b11b-4b4572664629"
+                            UserRolesId = "0f45e947-827d-491a-a8b7-ab52c82b47aa"
                         },
                         new
                         {
-                            Id = "52a839b5-d34d-45a5-8c60-1208d697bc6b",
+                            Id = "4855507e-37a3-47af-a43c-44659217f7b1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e22dc0ba-275d-46c2-87c9-b38ea8fb4d34",
+                            ConcurrencyStamp = "083f9e73-badd-441b-955b-2962110ac9b6",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF9kWiv4EHs/9hwrKvLF/7hIEB31OoqfhKpz8FbplBw3kTjqaBZDCdkUcjaUVLjjcg==",
+                            NormalizedUserName = "USER20",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB9oKNTj7/EAvgaxJdAcmOfKgG7WA1UchFUoAy72lRJUFSArrLDzfIJ3fK1w6+d1fw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1e2e73b7-3862-44dd-a537-b500d1ada477",
+                            SecurityStamp = "050d7191-0cce-4ea2-a27a-355d9856f290",
                             TwoFactorEnabled = false,
-                            UserName = "User1",
+                            UserName = "User20",
                             FirstName = "Vicient",
                             LastName = "Kent",
                             MemberId = 20,
-                            UserRolesId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5"
+                            UserRolesId = "beb69b58-f86c-4376-969b-b4762666da94"
                         });
                 });
 

@@ -47,7 +47,9 @@ main {
     display: flex;
     justify-content: space-between;
     text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 
 .card1 {
     background-image: url(../images/pexels-samson.jpg.jpg);
@@ -56,6 +58,8 @@ main {
     min-height: 230px;
     width: 30%;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.228);
+    transition-duration: 0.2s;
+    transition-delay: 0s;
 }
 
 .card2 {
@@ -65,6 +69,8 @@ main {
     width: 30%;
     min-height: 230px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.228);
+    transition-duration: 0.2s;
+    transition-delay: 0s;
 }
 
 .card3 {
@@ -74,11 +80,24 @@ main {
     width: 30%;
     min-height: 230px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.228);
+    transition-duration: 0.2s;
+    transition-delay: 0s;
 }
 
 .card1, .card2, .card3 {
     padding: 30px 30px 20px 30px;
     box-sizing: border-box;
+}
+    .card1:hover {
+        transform: scale(1.1);
+    }
+
+    .card2:hover {
+        transform: scale(1.1);
+    }
+
+.card3:hover {
+    transform: scale(1.1);
 }
 
 .herobox1 {
@@ -89,6 +108,8 @@ main {
 
 .herobox2 {
     flex: 1;
+    height: 300px;
+    object-fit: cover;
 }
 
 
@@ -150,4 +171,37 @@ nav a.mybutton {
     padding: 11px 40px;
     font-family: 'Playfair Display', serif;
     color: beige;
+}
+
+.circle {
+    border-radius: 70%;
+    background-color:darksalmon;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 5s infinite cubic-bezier(.36, .11, .89, .32);
+}
+
+}
+
+.item {
+    z-index: 55;
+    padding: 5px;
+}
+
+    .item img {
+        width: 100px;
+    }
+
+@keyframes scaleIn {
+    from {
+        transform: scale(2.5, 2.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(.5, .5);
+        opacity: .5;
+    }
 }

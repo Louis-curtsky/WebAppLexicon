@@ -97,10 +97,11 @@
             <select id="CountryEdit" name="cntyId" class="custom-select m-md-3 w-25">
                 @foreach (var item in ViewBag.Countries)
                 {
-                    if(Model.CntyId==item.CntyId)
+                    if (Model.CntyId == item.CntyId)
                     {
                         <option selected value="@item.CntyId">@item.CntyName</option>
-                    } else
+                    }
+                    else
                     {
                         <option value="@item.CntyId">@item.CntyName</option>
                     }
@@ -158,7 +159,10 @@
     </div>
     <div class="col-md-3">
         <input type="submit" value="Submit" class="btn btn-primary" />
+        <button asp-area="" asp-controller="Home" asp-action="Index"  class="btn btn-danger"> Exit </button>
     </div>
+
+
 </form>
 
 @section Scripts {

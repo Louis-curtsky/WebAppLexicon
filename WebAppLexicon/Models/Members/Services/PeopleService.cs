@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,11 +14,12 @@ namespace WebAppLexicon.Models.Members.Services
     {
 
         IPeopleRepo _peopleRepo;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public PeopleService(IPeopleRepo peopleRepo)
+        public PeopleService(IPeopleRepo peopleRepo, IWebHostEnvironment hostEnvironment)
         {
             _peopleRepo = peopleRepo;
-
+            webHostEnvironment = hostEnvironment;
         }
 
         public List<Members> All()
@@ -79,7 +81,10 @@ namespace WebAppLexicon.Models.Members.Services
             member.MemberType = personViewModel.MemberType;
             member.MemberApproval = "Pending";
             member.MemberDate = personViewModel.MemberDate;
-            member.ProfilePicture = personViewModel.ProfileImage.FileName;
+            if (personViewModel.ProfileImage == null)
+                member.ProfilePicture = "Not-found-lex-project.svg";
+            else
+                member.ProfilePicture = personViewModel.ProfileImage.FileName;
 
             return _peopleRepo.Create(member);
 
@@ -98,8 +103,8 @@ namespace WebAppLexicon.Models.Members.Services
             if (model.ProfileImage != null)
             {
                 // Below statement will be replaced for real application          
-                // string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                string uploadsFolder = Path.Combine("wwwroot", "images");
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                //string uploadsFolder = Path.Combine("wwwroot", "images");
                 //                uniqueFileName = "_" + model.ProfileImage.FileName;
                 uniqueFileName = model.ProfileImage.FileName;
 
@@ -108,6 +113,27 @@ namespace WebAppLexicon.Models.Members.Services
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using var fileStream = new FileStream(filePath, FileMode.Create);
                 model.ProfileImage.CopyTo(fileStream);
+            }
+            return uniqueFileName;
+        }
+
+        public string UploadedFile2(MemberViewModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.Profile != null)
+            {
+                // Below statement will be replaced for real application          
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                // string uploadsFolder = Path.Combine("wwwroot", "images");
+                //                uniqueFileName = "_" + model.ProfileImage.FileName;
+                uniqueFileName = model.Profile.FileName;
+
+                // Below will be replace for real application
+                //   uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.Profile.CopyTo(fileStream);
             }
             return uniqueFileName;
         }

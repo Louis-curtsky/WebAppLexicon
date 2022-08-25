@@ -70,15 +70,9 @@ namespace WebAppLexicon.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            CreateCityViewModel editCity = new CreateCityViewModel()
-            {
-                CName = city.CityName
-            };
-            editCity.StateList = _stateService.GetAll();
-
             ViewBag.id = id;
-
-            return View(editCity);
+            ViewBag.StateList = _stateService.GetAll();
+            return View(city);
         }
 
         // POST: Cities/Edit/5
@@ -97,6 +91,7 @@ namespace WebAppLexicon.Controllers
                 ModelState.AddModelError("System", "Fail to edit City!!!");
             }
             ViewBag.id = id;
+            ViewBag.StateList = _stateService.GetAll();
             return View(city);
         }
 

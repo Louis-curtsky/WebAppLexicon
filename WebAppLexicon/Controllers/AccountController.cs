@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,17 +23,19 @@ namespace WebAppLexicon.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
         private readonly IPeopleService _peopleService;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
         //        private readonly MemberDbContext _memberDbContext;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, 
-                    RoleManager<IdentityRole> roleManager, IPeopleService peopleService)// Constructor Injection
+                    RoleManager<IdentityRole> roleManager, IPeopleService peopleService,
+                    IWebHostEnvironment hostEnvironment)// Constructor Injection
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _peopleService = peopleService;
- //           _memberDbContext = memberDbContext;
+            webHostEnvironment = hostEnvironment;
         }
 
 
@@ -67,7 +71,6 @@ namespace WebAppLexicon.Controllers
                         user.PhoneNumber = item.Phone;
                         user.PhoneNumberConfirmed = true;
                     // UserRolesId is taken care of at NetUserRole in AddRoleAsync
-                    // Aug 1 2022 Current context user.UserRolesId = "a3b461ee-d2e3-4e0f-8572-f50ee32d3ff5";
 
                     // UserRoleID string is taken from NetUser after Seeding
 
@@ -110,17 +113,22 @@ namespace WebAppLexicon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AppUser loginUser, string password)
         {
-
             if (ModelState.IsValid)
             {
-
                 Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(loginUser.UserName, password, false, false);
                 if (result.Succeeded)
                 {
+                    //                 IdentityRole roleResult = await _roleManager.FindByIdAsync(loginUser.UserRolesId);
+
                     AppUser showUser = await _userManager.FindByNameAsync(loginUser.UserName);
+                    var roles = await _userManager.GetRolesAsync(showUser);
+                    ViewBag.Msg = "Login Successful!";
                     return RedirectToAction("Index", "Home", new {id=showUser.MemberId});
                 }
-                ViewBag.Msg = "Login Successful!";
+                else
+                {
+                    ViewBag.Msg = "Login Fail!!!";
+                }
             }
             else
             {

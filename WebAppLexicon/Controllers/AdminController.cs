@@ -36,6 +36,5 @@ namespace WebAppLexicon.Controllers
             return View(_roleManager.Roles.ToList());
         }
 
-
     }
 }

@@ -41,7 +41,22 @@
                     }
                 </div>
                 <span asp-validation-for="ProfileImage" class="text-danger"></span>
-
+                <div class="regform">
+                    @if (ViewBag.SaveRec == true)
+                    {
+                        <nav>
+                            <a asp-area="" asp-controller="Member" asp-action="Index" class="navbutton btn-danger">Exit</a>
+                            <a href='@Url.Action("Create", "Skills", new {memId=Model.MemberId})' class="navbutton">Next</a>
+                        </nav>
+                    }
+                    else
+                    {
+                        <nav>
+                            <a asp-area="" asp-controller="Member" asp-action="Index" class="navbutton btn-danger">Exit</a>
+                            <a class="navbutton" disabled>Next</a>
+                        </nav>
+                    }
+                </div>
             </div>
             <div class="column2" style="background-color:rgb(101, 76, 204);">
                 <div class="column3" style="background-color: rgb(101, 76, 204);">
@@ -136,23 +151,7 @@
                     <input asp-for="LangWrite1" class="form-control" />
                     <span asp-validation-for="LangWrite1" class="text-danger"></span>
 
-                    <div class="regform">
-                        @if (ViewBag.SaveRec == true)
-                        {
-                            <nav>
-                                <a href="#" class="navbutton">Back</a>
-                                @*<a asp-area="" asp-controller="Skills" asp-action="Create" asp-route-id="@Model.MemberId" class="navbutton">Next</a>*@
-                                <a href='@Url.Action("Create", "Skills", new {memId=Model.MemberId})' class="navbutton">Next</a>
-                            </nav>
-                        }
-                        else
-                        {
-                            <nav>
-                                <a href="#" class="navbutton">Back</a>
-                                <a class="navbutton" disabled>Next</a>
-                            </nav>
-                        }
-                    </div>
+                   
                 </div>
                 @if (ViewBag.SaveRec == false)
                 {
